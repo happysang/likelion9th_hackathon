@@ -7,8 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    홈
-    <a href = "{%url 'urllogin' %}"><button>로그인</button></a>
-    <a href = "{%url 'urlsignup' %}"><button>회원가입</button></a>
+    <div style="text-align: center;">
+        <form action="{%url 'urlsignup' %}" method="POST">
+        {% csrf_token %}
+        {{view_signupform.as_p}}
+        <button type="submit">회원가입</button>
+    </div>
 </body>
 </html>
