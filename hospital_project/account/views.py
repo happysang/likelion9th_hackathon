@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import authenticate
 from django.contrib.auth import login,logout
+from account.forms import RegisterForm
 
 # Create your views here.
 def login_view(request):
@@ -21,14 +22,14 @@ def login_view(request):
 
 def signup_view(request):
     if request.method == 'POST':
-        signup_form = UserCreationForm(request.POST)
+        signup_form = RegisterForm(request.POST)
         if signup_form.is_valid():
             signup_user = signup_form.save()
             login(request, signup_user)
             return redirect ('urlhome')
         else: # 회원가입이 잘 안됐을 때 나올 view
-            form = UserCreationForm()
+            form = RegisterForm()
             return render (request, 'signup.html', {'view_signupform':form})
     else:
-        form = UserCreationForm()
+        form = RegisterForm()
         return render (request, 'signup.html', {'view_signupform':form})
