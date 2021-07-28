@@ -8,10 +8,12 @@
 </head>
 <body>
     <div style="text-align: center;">
-        <form action="{%url 'urlsignup' %}" method="POST">
+        <form action="{%url 'urlsignup' 0%}" method="POST">
         {% csrf_token %}
         {{view_signupform.as_p}}
+        <br><br>
         <button type="submit">회원가입</button>
     </div>
+    
 </body>
 </html>

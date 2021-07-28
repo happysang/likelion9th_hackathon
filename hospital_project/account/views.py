@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import authenticate
 from django.contrib.auth import login,logout
-from account.forms import RegisterForm
+from account.forms import RegisterForm,DoctorForm
 
 # Create your views here.
 def login_view(request):
@@ -19,8 +19,11 @@ def login_view(request):
         form = AuthenticationForm()
         return render(request, 'login.html', {'view_loginform':form})
 
+def choice(request):
+    return render (request, 'choice.html')
 
-def signup_view(request):
+
+def signup_view(request,c):
     if request.method == 'POST':
         signup_form = RegisterForm(request.POST)
         if signup_form.is_valid():
@@ -31,5 +34,9 @@ def signup_view(request):
             form = RegisterForm()
             return render (request, 'signup.html', {'view_signupform':form})
     else:
-        form = RegisterForm()
-        return render (request, 'signup.html', {'view_signupform':form})
+        if c == '1':
+            form = RegisterForm()
+            return render (request, 'signup.html', {'view_signupform':form})
+        if c == '2':
+            form = DoctorForm()
+            return render (request, 'signup.html', {'view_signupform':form})
