@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'urlcreate' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" placeholder="어느과의 정보인가요?" name="dept">
+    <input type="text" placeholder="추후에 유저마다의 이름을 받아오면 될듯" name="user_id">
+    <input type="text" placeholder="제목을 입력해주세요." name="title">
+    <textarea name="body" id="" cols="30" rows="30" >내용</textarea>
+    <input type="submit" name="submit" value="작성하기">
+</form>
+{% endblock %}
