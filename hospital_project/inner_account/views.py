@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import authenticate
 from django.contrib.auth import login,logout
-from account.forms import RegisterForm,DoctorForm
+from inner_account.forms import RegisterForm,DoctorForm
 
 # Create your views here.
 def login_view(request):

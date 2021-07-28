@@ -21,6 +21,6 @@ urlpatterns = [
     path('information/',include('information.urls')),
     path('question/',include('question.urls')),
     path('review/',include('review.urls')),
-    path('account/',include('account.urls')),
+    path('inner_account/',include('inner_account.urls')),
     path('',include('etc.urls'))
 ]

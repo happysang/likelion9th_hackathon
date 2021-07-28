@@ -1,4 +1,4 @@
-from account.models import CustomUser
+from inner_account.models import CustomUser
 from django.contrib import admin
 
 # Register your models here.
