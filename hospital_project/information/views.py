@@ -4,10 +4,6 @@ from .models import Info
 from django.utils import timezone 
 
 # Create your views here.
-<<<<<<< HEAD
-=======
-
->>>>>>> d035d2caa51afdb7a1a169c0cb2b1cd56a78f24c
 def InfoList(request):
     Infos = Info.objects.all()
     return render(request, 'InfoList.html' , {'Infos':Infos})
@@ -25,8 +21,3 @@ def create(request):
     new_Info.body = request.POST['body']
     new_Info.save()
     return redirect('urlInfoList')
-<<<<<<< HEAD
-=======
-
-
->>>>>>> d035d2caa51afdb7a1a169c0cb2b1cd56a78f24c
