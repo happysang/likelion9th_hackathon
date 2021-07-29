@@ -7,10 +7,9 @@ class CustomUser (AbstractUser):
     #일반, 의사 공통
     email = models.EmailField()
     name = models.CharField(max_length=10)
-    phone_number = models.CharField(max_length=12)
     #의사 한정
     h_name = models.CharField(max_length=30)
-    cert = models.FileField()
+    cert = models.FileField(blank=True, null=True)
     #둘다 생략
     point = models.IntegerField(null=True)
     ans_auth = models.BooleanField(default=False)

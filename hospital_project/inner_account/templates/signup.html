@@ -7,13 +7,22 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="text-align: center;">
-        <form action="{%url 'urlsignup' 0%}" method="POST">
-        {% csrf_token %}
-        {{view_signupform.as_p}}
-        <br><br>
-        <button type="submit">회원가입</button>
-    </div>
-    
+    {% if n_view_signupform %}
+        <div style="text-align: center;">
+            <form action="{%url 'urlsignup' 1%}" method="POST">
+            {% csrf_token %}
+            {{n_view_signupform.as_p}}
+            <br><br>
+            <button type="submit">회원가입</button>
+        </div>
+    {% else %}
+        <div style="text-align: center;">
+            <form action="{%url 'urlsignup' 2%}" method="POST">
+            {% csrf_token %}
+            {{d_view_signupform.as_p}}
+            <br><br>
+            <button type="submit">회원가입</button>
+        </div>
+    {% endif %}
 </body>
 </html>

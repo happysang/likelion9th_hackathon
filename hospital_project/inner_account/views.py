@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import authenticate
 from django.contrib.auth import login,logout
-from inner_account.forms import RegisterForm,DoctorForm
+from inner_account.forms import NormalForm, DoctorForm
 
 # Create your views here.
 def login_view(request):
@@ -25,18 +25,25 @@ def choice(request):
 
 def signup_view(request,c):
     if request.method == 'POST':
-        signup_form = RegisterForm(request.POST)
-        if signup_form.is_valid():
-            signup_user = signup_form.save()
-            login(request, signup_user)
-            return redirect ('urlhome')
-        else: # 회원가입이 잘 안됐을 때 나올 view
-            form = RegisterForm()
-            return render (request, 'signup.html', {'view_signupform':form})
+        if c == '1':
+            signup_form = NormalForm(request.POST, request.FILES)
+            if signup_form.is_valid():
+                signup_user = signup_form.save()
+                login(request, signup_user)
+                return redirect ('urlhome')
+        if c == '2':
+            signup_form = DoctorForm(request.POST, request.FILES)
+            if signup_form.is_valid():
+                signup_user = signup_form.save()
+                login(request, signup_user)
+                return redirect ('urlhome')
+        # else: # 회원가입이 잘 안됐을 때 나올 view
+        #     form = RegisterForm()
+        #     return render (request, 'signup.html', {'view_signupform':form})
     else:
         if c == '1':
-            form = RegisterForm()
-            return render (request, 'signup.html', {'view_signupform':form})
+            form = NormalForm()
+            return render (request, 'signup.html', {'n_view_signupform':form})
         if c == '2':
             form = DoctorForm()
-            return render (request, 'signup.html', {'view_signupform':form})
+            return render (request, 'signup.html', {'d_view_signupform':form})
