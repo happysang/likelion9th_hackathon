@@ -2,7 +2,7 @@ from django.urls import path
 from information.views import *
 
 urlpatterns = [
-    path('', InfoList ,name = "urlInfoList"),
-    path('write/' , write , name ="urlwrite"),
-    path('create/' , create , name="urlcreate"),
+    path('info', info, name = 'urlnameinfo'),
+    path('readall', readall, name = 'urlnamereadall'),
+    path('infodetail/<str:each_id>', infodetail, name = 'urlnameinfodetail'),
 ]
