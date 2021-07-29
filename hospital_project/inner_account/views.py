@@ -38,7 +38,7 @@ def signup_view(request,c):
             signup_form = DoctorForm(request.POST, request.FILES)
             if signup_form.is_valid():
                 signup_user = signup_form.save(commit=False)
-                signup_user.point = 0
+                signup_user.point = 300
                 signup_user.ans_auth = False #추후 파일을 보고 True로 변경해준다.
                 signup_user.save()
                 login(request, signup_user)
