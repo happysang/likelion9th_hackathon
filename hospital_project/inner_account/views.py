@@ -28,13 +28,19 @@ def signup_view(request,c):
         if c == '1':
             signup_form = NormalForm(request.POST, request.FILES)
             if signup_form.is_valid():
-                signup_user = signup_form.save()
+                signup_user = signup_form.save(commit=False)
+                signup_user.point = 0
+                signup_user.ans_auth = False
+                signup_user.save()
                 login(request, signup_user)
                 return redirect ('urlhome')
         if c == '2':
             signup_form = DoctorForm(request.POST, request.FILES)
             if signup_form.is_valid():
-                signup_user = signup_form.save()
+                signup_user = signup_form.save(commit=False)
+                signup_user.point = 0
+                signup_user.ans_auth = False #추후 파일을 보고 True로 변경해준다.
+                signup_user.save()
                 login(request, signup_user)
                 return redirect ('urlhome')
         # else: # 회원가입이 잘 안됐을 때 나올 view

@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth.models import AbstractUser
 
-class CustomUser (AbstractUser):
+class CustomUser(AbstractUser):
     #일반, 의사 공통
     email = models.EmailField()
     name = models.CharField(max_length=10)
