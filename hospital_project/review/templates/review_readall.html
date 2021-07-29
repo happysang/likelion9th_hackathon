@@ -8,6 +8,7 @@
 </head>
 <body>
     <h2>후기게시판</h2>
+    <h3><a href="{%url 'urlreviewnew'%}">후기 작성하기</a></h3>
     ------------------------------------------------ <br>
 {% for a in views_review_all %}
     제목:<a href="{% url 'urlreviewdetail' a.id %}">{{a.title}}</a> <br>
