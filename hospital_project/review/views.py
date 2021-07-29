@@ -1,14 +1,3 @@
-from review.models import Review
-from django.shortcuts import render, get_object_or_404
-from django.utils import timezone
+from django.shortcuts import render
 
 # Create your views here.
-
-def review_detail_view(request,each_id):
-    review = get_object_or_404(Review,pk=each_id)
-    return render(request,'review_detail.html',{'views_review':review})
-
-def review_readall_view(request):
-    review_all = Review.objects.order_by("-date")
-    return render(request,"review_readall.html",{'views_review_all':review_all})
-
