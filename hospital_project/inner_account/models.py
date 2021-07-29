@@ -9,7 +9,9 @@ class CustomUser(AbstractUser):
     name = models.CharField(max_length=10)
     #의사 한정
     h_name = models.CharField(max_length=30)
-    cert = models.FileField(blank=True, null=True)
+    cert = models.FileField(upload_to="%y/%m/%d", blank=True, null=True)
     #둘다 생략
     point = models.IntegerField(null=True)
     ans_auth = models.BooleanField(default=False)
+
+    #unique = True 유일성여부

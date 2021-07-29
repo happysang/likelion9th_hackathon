@@ -17,7 +17,7 @@
         </div>
     {% else %}
         <div style="text-align: center;">
-            <form action="{%url 'urlsignup' 2%}" method="POST">
+            <form action="{%url 'urlsignup' 2%}" enctype="multipart/form-data" method="POST" >
             {% csrf_token %}
             {{d_view_signupform.as_p}}
             <br><br>
