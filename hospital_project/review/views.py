@@ -1,5 +1,5 @@
 from review.models import Review
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
 
 # Create your views here.
@@ -12,3 +12,18 @@ def review_readall_view(request):
     review_all = Review.objects.order_by("-date")
     return render(request,"review_readall.html",{'views_review_all':review_all})
 
+def review_new_view(request):
+    return render(request, 'review_new.html')
+
+def review_create_view(request):
+    creview = Review()
+    creview.title = request.POST['ctitle']
+    creview.user_id = request.POST['cuser_id']
+    creview.hname = request.POST['chname']
+    creview.dname = request.POST['cdname']
+    creview.dept = request.POST['cdept']
+    creview.cert = request.FILES.get('ccert')
+    creview.body = request.POST['cbody']
+    creview.time = timezone.now()
+    creview.save()
+    return redirect('urlreviewdetail', creview.id)
