@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate
 from django.contrib.auth import login,logout
 from inner_account.forms import RegisterForm,DoctorForm
+from django.contrib import messages
 
 # Create your views here.
 def login_view(request):
@@ -14,7 +15,10 @@ def login_view(request):
             auth_user = authenticate(request=request, username=auth_username, password = auth_password)
             login(request, auth_user)
             return redirect('urlhome')
-        # else: return redirect('urllogin') 로그인이 잘 안됐을 때 나올 view
+        else:
+            messages.warning(request, '잘못된 정보입니다.') #로그인이 잘 안됐을 때 나올 view
+            return redirect('urllogin')
+
     else:
         form = AuthenticationForm()
         return render(request, 'login.html', {'view_loginform':form})
@@ -40,3 +44,6 @@ def signup_view(request,c):
         if c == '2':
             form = DoctorForm()
             return render (request, 'signup.html', {'view_signupform':form})
+
+def popup(request):
+    return render(request, 'popup.html')
