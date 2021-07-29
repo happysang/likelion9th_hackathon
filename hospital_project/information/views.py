@@ -6,10 +6,10 @@ from django.utils import timezone
 # Create your views here.
 def InfoList(request):
     Infos = Info.objects.all()
-    return render(request, 'InfoList.html' , {'Infos':Infos})
+    return render (request, 'InfoList.html' , {'Infos':Infos})
 
 def write(request):
-    return render(request , 'write.html')
+    return render (request , 'write.html')
 
 def create(request):
     new_Info = Info()
@@ -20,3 +20,7 @@ def create(request):
     new_Info.body = request.POST['body']
     new_Info.save()
     return redirect('urlInfoList')
+
+def detail(request, Info_id):
+    info_detail = get_object_or_404(Info, pk=info_id)
+    return render (request, 'detail.html', {'info': info_detail})

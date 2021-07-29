@@ -1,4 +1,15 @@
 {% extends 'base.html' %}
 {%block content %}
-안녕
+        <p> {{ Info.dept }} </p>
+        <p> {{ Info.user_id }} </p>
+        <p> {{ Info.title }} </p>
+        <p> {{ Info.body }} </p>
+        <p> {{ Info.date }} </p>    
+        <br>
+        <p> 좋아요수    댓글수 </p>
+        <br>
+        <a href="{%url 'urlInfoList' %}"><button>목록</button></a>
+        </div>
+        
+        <script src="" async defer></script>
 {% endblock%}
