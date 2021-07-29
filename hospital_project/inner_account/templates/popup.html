@@ -12,36 +12,52 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     <style>
+        .overlay{
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        transition: opacity 500ms;
+        visibility: hidden;
+        opacity: 0;
+        }
 
-    #messages .error {
-    color: red;
-}
+        .overlay:target{
+        visibility: visible;
+        opacity: 1;
+        }
+
+        .popup{
+        margin: 70px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 5px;
+        width: 20%;
+        position: relative;
+        transition: all 5s ease-in-out;
+        height: 20%;
+        overflow: auto;
+        }
+
+        .popup .close {
+        transition: all 200ms;
+        text-decoration: none;
+        font-size: medium;
+        }
     </style>
-    {%if user.is_authenticated%}
-    <script>
-        alert("안녕하세요.")
-    </script>
-    {%endif%}
 </head>
+<body>
+    <a class="button" href="#popup1">로그인</a>
 
-<body style="text-align: center;">
-{% if messages %}
-<div class="messages">
-{% for message in messages %}
-<div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
-{{ message.message }}
-
-</div>
-{% endfor %}
-</div>
-{% endif %} 
-    <div style="text-align: center;">
-        <form action="{%url 'urllogin' %}" method="POST">
-        {% csrf_token %}
-        {{view_loginform.as_p}}
-        <button type="submit">로그인</button>
+    <div id="popup1" class="overlay">
+        <div class="popup">
+            <a class="close" href="{% url 'urlsignup' 1%}">&times;닫기</a><br>
+            <h2><strong>Login Error!</strong></h2><br>
+            <!--&times는 X 아이콘-->
+            <strong style="color: red;">오류내용</strong>
+        </div>
     </div>
 </body>
 </html>
-
-

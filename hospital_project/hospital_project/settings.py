@@ -12,6 +12,13 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from django.contrib.messages import constants as messages_constants
+
+MESSAGE_LEVEL = messages_constants.DEBUG
+MESSAGE_LEVEL = messages_constants.INFO
+MESSAGE_LEVEL = messages_constants.ERROR
+MESSAGE_LEVEL = messages_constants.SUCCESS
+MESSAGE_LEVEL = messages_constants.WARNING
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
