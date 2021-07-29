@@ -53,3 +53,7 @@ def signup_view(request,c):
         if c == '2':
             form = DoctorForm()
             return render (request, 'signup.html', {'d_view_signupform':form})
+
+def logout_view(request):
+    logout(request)
+    return redirect ('urlhome')
