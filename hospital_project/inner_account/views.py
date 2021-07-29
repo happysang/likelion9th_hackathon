@@ -61,7 +61,3 @@ def signup_view(request,c):
 def logout_view(request):
     logout(request)
     return redirect ('urlhome')
-
-
-def popup(request):
-    return render(request, 'popup.html')

@@ -6,5 +6,4 @@ urlpatterns = [
     path('signup/<str:c>', signup_view, name = 'urlsignup'),
     path('choice/', choice, name = 'urlchoice'),
     path('logout/', logout_view, name = 'urllogout'),
-    path('popup/', popup, name="urlpopup"),
 ]
