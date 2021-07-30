@@ -2,7 +2,7 @@
 {% block content %}
 <form action="{% url 'urlcreate' %}" method="POST">
     {% csrf_token %}
-    <select name='dept'>
+    <select name='dept'required>
     <option value='' selected>-- 선택 --</option>
     <option value='치과'>치과</option>
     <option value='정형외과'>정형외과</option>
@@ -16,9 +16,9 @@
     <option value='신경외과'>신경외과</option>
     <option value='재활의학과'>재활의학과</option>
     </select>
-    <input type="text" placeholder="추후에 유저마다의 이름을 받아오면 될듯" name="user_id">
-    <input type="text" placeholder="제목을 입력해주세요." name="title">
-    <textarea name="body" id="" cols="30" rows="30" >내용</textarea>
+    <input type="text" placeholder="추후에 유저마다의 이름을 받아오면 될듯" name="user_id" required>
+    <input type="text" placeholder="제목을 입력해주세요." name="title" required>
+    <textarea placeholder="내용을 입력해주세요." name="body" id="" cols="30" rows="30" required></textarea>
     <input type="submit" name="submit" value="작성하기">
 </form>
 {% endblock %}
