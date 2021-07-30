@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if n_view_signupform %}
+        <div style="text-align: center;">
+            <form action="{%url 'urlsignup' 1%}" method="POST">
+            {% csrf_token %}
+            {{n_view_signupform.as_p}}
+            <br><br>
+            <button type="submit">회원가입</button>
+        </div>
+    {% else %}
+        <div style="text-align: center;">
+            <form action="{%url 'urlsignup' 2%}" enctype="multipart/form-data" method="POST" >
+            {% csrf_token %}
+            {{d_view_signupform.as_p}}
+            <br><br>
+            <button type="submit">회원가입</button>
+        </div>
+    {% endif %}
+</body>
+</html>
