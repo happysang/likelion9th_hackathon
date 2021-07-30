@@ -24,6 +24,8 @@ def review_create_view(request):
     creview.dept = request.POST['cdept']
     creview.cert = request.FILES.get('ccert')
     creview.body = request.POST['cbody']
-    creview.time = timezone.now()
+    creview.date = timezone.now()
     creview.save()
     return redirect('urlreviewdetail', creview.id)
+
+
