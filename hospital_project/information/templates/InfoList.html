@@ -6,7 +6,7 @@
         <p>{{ Info.dept }}</p>
         <p> {{ Info.user_id }} </p>
         <p> {{ Info.title }} </p>
-        <p> {{ Info.date }} </p> <a href="{% url 'urldetail' %}">자세히 보기</a>
+        <p> {{ Info.date }} </p> <a href="{% url 'urldetail' Info.id %}">자세히 보기</a>
         <br>
     --------------------------------------------------------
     {% endfor %}

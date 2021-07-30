@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 {%block content %}
-        <p> {{ Info.dept }} </p>
-        <p> {{ Info.user_id }} </p>
-        <p> {{ Info.title }} </p>
-        <p> {{ Info.body }} </p>
-        <p> {{ Info.date }} </p>    
+        <p> {{ info.dept }} </p>
+        <p> {{ info.user_id }} </p>
+        <p> {{ info.title }} </p>
+        <p> {{ info.body }} </p>
+        <p> {{ info.date }} </p>    
         <br>
         <p> 좋아요수    댓글수 </p>
         <br>
         <a href="{%url 'urlInfoList' %}"><button>목록</button></a>
+        <a href="{% url 'urledit' info.id %}"><button>수정하기</button></a>
+        <a href="{% url 'urldelete' info.id%}" onclick="return confirm('ㄹㅇ?')"><button>삭제하기</button>
+        </a>
         </div>
         
         <script src="" async defer></script>
