@@ -16,16 +16,20 @@ def review_new_view(request):
     return render(request, 'review_new.html')
 
 def review_create_view(request):
-    creview = Review()
-    creview.title = request.POST['ctitle']
-    creview.user_id = request.POST['cuser_id']
-    creview.hname = request.POST['chname']
-    creview.dname = request.POST['cdname']
-    creview.dept = request.POST['cdept']
-    creview.cert = request.FILES.get('ccert')
-    creview.body = request.POST['cbody']
-    creview.date = timezone.now()
-    creview.save()
-    return redirect('urlreviewdetail', creview.id)
+    if request.method == 'POST':
+        creview = Review()
+        creview.title = request.POST['ctitle']
+        creview.user_id = request.POST['cuser_id']
+        creview.hname = request.POST['chname']
+        creview.dname = request.POST['cdname']
+        creview.dept = request.POST['cdept']
+        creview.cert = request.FILES['ccert']
+        creview.body = request.POST['cbody']
+        creview.date = timezone.now()
+        creview.save()
+        return redirect('urlreviewreadall')
+    else:
+        return render(request,'review_new.html')
+
 
 
