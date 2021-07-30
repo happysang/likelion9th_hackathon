@@ -22,5 +22,5 @@ def create(request):
     return redirect('urlInfoList')
 
 def detail(request, Info_id):
-    info_detail = get_object_or_404(Info, pk=info_id)
+    info_detail = get_object_or_404(Info, pk= Info_id)
     return render (request, 'detail.html', {'info': info_detail})
