@@ -12,7 +12,7 @@ class Review(models.Model):
     dname = models.CharField(max_length=10)
     dept = models.CharField(max_length=20)
     body = models.TextField(max_length=300)
-    cert = models.ImageField(upload_to="review/", blank=True, null =True)
+    cert = models.ImageField(upload_to="review/%y/%m/%d", blank=True, null =True)
  
 def __str__(self):
     return self.title
