@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New</title>
+    <style>
+        body{text-align: center;}
+    </style>
+</head>
+<body>
+    <form action="{%url 'urlreviewcreate'%}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        제목: <input type="text" name="ctitle">
+        아이디: <input type="text" name="cuser_id"><br>
+        병원명: <input type="text" name="chname">
+        의사명: <input type="text" name="cdname">
+        진료과: <input type="text" name="cdept"><br>
+        진료 증빙 인증 <br>
+        <input type="file" name="ccert" id=""><br>
+        본문 <br>
+        <textarea name="cbody" id="" cols="70" rows="40"></textarea><br>
+        <button type="submit">작성완료</button>
+    </form>
+</body>
+</html>
