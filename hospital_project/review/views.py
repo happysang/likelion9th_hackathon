@@ -4,8 +4,8 @@ from django.utils import timezone
 
 # Create your views here.
 
-def review_detail_view(request,each_id):
-    review = get_object_or_404(Review,pk=each_id)
+def review_detail_view(request, id):
+    review = get_object_or_404(Review,pk= id)
     return render(request,'review_detail.html',{'views_review':review})
 
 def review_readall_view(request):
@@ -23,7 +23,7 @@ def review_create_view(request):
         creview.hname = request.POST['chname']
         creview.dname = request.POST['cdname']
         creview.dept = request.POST['cdept']
-        creview.cert = request.FILES['ccert']
+        creview.cert = request.FILES.get('ccert')
         creview.body = request.POST['cbody']
         creview.date = timezone.now()
         creview.save()
@@ -31,5 +31,25 @@ def review_create_view(request):
     else:
         return render(request,'review_new.html')
 
+def review_edit_view(request, id):
+    ereview = Review.objects.get(id = id)
+    return render(request, 'review_edit.html', {'views_ereview': ereview})
 
+def review_update_view(request, id):
+    ureview = Review.objects.get(id = id)
+    ureview.title = request.POST['utitle']
+    ureview.user_id = request.POST['uuser_id']
+    ureview.hname = request.POST['uhname'] 
+    ureview.dname = request.POST['udname']
+    ureview.dept = request.POST['udept']
+    ureview.cert = request.FILES.get('ucert')
+    ureview.body = request.POST['ubody']
+    ureview.date = timezone.now()
+    ureview.save()
+    return redirect('urlreviewdetail', ureview.id)
+    
+def review_delete_view(request, id):
+    dreview = Review.objects.get(id = id)
+    dreview.delete()
+    return redirect('urlreviewreadall')
 

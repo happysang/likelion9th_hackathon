@@ -16,5 +16,11 @@
         진료과:{{views_review.dept}} <br>
         내용: {{views_review.body}} <br>
     </div>
+
+    <div style="text-align: center;">
+    <a href="{%url 'urlreviewedit' views_review.id%}">수정하기</a>
+    <a href="{%url 'urlreviewdelete' views_review.id%}">삭제하기</a>
+    <a href="{%url 'urlreviewreadall'%}">목록</a>
+    </div>
 </body>
 </html>
