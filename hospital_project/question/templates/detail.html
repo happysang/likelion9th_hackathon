@@ -10,7 +10,7 @@
     </style>
 </head>
 <body>
-    <h1>질문게시판</h1>
+    <h1><a href="{%url 'urlnameallq'%}">질문게시판</a></h1>
     <div>
         <strong>{{question.dept}}</strong>
         <br>
@@ -22,6 +22,7 @@
     <p>{{question.body}}</p>
     <a href="{%url 'urlnameallq' %}">글 목록</a>
     <a href="{%url 'urlnameedit' question.id %}">수정하기</a><br>
+    <a href="{%url 'urlnamedelete' question.id %}">삭제하기</a><br>
     <hr>
     {% for comment in question.comments.all %} 
     <div class="comment"> 

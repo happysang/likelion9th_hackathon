@@ -18,6 +18,19 @@ def allq(request):
     questions = paginator.get_page(page)
     return render(request,'allq.html',{'questions':questions})
 
+def new(request):
+    return render(request,'new.html')
+
+def create(request):
+    new_question = Question()
+    new_question.dept = request.POST['dept']
+    new_question.title = request.POST['title']
+    new_question.user_id = request.POST['user_id']
+    new_question.body = request.POST['body']
+    new_question.date = timezone.now()
+    new_question.save()
+    return redirect('urlnamedetail',new_question.id)
+
 def detail(request,id):
     question = get_object_or_404(Question, pk=id)
     default_view_count = question.view_count
@@ -51,4 +64,10 @@ def add_comment(request, id):
     else: 
         form=CommentForm() 
     return render(request, 'add_comment.html', {'form':form})
+
+
+def delete(request,id):
+    delete_question = Question.objects.get(id=id)
+    delete_question.delete()
+    return redirect('urlnameallq')
 
