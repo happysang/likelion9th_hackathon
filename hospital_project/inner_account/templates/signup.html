@@ -9,6 +9,11 @@
 <body>
     {% if n_view_signupform %}
         <div style="text-align: center;">
+            {%if messages%}
+            {%for m in messages%}
+            <h3 style="color: red;">{{m.message}}</h3>
+            {%endfor%}
+            {%endif%}
             <form action="{%url 'urlsignup' 1%}" method="POST">
             {% csrf_token %}
             {{n_view_signupform.as_p}}
@@ -17,6 +22,11 @@
         </div>
     {% else %}
         <div style="text-align: center;">
+            {%if messages%}
+            {%for m in messages%}
+            <h4 style="color: red;"><strong>{{m.message}}</strong></h4><br>
+            {%endfor%}
+            {%endif%}
             <form action="{%url 'urlsignup' 2%}" enctype="multipart/form-data" method="POST" >
             {% csrf_token %}
             {{d_view_signupform.as_p}}
