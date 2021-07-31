@@ -7,5 +7,5 @@ __pycache__/
 .Python
 venv/
 
-db.sqlite3
+hospital_project/db.sqlite3
 .DS_Store

@@ -36,11 +36,11 @@ def detail(request,id):
     default_view_count = question.view_count
     question.view_count = default_view_count +1 
     question.save()
-    return render(request,'detail.html',{'question':question})
+    return render(request,'qdetail.html',{'question':question})
 
 def edit(request,id):
     edit_question = Question.objects.get(id=id)
-    return render(request,'edit.html',{'question':edit_question})
+    return render(request,'qedit.html',{'question':edit_question})
 
 def update(request,id):
     update_question = Question.objects.get(id=id)
