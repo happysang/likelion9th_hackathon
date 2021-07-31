@@ -1,0 +1,30 @@
+<h1>질문 수정하기</h1>
+
+<form action="{%url 'urlnameupdate' question.id %}" method="post">
+    {%csrf_token%}
+    <p>제목:<input type="text" name="htmltitle" value="{{question.title}}"></p>
+    <p>작성자:<input type="text" name="htmluser_id" value="{{question.user_id}}"></p>
+    <p>학과:<select name="htmldept" value="{{question.dept}}">
+        <option value="">----</option>
+        <option value="치과">치과</option>
+        <option value="피부과">피부과</option>
+        <option value="성형외과">성형외과</option>
+        <option value="산부인과">산부인과</option>
+        <option value="안과">안과</option>
+        <option value="내과">내과</option>
+        <option value="외과">외과</option>
+        <option value="이비인후과">이비인후과</option>
+        <option value="정형외과">정형외과</option>
+        <option value="비뇨기과">비뇨기과</option>
+        <option value="정신건강의학과">정신건강의학과</option>
+        <option value="재활의학과">재활의학과</option>
+        <option value="영상의학과">영상의학과</option>
+        <option value="소아과">소아과</option>
+        <option value="신경외과">신경외과</option>
+        <option value="신경과">신경과</option>
+        <option value="마취통층의학과">마취통층의학과</option>
+        <option value="가정의학과">가정의학과</option>
+        <option value="한의원">한의원</option></select></p>
+    본문:<textarea name="htmlbody" id="" cols="30" rows="20">{{question.body}}</textarea>
+    <button type="submit">수정하기</button> 
+</form>

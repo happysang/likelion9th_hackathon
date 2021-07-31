@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>질문 게시판</title>
+    <style>
+        body{text-align: center;}
+    </style>
+</head>
+<body>
+    <h1>질문 게시판</h1>
+    <div class="container">
+    {%for question in questions%}
+    <div>
+        <strong>{{question.dept}}</strong>
+        <strong><a href="{%url 'urlnamedetail' question.id %}">{{question.title}}</a></strong>
+        {{question.user_id}}
+        {{question.date}}
+        조회수 : {{question.view_count}}<br>
+        --------------------------------------------
+        </div>
+    {% endfor %}
+     </div>   
+     {% if questions.has_previous%}
+     <a href="?page=1">처음</a>
+     <a href="?page={{questions.previous_page_number}}">이전</a>
+     {% endif %}
+     <span>{{questions.number}}</span>
+     <span>of</span>
+     <span>{{questions.paginator.num_pages}}</span>
+     {% if questions.has_next %}
+     <a href="?page={{questions.next_page_number}}">다음</a>
+     <a href="?page={{questions.paginator.num_pages}}">마지막</a>   
+     {% endif %}
+     <br><a href="{%url 'urlnamenew'%}">>질문작성하기</a><br>
+     <a href="{%url 'urlnameqreadall'%}">>병과 선택하기</a>
+</body>
+</html>
