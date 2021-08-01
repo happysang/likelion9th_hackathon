@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>질문 게시판</title>
+    <style>
+        body{text-align: center;}
+    </style>
+</head>
+<body>
+    <h1><a href="{%url 'urlnameallq'%}">질문게시판</a></h1>
+    <div>
+        <strong>{{question.dept}}</strong>
+        <br>
+        {{question.user_id}}
+        {{question.date}}
+        조회수 : {{question.view_count}}
+        <h3>{{question.title}}</h3>
+    </div>
+    <p>{{question.body}}</p>
+    <a href="{%url 'urlnameallq' %}">글 목록</a>
+    <a href="{%url 'urlnameedit' question.id %}">수정하기</a><br>
+    <a href="{%url 'urlnamedelete' question.id %}">삭제하기</a><br>
+    <hr>
+    {% for comment in question.comments.all %} 
+    <div class="comment"> 
+        <div><strong>{{ comment.author_name }}</strong>    {{ comment.created_at }}</div> 
+        <p>{{ comment.comment_text }}</p> 
+    </div> 
+    {% empty %} 
+    <p>아직 작성된 댓글이 없습니다.</p> 
+    {% endfor %}
+    <a href="{%url 'urlnameadd_comment' question.id %}">댓글 작성</a>
+    <br><br>
+    <!-- 댓글 작성 : 
+    <form method="POST">
+        {% csrf_token %}
+        <input name="body" type="text" value="">
+        <input type="submit" value="작성">
+    </form> -->
+
+</body>
+</html>
