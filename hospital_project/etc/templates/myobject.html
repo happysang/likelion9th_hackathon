@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>review</h2>
+    <div>
+        {% if review_list%}
+            {% for re in review_list %}
+                제목: <a href="{%url 'urlreviewdetail' re.id %}"> {{re}} </a>
+                <br>
+                --------------------
+            {% endfor %}
+        {% else %}
+            등록된 후기가 없습니다.
+        {% endif %}
+    </div>
+    <br><br>
+    
+    <h2>information</h2>
+    <div>
+        {% if information_list%}
+            {% for in in information_list %}
+                제목: <a href="{%url 'urlreviewdetail' in.id %}"> {{in}} </a>
+                <br>
+                --------------------
+            {% endfor %}
+        {% else %}
+            등록된 정보글이 없습니다.
+        {% endif %}
+    </div>
+        <br><br>
+
+
+    <h2>question</h2>
+    <div>
+        {% if question_list%}
+            {% for qu in rquestion_list %}
+                제목: <a href="{%url 'urlreviewdetail' qu.id %}"> {{qu}} </a>
+                <br>
+                --------------------
+            {% endfor %}
+        {% else %}
+            등록된 질문이 없습니다.
+        {% endif %}
+    </div>
+    <br><br>
+</body>
+</html>
