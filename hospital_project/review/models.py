@@ -14,14 +14,7 @@ class Review(models.Model):
     dept = models.CharField(max_length=20)
     body = models.TextField(max_length=300)
     cert = models.ImageField(upload_to="review/%y/%m/%d", blank=True, null =True)
-    likes_user = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, # this is preferred than just 'User'
-        blank=True, # blank is allowed
-        related_name='likes_user'
-    ) # likes_user field
-
-    def count_likes_user(self): # total likes_user
-        return self.likes_user.count()
+    likes_user = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
         
     def __str__(self):
         return self.title

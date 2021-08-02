@@ -62,17 +62,17 @@ from .models import Review
 
 @login_required
 @require_POST
-def video_like(request):
+def like(request):
     pk = request.POST.get('pk', None)
     object = get_object_or_404(Review, pk=pk)
     user = request.user
 
     if object.likes_user.filter(id=user.id).exists():
         object.likes_user.remove(user)
-        message = '좋아요 취소'
+        message = '좋아요가 취소되었습니다.'
     else:
         object.likes_user.add(user)
-        message = '좋아요'
+        message = '좋아요를 누르셨습니다.'
 
-    context = {'likes_count':object.count_likes_user(), 'message': message}
+    context = {'likes_count':object.likes_user.count(), 'message': message}
     return HttpResponse(json.dumps(context), content_type="application/json")
