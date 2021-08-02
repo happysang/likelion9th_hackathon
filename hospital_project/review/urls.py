@@ -13,5 +13,4 @@ urlpatterns = [
     path('fun/', fun, name='urlfun'),
     path('upset/', upset, name='urlupset'),
     path('scrap/', scrap, name='urlscrap'),
-    path('myprofile/<int:user_id>', myscrap ,name='myscrap'),
 ]
