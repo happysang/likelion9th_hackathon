@@ -67,12 +67,69 @@ def like(request):
     object = get_object_or_404(Review, pk=pk)
     user = request.user
 
-    if object.likes_user.filter(id=user.id).exists():
-        object.likes_user.remove(user)
+    if object.like.filter(id=user.id).exists():
+        object.like.remove(user)
         message = '좋아요가 취소되었습니다.'
     else:
-        object.likes_user.add(user)
+        object.like.add(user)
         message = '좋아요를 누르셨습니다.'
 
-    context = {'likes_count':object.likes_user.count(), 'message': message}
+    context = {'likes_count':object.like.count(), 'message': message}
     return HttpResponse(json.dumps(context), content_type="application/json")
+
+def fun(request):
+    pk = request.POST.get('pk', None)
+    object = get_object_or_404(Review, pk=pk)
+    user = request.user
+
+    if object.fun.filter(id=user.id).exists():
+        object.fun.remove(user)
+        message = '재밌어요가 취소되었습니다.'
+    else:
+        object.fun.add(user)
+        message = '재밌어요를 누르셨습니다.'
+
+    context = {'funs_count':object.fun.count(), 'message': message}
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+def upset(request):
+    pk = request.POST.get('pk', None)
+    object = get_object_or_404(Review, pk=pk)
+    user = request.user
+
+    if object.upset.filter(id=user.id).exists():
+        object.upset.remove(user)
+        message = '불쾌해요가 취소되었습니다.'
+    else:
+        object.upset.add(user)
+        message = '불쾌해요를 누르셨습니다.'
+
+    context = {'upsets_count':object.upset.count(), 'message': message}
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+
+def scrap(request):
+    pk = request.POST.get('pk', None)
+    object = get_object_or_404(Review, pk=pk)
+    user = request.user
+
+    if object.scrap.filter(id=user.id).exists():
+        object.scrap.remove(user)
+        message = '이미 스크랩하신 게시글 입니다.'
+    else:
+        object.scrap.add(user)
+        message = '스크랩 하셨습니다.'
+
+    context = {'scraps_count':object.scrap.count(), 'message': message}
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+
+
+from inner_account.models import CustomUser
+def myscrap(request,user_id):  
+    user = CustomUser.objects.get(id = user_id)
+    post_scraps = user.scrap.all() ##모델의 좋아요 객체와 이름을 같게 해야됨 likes_user
+    context={
+        "post_scraps":post_scraps,
+    }
+    return render(request, 'myscrap.html',context)

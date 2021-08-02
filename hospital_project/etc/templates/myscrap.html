@@ -1,0 +1,9 @@
+<p>내가 좋아요 누른 글</p>
+{% for post in post_scraps  %}
+    <a href="{%url 'urlreviewdetail' post.id%}">{{post.title}}</p></a>
+    내용 : {{post.body|truncatewords:50}}
+    <br>
+    <br>
+    <br>
+{% endfor %} 
+

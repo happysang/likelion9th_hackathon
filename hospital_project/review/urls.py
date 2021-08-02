@@ -10,4 +10,8 @@ urlpatterns = [
     path('update/<str:id>', review_update_view, name='urlreviewupdate'),
     path('delete/<str:id>', review_delete_view, name='urlreviewdelete'),
     path('like/', like, name='urllike'),
+    path('fun/', fun, name='urlfun'),
+    path('upset/', upset, name='urlupset'),
+    path('scrap/', scrap, name='urlscrap'),
+    path('myprofile/<int:user_id>', myscrap ,name='myscrap'),
 ]

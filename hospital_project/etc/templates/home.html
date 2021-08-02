@@ -18,6 +18,7 @@
     <br><br>
     <a href = "{%url 'urlInfoList' %}"><button>정보페이지</button></a> <br>
     <a href = "{%url 'urlnameqreadall' %}"><button>질문페이지</button></a> <br>
-    <a href = "{%url 'urlreviewreadall' %}"><button>후기페이지</button></a>
+    <a href = "{%url 'urlreviewreadall' %}"><button>후기페이지</button></a> <br>
+    <a href="{% url 'myscrap' user.id %}"><button>내가 스크랩 한 글</button></a>
 </body>
 </html>
