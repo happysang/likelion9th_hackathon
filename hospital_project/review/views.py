@@ -53,3 +53,26 @@ def review_delete_view(request, id):
     dreview.delete()
     return redirect('urlreviewreadall')
 
+import json
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
+from .models import Review
+
+
+@login_required
+@require_POST
+def video_like(request):
+    pk = request.POST.get('pk', None)
+    object = get_object_or_404(Review, pk=pk)
+    user = request.user
+
+    if object.likes_user.filter(id=user.id).exists():
+        object.likes_user.remove(user)
+        message = '좋아요 취소'
+    else:
+        object.likes_user.add(user)
+        message = '좋아요'
+
+    context = {'likes_count':object.count_likes_user(), 'message': message}
+    return HttpResponse(json.dumps(context), content_type="application/json")
