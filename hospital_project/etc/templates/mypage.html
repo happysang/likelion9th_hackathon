@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mypage</title>
+</head>
+<body>
+    
+        <h3>{{user.username}}님 안녕하세요?</h3>
+        <a href = "{%url 'urlmypagedetail' %}"><button>내 정보보기</button></a>
+        <a href = "?search=true&user_id={{user.username}}"><button>내가 쓴 글</button></a>
+        <a href = ""><button>내 스크랩</button></a>
+
+        <p>내 포인트 : {{user.point}}</p>
+        <a href = ""><button>충전하기</button></a>
+
+
+</body>
+</html>

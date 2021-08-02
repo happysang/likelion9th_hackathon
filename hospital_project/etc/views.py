@@ -5,7 +5,6 @@ from inner_account.models import CustomUser
 def home(request):
     return render (request, 'home.html')
 
-
 def myscrap(request,user_id):  
     user = CustomUser.objects.get(id = user_id)
     post_scraps = user.scrap.all() ##모델의 좋아요 객체와 이름을 같게 해야됨 likes_user
@@ -13,3 +12,8 @@ def myscrap(request,user_id):
         "post_scraps":post_scraps,
     }
     return render(request, 'myscrap.html',context)
+def mypage(request):
+    return render(request,'mypage.html')
+
+def mypagedetail(request):
+    return render(request, 'mypagedetail.html')
