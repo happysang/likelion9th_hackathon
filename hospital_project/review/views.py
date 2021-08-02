@@ -115,21 +115,10 @@ def scrap(request):
 
     if object.scrap.filter(id=user.id).exists():
         object.scrap.remove(user)
-        message = '이미 스크랩하신 게시글 입니다.'
+        message = '스크랩이 취소되었습니다.'
     else:
         object.scrap.add(user)
         message = '스크랩 하셨습니다.'
 
     context = {'scraps_count':object.scrap.count(), 'message': message}
     return HttpResponse(json.dumps(context), content_type="application/json")
-
-
-
-from inner_account.models import CustomUser
-def myscrap(request,user_id):  
-    user = CustomUser.objects.get(id = user_id)
-    post_scraps = user.scrap.all() ##모델의 좋아요 객체와 이름을 같게 해야됨 likes_user
-    context={
-        "post_scraps":post_scraps,
-    }
-    return render(request, 'myscrap.html',context)
