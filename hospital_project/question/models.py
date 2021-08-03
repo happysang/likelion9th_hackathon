@@ -13,7 +13,7 @@ class Question(models.Model):
     like = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True,related_name="qlike") #유익해요
     fun = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name="qfun") #재밌어요
     upset = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name="qupset") #불쾌해요
-    scrap = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name="qscrap") #불쾌해요
+    scrap = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name="qscrap")
     view_count =models.IntegerField(default=0)
 
     # ad = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True) #광고같아요
