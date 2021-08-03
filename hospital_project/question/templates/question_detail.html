@@ -56,7 +56,7 @@
                 dataType: "json",
                 success: function (response) { // 성공
                     alert(response.message);
-                    $("#count-" + pk).html("좋아요&nbsp;" + response.llikes_count + "개"); // 좋아요 개수 변경
+                    $("#count-" + pk).html("좋아요&nbsp;" + response.likes_count + "개"); // 좋아요 개수 변경
                 },
                 error: function (request, status, error) { // 실패
                     alert("로그인이 필요합니다.")
