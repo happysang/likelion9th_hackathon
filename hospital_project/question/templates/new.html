@@ -1,9 +1,10 @@
 <h1>질문 작성하기</h1>
 
+
 <form action="{%url 'urlnamecreate' %}" method="post">
     {%csrf_token%}
     <p>제목:<input type="text" name="title" value="" required></p>
-    <p>작성자:<input type="text" name="user_id" value="" required></p>
+    <p>작성자:<input type="text" name="user_id" value="{{user.username}}" readonly required></p>
     <p>학과:<select name="dept" value="" required>
         <option value="">----</option>
         <option value="치과">치과</option>
