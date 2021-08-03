@@ -1,6 +1,6 @@
 from review.models import Review
 from question.models import Question
-from information.models import Info
+from information.models import Information
 from django.shortcuts import render
 from inner_account.models import CustomUser
 
@@ -28,6 +28,6 @@ def myobject(request):
     review_list = reviews.filter(user_id=request.user.username)
     questions = Question.objects.all()
     question_list = questions.filter(user_id=request.user.username)
-    informations = Info.objects.all()
+    informations = Information.objects.all()
     information_list = informations.filter(user_id=request.user.username)
     return render(request, 'myobject.html',{'review_list':review_list, 'question_list':question_list, 'information_list':information_list,})

@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.fields import CharField
 from django.db.models.fields.files import ImageFieldFile
 from django.conf import settings
+from django.utils import timezone
 
 # Create your models here.
 
@@ -19,6 +20,18 @@ class Review(models.Model):
     upset = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name="upset") #불쾌해요
     scrap = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name="scrap") #불쾌해요
     # ad = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True) #광고같아요
+    view_count =models.IntegerField(default=0)
     
     def __str__(self):
         return self.title
+
+class Rcomment(models.Model): 
+    post=models.ForeignKey(Review, related_name='rcomments', on_delete=models.CASCADE) 
+    author_name=models.CharField(max_length=20) 
+    comment_text=models.TextField() 
+    created_at=models.DateTimeField(default=timezone.now)
+
+    def approve(self): 
+        self.save() 
+    def __str__(self): 
+        return self.comment_text

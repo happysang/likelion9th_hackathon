@@ -1,9 +1,9 @@
 from django import forms 
-from .models import Comment 
+from .models import Qcomment 
 
 class CommentForm(forms.ModelForm): 
     class Meta: 
-        model=Comment 
+        model=Qcomment 
         fields=['author_name', 'comment_text']
 
         labels = {
