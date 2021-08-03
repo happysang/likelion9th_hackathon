@@ -1,6 +1,6 @@
 from review.models import Review
 from question.models import Question
-from information.models import Info
+from information.models import Information
 from django.shortcuts import render
 from inner_account.models import CustomUser
 
@@ -10,10 +10,11 @@ def home(request):
 
 def myscrap(request,user_id):  
     user = CustomUser.objects.get(id = user_id)
-    post_scraps = user.scrap.all() ##가져오고자 하는 모델의 컬럼 이름과 같아야함
-    post_scraps = post_scraps.order_by('-date')
+    review_scraps = user.rscrap.all().order_by('-date') ##가져오고자 하는 모델의 컬럼 이름과 같아야함
+    question_scraps = user.qscrap.all().order_by('-date')
+    info_scraps = user.iscrap.all().order_by('-date')
     context={
-        "post_scraps":post_scraps,
+        "review_scraps":review_scraps, "question_scraps":question_scraps, "info_scraps":info_scraps
     }
     return render(request, 'myscrap.html',context)
 
@@ -28,6 +29,6 @@ def myobject(request):
     review_list = reviews.filter(user_id=request.user.username)
     questions = Question.objects.all()
     question_list = questions.filter(user_id=request.user.username)
-    informations = Info.objects.all()
+    informations = Information.objects.all()
     information_list = informations.filter(user_id=request.user.username)
     return render(request, 'myobject.html',{'review_list':review_list, 'question_list':question_list, 'information_list':information_list,})

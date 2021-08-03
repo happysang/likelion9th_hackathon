@@ -1,7 +1,7 @@
 from review.models import Review
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
-
+from .forms import CommentForm
 # Create your views here.
 d_list = ['치과', '피부과', '성형외과', '산부인과', '안과', '내과', '외과', '이비인후과', '정형외과',
             '비뇨기과', '정신건강의학과', '재활의학과', '영상의학과', '소아과', '신경외과', '신경과',
@@ -21,6 +21,9 @@ def review_readall_view(request, d_num):
 
 def review_detail_view(request, id):
     review = get_object_or_404(Review,pk= id)
+    default_view_count = review.view_count
+    review.view_count = default_view_count +1 
+    review.save()
     for x in range(len(d_list)):
         if d_list[x] == review.dept:
             d_num = x
@@ -73,6 +76,20 @@ def review_delete_view(request, id):
             d_num = x    
     dreview.delete()
     return redirect('urlreviewreadall', d_num)
+
+def add_comment(request, id): 
+    review=get_object_or_404(Review, pk=id) 
+    if request.method == "POST":
+         form=CommentForm(request.POST) 
+         if form.is_valid(): 
+             comment=form.save(commit=False) 
+             comment.post= review 
+             comment.save() 
+         return redirect('urlreviewdetail',id) 
+    else: 
+        form=CommentForm() 
+    return render(request, 'add_comment.html', {'form':form})
+
 
 import json
 from django.http import HttpResponse
