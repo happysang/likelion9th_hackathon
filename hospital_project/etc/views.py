@@ -11,6 +11,7 @@ def home(request):
 def myscrap(request,user_id):  
     user = CustomUser.objects.get(id = user_id)
     post_scraps = user.scrap.all() ##가져오고자 하는 모델의 컬럼 이름과 같아야함
+    post_scraps = post_scraps.order_by('-date')
     context={
         "post_scraps":post_scraps,
     }

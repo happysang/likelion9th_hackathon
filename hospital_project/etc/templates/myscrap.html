@@ -1,9 +1,9 @@
-<p>내가 스크랩 한 글</p>
+<h3>내가 스크랩 한 글</h3>
 {% for post in post_scraps  %}
     <a href="{%url 'urlreviewdetail' post.id%}">{{post.title}}</p></a>
     내용 : {{post.body|truncatewords:50}}
     <br>
-    <br>
+    <br>----------------------------------------
     <br>
 {% endfor %} 
 
