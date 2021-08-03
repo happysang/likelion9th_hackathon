@@ -3,22 +3,33 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
 
 # Create your views here.
+d_list = ['치과', '피부과', '성형외과', '산부인과', '안과', '내과', '외과', '이비인후과', '정형외과',
+            '비뇨기과', '정신건강의학과', '재활의학과', '영상의학과', '소아과', '신경외과', '신경과',
+            '마취통증의학과', '가정의학과', '한의원', '모든 진료과']
+
 def review_category_view(request):
     return render (request, 'review_category.html')
 
+def review_readall_view(request, d_num):
+    for x in range(len(d_list)):
+        if d_num == x:
+            reviews = Review.objects.all()
+            review_list = reviews.filter(dept=d_list[x])
+            review_all = review_list.order_by("-date")
+            return render(request,"review_readall.html",{'views_review_all':review_all, 'd_num':d_num},)    
 
 def review_detail_view(request, id):
     review = get_object_or_404(Review,pk= id)
     return render(request,'review_detail.html',{'views_review':review})
 
-def review_readall_view(request):
-    review_all = Review.objects.order_by("-date")
-    return render(request,"review_readall.html",{'views_review_all':review_all})
+def review_new_view(request, d_num):
+    for x in range(len(d_list)):
+        if x == d_num:
+            d_name = d_list[x]
+            break
+    return render(request, 'review_new.html', {'d_num':d_num, 'd_name':d_name})
 
-def review_new_view(request):
-    return render(request, 'review_new.html')
-
-def review_create_view(request):
+def review_create_view(request, d_num):
     if request.method == 'POST':
         creview = Review()
         creview.title = request.POST['ctitle']
@@ -30,7 +41,7 @@ def review_create_view(request):
         creview.body = request.POST['cbody']
         creview.date = timezone.now()
         creview.save()
-        return redirect('urlreviewreadall')
+        return redirect('urlreviewreadall', d_num)
     else:
         return render(request,'review_new.html')
 
