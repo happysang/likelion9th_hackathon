@@ -3,7 +3,7 @@ from review.views import *
 
 urlpatterns = [
     path('category/', review_category_view, name = 'urlreviewcategory'),
-    path('review/detail<str:id>',review_detail_view,name='urlreviewdetail'),
+    path('detail<str:id>',review_detail_view,name='urlreviewdetail'),
     path('readall/<int:d_num>',review_readall_view,name='urlreviewreadall'),
     path('new/<int:d_num>', review_new_view, name='urlreviewnew'),
     path('create/<int:d_num>', review_create_view, name='urlreviewcreate'),

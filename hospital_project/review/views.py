@@ -16,11 +16,15 @@ def review_readall_view(request, d_num):
             reviews = Review.objects.all()
             review_list = reviews.filter(dept=d_list[x])
             review_all = review_list.order_by("-date")
-            return render(request,"review_readall.html",{'views_review_all':review_all, 'd_num':d_num},)    
+            d_name = d_list[x]
+            return render(request,"review_readall.html",{'views_review_all':review_all, 'd_num':d_num, 'd_name':d_name},)    
 
 def review_detail_view(request, id):
     review = get_object_or_404(Review,pk= id)
-    return render(request,'review_detail.html',{'views_review':review})
+    for x in range(len(d_list)):
+        if d_list[x] == review.dept:
+            d_num = x
+    return render(request,'review_detail.html',{'views_review':review, 'd_num':d_num})
 
 def review_new_view(request, d_num):
     for x in range(len(d_list)):
@@ -64,8 +68,11 @@ def review_update_view(request, id):
     
 def review_delete_view(request, id):
     dreview = Review.objects.get(id = id)
+    for x in range(len(d_list)):
+        if d_list[x] == dreview.dept:
+            d_num = x    
     dreview.delete()
-    return redirect('urlreviewreadall')
+    return redirect('urlreviewreadall', d_num)
 
 import json
 from django.http import HttpResponse
