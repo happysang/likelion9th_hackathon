@@ -13,7 +13,7 @@
     <form action="{%url 'urlreviewcreate'%}" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
         제목: <input type="text" name="ctitle">
-        아이디: <input type="text" name="cuser_id"><br>
+        아이디: <input type="text" name="cuser_id" value="{{user.username}}" readonly><br>
         병원명: <input type="text" name="chname">
         의사명: <input type="text" name="cdname">
         진료과: <input type="text" name="cdept"><br>

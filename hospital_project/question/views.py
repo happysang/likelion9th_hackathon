@@ -8,8 +8,8 @@ from .forms import CommentForm
 
 # Create your views here.
 
-def qreadall(request):
-    return render (request, 'qreadall.html')
+def qcategory(request):
+    return render (request, 'qcategory.html')
 
 def allq(request):
     questions = Question.objects.order_by('-date')

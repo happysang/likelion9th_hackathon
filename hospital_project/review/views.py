@@ -3,6 +3,9 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
 
 # Create your views here.
+def review_category_view(request):
+    return render (request, 'review_category.html')
+
 
 def review_detail_view(request, id):
     review = get_object_or_404(Review,pk= id)

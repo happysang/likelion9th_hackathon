@@ -2,7 +2,7 @@ from django.urls import path
 from question.views import *
 
 urlpatterns = [
-    path('qreadall', qreadall, name = "urlnameqreadall"),
+    path('qcategory', qcategory, name = "urlqcategory"),
     path('allq/', allq, name="urlnameallq"),
     path('question/<str:id>',detail,name="urlnamedetail"),
     path('new/',new,name="urlnamenew"),

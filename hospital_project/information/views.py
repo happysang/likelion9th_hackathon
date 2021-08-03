@@ -4,6 +4,10 @@ from .models import Info
 from django.utils import timezone 
 
 # Create your views here.
+
+def category(request):
+    return render (request, 'icategory.html')
+    
 def InfoList(request):
     Infos = Info.objects.all()
     return render (request, 'InfoList.html' , {'Infos':Infos})

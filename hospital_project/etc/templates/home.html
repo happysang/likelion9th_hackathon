@@ -8,17 +8,17 @@
 </head>
 <body>
     홈
-    <a href = "{%url 'urllogin' %}"><button>로그인</button></a>
-    <a href = "{%url 'urlchoice' %}"><button>회원가입</button></a>
-
     {% if user.is_authenticated %}
         {{user.username}}님 안녕하세요?
         <a href="{%url 'urllogout' %}"><button>로그아웃</button></a>
         <a href="{%url 'urlmypage' %}"><button>마이페이지</button></a>
+    {% else %}
+        <a href = "{%url 'urllogin' %}"><button>로그인</button></a>
+        <a href = "{%url 'urlchoice' %}"><button>회원가입</button></a>
     {% endif %}
     <br><br>
-    <a href = "{%url 'urlInfoList' %}"><button>정보페이지</button></a> <br>
-    <a href = "{%url 'urlnameqreadall' %}"><button>질문페이지</button></a> <br>
-    <a href = "{%url 'urlreviewreadall' %}"><button>후기페이지</button></a> <br>
+    <a href = "{%url 'urlicategory' %}"><button>정보페이지</button></a> <br>
+    <a href = "{%url 'urlqcategory' %}"><button>질문페이지</button></a> <br>
+    <a href = "{%url 'urlreviewcategory' %}"><button>후기페이지</button></a> <br>
 </body>
 </html>
