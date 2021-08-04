@@ -16,7 +16,7 @@ def Inbox(request):
 	directs = None
 
 	if messages:
-		message = messages[0]
+		message = messages[0]#Users
 		active_direct = message['user'].username
 		directs = Message.objects.filter(user=request.user, recipient=message['user'])
 		directs.update(is_read=True)
