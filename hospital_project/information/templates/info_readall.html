@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inforeadall</title>
+</head>
+<body>
+    <h2>{{d_name}} 정보게시판</h2>
+
+    <h3><a href="{%url 'urlinfonew' d_num %}">정보 작성하기</a></h3>
+    ------------------------------------------------ <br>
+{% for a in views_info_all %}
+    제목:<a href="{% url 'urlinfodetail' a.id %}">{{a.title}}</a> <br>
+    과: {{a.dept}}
+    작성자:{{a.student_id}} <br>
+    작성날짜:{{a.date}} <br>
+    ------------------------------------------------ <br>
+{% endfor %}
+</body>
+</html>

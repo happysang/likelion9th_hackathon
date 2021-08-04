@@ -1,48 +1,157 @@
-#from hospital_project.hospital_project.settings import TIME_ZONE
-from django.shortcuts import render,redirect,get_object_or_404
-from .models import Info
-from django.utils import timezone 
-
+from .models import Information
+from django.shortcuts import redirect, render, get_object_or_404
+from django.utils import timezone
+from .forms import CommentForm
 # Create your views here.
-def InfoList(request):
-    Infos = Info.objects.all()
-    return render (request, 'InfoList.html' , {'Infos':Infos})
+d_list = ['치과', '피부과', '성형외과', '산부인과', '안과', '내과', '외과', '이비인후과', '정형외과',
+            '비뇨기과', '정신건강의학과', '재활의학과', '영상의학과', '소아과', '신경외과', '신경과',
+            '마취통증의학과', '가정의학과', '한의원', '모든 진료과']
 
-def write(request):
-    return render (request , 'write.html')
+def info_category_view(request):
+    return render (request, 'info_category.html')
 
-def create(request):
-    new_Info = Info()
-    new_Info.dept = request.POST['dept']
-    new_Info.user_id = request.POST['user_id']
-    new_Info.date = timezone.now()
-    new_Info.title = request.POST['title']
-    new_Info.body = request.POST['body']
-    new_Info.save()
-    return redirect('urlInfoList')
+def info_readall_view(request, d_num):
+    for x in range(len(d_list)):
+        if d_num == x:
+            infos = Information.objects.all()
+            info_list = infos.filter(dept=d_list[x])
+            info_all = info_list.order_by("-date")
+            d_name = d_list[x]
+            return render(request,"info_readall.html",{'views_info_all':info_all, 'd_num':d_num, 'd_name':d_name},)    
 
-def detail(request, Info_id):
-    info_detail = get_object_or_404(Info, pk= Info_id)
-    return render (request, 'detail.html', {'info': info_detail})
+def info_detail_view(request, id):
+    info = get_object_or_404(Information,pk= id)
+    #조회수 기능
+    default_view_count = info.view_count
+    info.view_count = default_view_count +1 
+    info.save()
+    for x in range(len(d_list)):
+        if d_list[x] == info.dept:
+            d_num = x
+    return render(request,'info_detail.html',{'views_info':info, 'd_num':d_num})
+
+def info_new_view(request, d_num):
+    for x in range(len(d_list)):
+        if x == d_num:
+            d_name = d_list[x]
+            break
+    return render(request, 'info_new.html', {'d_num':d_num, 'd_name':d_name})
+
+def info_create_view(request, d_num):
+    if request.method == 'POST':
+        cinfo = Information()
+        cinfo.title = request.POST['ctitle']
+        cinfo.user_id = request.POST['cuser_id']
+        cinfo.dept = request.POST['cdept']
+        cinfo.body = request.POST['cbody']
+        cinfo.date = timezone.now()
+        cinfo.save()
+        return redirect('urlinforeadall', d_num)
+    else:
+        return render(request,'info_new.html')
+
+def info_edit_view(request, id):
+    einfo = Information.objects.get(id = id)
+    return render(request, 'info_edit.html', {'views_einfo': einfo})
+
+def info_update_view(request, id):
+    uinfo = Information.objects.get(id = id)
+    uinfo.title = request.POST['utitle']
+    uinfo.user_id = request.POST['uuser_id']
+    uinfo.dept = request.POST['udept']
+    uinfo.body = request.POST['ubody']
+    uinfo.date = timezone.now()
+    uinfo.save()
+    return redirect('urlinfodetail', uinfo.id)
+    
+def info_delete_view(request, id):
+    dinfo = Information.objects.get(id = id)
+    for x in range(len(d_list)):
+        if d_list[x] == dinfo.dept:
+            d_num = x    
+    dinfo.delete()
+    return redirect('urlinforeadall', d_num)
+
+def add_comment(request, id): 
+    info=get_object_or_404(Information, pk=id) 
+    if request.method == "POST":
+         form=CommentForm(request.POST) 
+         if form.is_valid(): 
+             comment=form.save(commit=False) 
+             comment.post= info
+             comment.save() 
+         return redirect('urlinfodetail',id) 
+    else: 
+        form=CommentForm() 
+    return render(request, 'add_comment.html', {'form':form})
 
 
-def edit(request , id):
-    edit_info = Info.objects.get(id = id)
-    return render(request , 'edit.html' , {'info':edit_info})
-
-def update(request,id):
-    update_info = Info.objects.get(id =id)
-    update_info.dept = request.POST['dept']
-    update_info.user_id = request.POST['user_id']
-    update_info.date = timezone.now()
-    update_info.title = request.POST['title']
-    update_info.body = request.POST['body']
-    update_info.save()
-    return redirect('urldetail' , update_info.id)
-
-def delete(request , id):
-    delete_info = Info.objects.get(id = id)
-    delete_info.delete()
-    return redirect('urlInfoList')
+import json
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
+from .models import Information
 
 
+@login_required
+@require_POST
+def like(request):
+    pk = request.POST.get('pk', None)
+    object = get_object_or_404(Information, pk=pk)
+    user = request.user
+
+    if object.like.filter(id=user.id).exists():
+        object.like.remove(user)
+        message = '좋아요가 취소되었습니다.'
+    else:
+        object.like.add(user)
+        message = '좋아요를 누르셨습니다.'
+
+    context = {'likes_count':object.like.count(), 'message': message}
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+def fun(request):
+    pk = request.POST.get('pk', None)
+    object = get_object_or_404(Information, pk=pk)
+    user = request.user
+
+    if object.fun.filter(id=user.id).exists():
+        object.fun.remove(user)
+        message = '재밌어요가 취소되었습니다.'
+    else:
+        object.fun.add(user)
+        message = '재밌어요를 누르셨습니다.'
+
+    context = {'funs_count':object.fun.count(), 'message': message}
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+def upset(request):
+    pk = request.POST.get('pk', None)
+    object = get_object_or_404(Information, pk=pk)
+    user = request.user
+
+    if object.upset.filter(id=user.id).exists():
+        object.upset.remove(user)
+        message = '불쾌해요가 취소되었습니다.'
+    else:
+        object.upset.add(user)
+        message = '불쾌해요를 누르셨습니다.'
+
+    context = {'upsets_count':object.upset.count(), 'message': message}
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+
+def scrap(request):
+    pk = request.POST.get('pk', None)
+    object = get_object_or_404(Information, pk=pk)
+    user = request.user
+
+    if object.scrap.filter(id=user.id).exists():
+        object.scrap.remove(user)
+        message = '스크랩이 취소되었습니다.'
+    else:
+        object.scrap.add(user)
+        message = '스크랩 하셨습니다.'
+
+    context = {'scraps_count':object.scrap.count(), 'message': message}
+    return HttpResponse(json.dumps(context), content_type="application/json")

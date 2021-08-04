@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New</title>
+    <style>
+        body{text-align: center;}
+    </style>
+</head>
+<body>
+    <form action="{%url 'urlquestioncreate' d_num%}" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        제목: <input type="text" name="ctitle"><br>
+        아이디: <input type="text" name="cuser_id" value="{{user.username}}" readonly><br>
+        질문하려는 과: <input type="text" name="cdept" value="{{d_name}}" readonly><br>
+        본문 <br>
+        <textarea name="cbody" id="" cols="70" rows="40"></textarea><br>
+        <button type="submit">작성완료</button>
+    </form>
+</body>
+</html>
