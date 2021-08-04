@@ -15,10 +15,17 @@
         {{user.username}}님 안녕하세요?
         <a href="{%url 'urllogout' %}"><button>로그아웃</button></a>
         <a href="{%url 'urlmypage' %}"><button>마이페이지</button></a>
+        
     {% endif %}
     <br><br>
     <a href = "{%url 'urlInfoList' %}"><button>정보페이지</button></a> <br>
     <a href = "{%url 'urlnameqreadall' %}"><button>질문페이지</button></a> <br>
     <a href = "{%url 'urlreviewreadall' %}"><button>후기페이지</button></a> <br>
+    <a href = "{%url 'inbox' %}">
+        쪽지함        
+        {% if directs_count %}
+        <span>{{ directs_count }}</span>
+        {% endif %}
+    </a>
 </body>
 </html>

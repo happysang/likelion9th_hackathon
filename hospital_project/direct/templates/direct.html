@@ -1,0 +1,87 @@
+  <div>
+  <aside>
+    <h1>
+    쪽지함
+    </h1>
+<br>
+<a href="{% url 'urlhome' %}">홈</a> <br>
+<a href="{% url 'usersearch' %}">쪽지 보낼 상대 찾기</a>
+<br>
+
+<ul style="overflow-y: scroll; height: 200px; width:300px">
+{% for message in messages %}
+<a class="{% if active_direct == message.user %}is-active{% endif %}" href="{% url 'directs' message.user.username %}">
+<div>
+  <article>
+    <div>
+    </div>
+    <div>
+
+      <div>
+        <p>
+          <strong>{{ message.user }}</strong> 
+        </p>
+      </div>
+
+      <div>
+        {% if message.unread %}
+        <p style="font-weight: bold; color: red;">
+          <i>읽지 않는 쪽지</i> {{ message.unread }}
+        </p>
+        {% endif %}        
+      </div>
+
+    </div>
+  </article>
+</div>
+</a>
+{% endfor %}
+
+  </ul>
+  </aside>
+<br>
+</div>
+
+<div  style="overflow-y: scroll; height: 250px; width:500px">
+{% for direct in directs %}
+<div>
+  <article>
+    <div>
+    </div>
+    <div>
+      <div>
+        <p>
+          <strong>{{ direct.sender }} </strong> on: <strong><small>{{ direct.date|date:'N d G:i'}}</small></strong>
+        {{ direct.body }} 
+        </p>
+      </div>
+    </div>
+  </article>
+</div>
+{% endfor %}
+</div>
+
+
+<form role="form" method="POST" action="{% url 'send_direct' %}">
+  {% csrf_token %}
+<article>
+  <div>
+    <input type="hidden" name="to_user" value="{{ active_direct }}">
+    <div>
+      <p>
+        <textarea name="body" placeholder="메시지 내용을 입력하세요" cols="70" rows="3"></textarea>
+      </p>
+    </div>
+    <nav>
+      <div>
+        <div>
+          <button type="submit" name="action">전송</buttom>
+        </div>
+      </div>
+    </nav>
+  </div>
+</article>
+</form>
+
+</div>
+
