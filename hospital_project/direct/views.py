@@ -67,7 +67,7 @@ def SendDirect(request):
 	if request.method == 'POST':
 		to_user = CustomUser.objects.get(username=to_user_username)
 		Message.send_message(from_user, to_user, body)
-		return redirect('inbox')
+		return redirect('urlinbox')
 	else:
 		HttpResponseBadRequest()
 
@@ -103,7 +103,7 @@ def NewConversation(request, username):
 		return redirect('usersearch')
 	if from_user != to_user:
 		Message.send_message(from_user, to_user, body)
-	return redirect('inbox')
+	return redirect('urlinbox')
 
 def checkDirects(request):
 	directs_count = 0
@@ -114,6 +114,6 @@ def checkDirects(request):
 
 
 def delete(requset , user):
-	delete_message = Message.objects.get(user = user)
+	delete_message = Message.objects.get(sender = user)
 	delete_message.delete()
-	return redirect('inbox')
+	return redirect('urlinbox')

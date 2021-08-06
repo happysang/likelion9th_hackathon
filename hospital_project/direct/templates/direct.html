@@ -5,12 +5,12 @@
     </h1>
 <br>
 <a href="{% url 'urlhome' %}">홈</a> <br>
-<a href="{% url 'usersearch' %}">쪽지 보낼 상대 찾기</a>
+<a href="{% url 'urlusersearch' %}">쪽지 보낼 상대 찾기</a>
 <br>
 
 <ul style="overflow-y: scroll; height: 200px; width:300px">
 {% for message in messages %}
-<a class="{% if active_direct == message.user %}is-active{% endif %}" href="{% url 'directs' message.user.username %}">
+<a class="{% if active_direct == message.user %}is-active{% endif %}" href="{% url 'urldirects' message.user.username %}">
 <div>
   <article>
     <div>
@@ -63,7 +63,7 @@
 </div>
 
 
-<form role="form" method="POST" action="{% url 'send_direct' %}">
+<form role="form" method="POST" action="{% url 'urlsend_direct' %}">
   {% csrf_token %}
 <article>
   <div>
