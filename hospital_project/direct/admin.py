@@ -3,4 +3,7 @@ from direct.models import Message
 # Register your models here.
 
 admin.site.register(Message)
+<<<<<<< HEAD
 
+=======
+>>>>>>> message3

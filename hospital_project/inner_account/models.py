@@ -15,3 +15,4 @@ class CustomUser(AbstractUser):
     ans_auth = models.BooleanField(default=False)
 
     #unique = True 유일성여부
+

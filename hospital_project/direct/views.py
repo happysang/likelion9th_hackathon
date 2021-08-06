@@ -114,3 +114,7 @@ def checkDirects(request):
 	return {'directs_count':directs_count}
 
 
+def delete(requset , user):
+	delete_message = Message.objects.get(sender = user)
+	delete_message.delete()
+	return redirect('urlinbox')
