@@ -100,7 +100,7 @@ def SendDirect(request):
 def NewConversation(request, username):
 	from_user = request.user
 	to_user = CustomUser.objects.get(username=username)
-	body = '안녕하세요! 대화 시에는 바른말 고운말을 사용해주세요'
+	body = ' '
 	if from_user != to_user:
 		Message.send_message(from_user, to_user, body)
 	return redirect('urlinbox')

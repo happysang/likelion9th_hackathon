@@ -5,7 +5,7 @@
     </h1>
 <br>
 <a href="{% url 'urlhome' %}">홈</a> <br>
-<!--<a href="#">쪽지 보낼 상대 찾기</a>-->
+
 <br>
 
 <ul style="overflow-y: scroll; height: 200px; width:300px">
@@ -56,35 +56,32 @@
         {{ direct.body }} 
         </p>
       </div>
-  </article>
-  
-  {% endfor %}
-  </div>
-  
-  
-  <form role="form" method="POST" action="{% url 'urlsend_direct' %}">
-    {% csrf_token %}
-  <article>
-    <div>
-      <input type="hidden" name="to_user" value="{{ active_direct }}">
-      <div>
-        <p>
-          <textarea name="body" placeholder="메시지 내용을 입력하세요" cols="70" rows="3"></textarea>
-        </p>
-      </div>
-      <nav>
-        <div>
-          <div>
-            <button type="submit" name="action">전송</button>
-            <a href=""><button>전체 삭제</button></a>
-            <a href=""><button>차단</button></a>
-            <a href=""><button>신고</button></a>
-          <!--무늬뿐인 삭제,차단,신고-->
-          
-          </div>
-        </div>
-      </nav>
     </div>
   </article>
-  </form>
+</div>
+{% endfor %}
+</div>
+
+
+<form role="form" method="POST" action="{% url 'urlsend_direct' %}">
+  {% csrf_token %}
+<article>
+  <div>
+    <input type="hidden" name="to_user" value="{{ active_direct }}">
+    <div>
+      <p>
+        <textarea name="body" placeholder="안녕하세요! 대화 시에는 바른말 고운말을 사용해주세요" cols="70" rows="3"></textarea>
+      </p>
+    </div>
+    <nav>
+      <div>
+        <div>
+          <button type="submit" name="action">전송</buttom>
+        </div>
+      </div>
+    </nav>
   </div>
+</article>
+</form>
+
+</div>
