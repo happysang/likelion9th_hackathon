@@ -40,8 +40,8 @@ def update(request,id):
     update_info.save()
     return redirect('urldetail' , update_info.id)
 
-def delete(request , id):
-    delete_info = Info.objects.get(id = id)
+def delete(request , user):
+    delete_info = Info.objects.get(user = user)
     delete_info.delete()
     return redirect('urlInfoList')
 

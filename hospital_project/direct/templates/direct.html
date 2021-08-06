@@ -19,7 +19,8 @@
 
       <div>
         <p>
-          <strong>{{ message.user }}</strong> 
+          <strong>{{ message.user }}</strong>
+          <a href="{%url 'delete' message.user %}"><button>삭제</button></a>
         </p>
       </div>
 

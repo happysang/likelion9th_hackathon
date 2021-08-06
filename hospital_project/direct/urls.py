@@ -7,4 +7,5 @@ urlpatterns = [
     path('send/', SendDirect, name='send_direct'),
 	path('new/', UserSearch, name='usersearch'),
 	path('new/<username>', NewConversation, name='newconversation'),
+	path('delete/<str:user>' , delete , name="delete" ),
 ]

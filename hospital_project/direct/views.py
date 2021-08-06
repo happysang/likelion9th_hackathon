@@ -1,3 +1,4 @@
+from django.db.models.fields.related import ForeignKey
 from django.shortcuts import render, redirect
 from django.template import loader, RequestContext
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
@@ -110,3 +111,9 @@ def checkDirects(request):
 		directs_count = Message.objects.filter(user=request.user, is_read=False).count()
 
 	return {'directs_count':directs_count}
+
+
+def delete(requset , user):
+	delete_message = Message.objects.get(user = user)
+	delete_message.delete()
+	return redirect('inbox')
