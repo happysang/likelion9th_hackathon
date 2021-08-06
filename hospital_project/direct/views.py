@@ -7,7 +7,8 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadReque
 from inner_account.models import CustomUser
 from django.contrib.auth.decorators import login_required
 from direct.models import Message
-
+from review.models import Review
+from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from django.core.paginator import Paginator
 # Create your views here.
@@ -73,39 +74,37 @@ def SendDirect(request):
 	else:
 		HttpResponseBadRequest()
 
-
-@login_required
-def UserSearch(request):
-	query = request.GET.get("q")
-	context = {}
-	
-	if query:
-		users = CustomUser.objects.filter(Q(username__icontains=query))
-
-		#Pagination
-		paginator = Paginator(users, 6)
-		page_number = request.GET.get('page')
-		users_paginator = paginator.get_page(page_number)
-
-		context = {
-				'users': users_paginator,
-			}
-	
-	template = loader.get_template('search_user.html')
-	
-	return HttpResponse(template.render(context, request))
+#
+#@login_required
+#def UserSearch(request):
+#	query = request.GET.get("q")
+#	context = {}
+#	
+#	if query:
+#		users = CustomUser.objects.filter(Q(username__icontains=query))
+#
+#		#Pagination
+#		paginator = Paginator(users, 6)
+#		page_number = request.GET.get('page')
+#		users_paginator = paginator.get_page(page_number)
+#
+#		context = {
+#				'users': users_paginator,
+#			}
+#	
+#	template = loader.get_template('search_user.html')
+#	
+#	return HttpResponse(template.render(context, request))
 
 @login_required
 def NewConversation(request, username):
 	from_user = request.user
-	body = ''
-	try:
-		to_user = CustomUser.objects.get(username=username)
-	except Exception as e:
-		return redirect('usersearch')
+	to_user = CustomUser.objects.get(username=username)
+	body = '안녕하세요! 대화 시에는 바른말 고운말을 사용해주세요'
 	if from_user != to_user:
 		Message.send_message(from_user, to_user, body)
 	return redirect('inbox')
+
 
 def checkDirects(request):
 	directs_count = 0
@@ -113,3 +112,5 @@ def checkDirects(request):
 		directs_count = Message.objects.filter(user=request.user, is_read=False).count()
 
 	return {'directs_count':directs_count}
+
+
