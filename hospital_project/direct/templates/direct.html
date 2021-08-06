@@ -44,21 +44,28 @@
 </div>
 
 <div  style="overflow-y: scroll; height: 250px; width:500px">
-{% for direct in directs %}
-<div>
+  {% for direct in directs %}
+  {% if direct.sender == direct.user %}
+  <h4>보낸 쪽지</h4>
   <article>
-    <div>
-    </div>
-    <div>
       <div>
         <p>
           <strong>{{ direct.sender }} </strong> on: <strong><small>{{ direct.date|date:'N d G:i'}}</small></strong>
         {{ direct.body }} 
         </p>
       </div>
-    </div>
   </article>
-</div>
+{% else %}
+<h4>받은 쪽지</h4>
+<article>
+    <div>
+      <p>
+        <strong>{{ direct.sender }} </strong> on: <strong><small>{{ direct.date|date:'N d G:i'}}</small></strong>
+      {{ direct.body }} 
+      </p>
+    </div>
+</article>
+{% endif %}
 {% endfor %}
 </div>
 
@@ -76,13 +83,17 @@
     <nav>
       <div>
         <div>
-          <button type="submit" name="action">전송</buttom>
+          <button type="submit" name="action">전송</button>
+          <a href=""><button>전체 삭제</button></a>
+          <a href=""><button>차단</button></a>
+          <a href=""><button>신고</button></a>
+        <!--무늬뿐인 삭제,차단,신고-->
+        
         </div>
       </div>
     </nav>
   </div>
 </article>
 </form>
-
 </div>
 
