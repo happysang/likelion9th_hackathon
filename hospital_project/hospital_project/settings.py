@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'information',
     'question',
     'review',
-    'message',
 ]
 
 MIDDLEWARE = [
