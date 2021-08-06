@@ -5,7 +5,7 @@
     </h1>
 <br>
 <a href="{% url 'urlhome' %}">홈</a> <br>
-<a href="{% url 'urlusersearch' %}">쪽지 보낼 상대 찾기</a>
+<!--<a href="#">쪽지 보낼 상대 찾기</a>-->
 <br>
 
 <ul style="overflow-y: scroll; height: 200px; width:300px">
@@ -57,12 +57,12 @@
         </p>
       </div>
   </article>
-  {% endif %}
+  
   {% endfor %}
   </div>
   
   
-  <form role="form" method="POST" action="{% url 'send_direct' %}">
+  <form role="form" method="POST" action="{% url 'urlsend_direct' %}">
     {% csrf_token %}
   <article>
     <div>

@@ -70,7 +70,7 @@ def SendDirect(request):
 	if request.method == 'POST':
 		to_user = CustomUser.objects.get(username=to_user_username)
 		Message.send_message(from_user, to_user, body)
-		return redirect('inbox')
+		return redirect('urlinbox')
 	else:
 		HttpResponseBadRequest()
 
@@ -103,7 +103,7 @@ def NewConversation(request, username):
 	body = '안녕하세요! 대화 시에는 바른말 고운말을 사용해주세요'
 	if from_user != to_user:
 		Message.send_message(from_user, to_user, body)
-	return redirect('inbox')
+	return redirect('urlinbox')
 
 
 def checkDirects(request):
