@@ -10,3 +10,6 @@ class CommentForm(forms.ModelForm):
             'author_name' : '작성자 이름',
             'comment_text' : '댓글'
         }
+
+class PostSearchForm(forms.Form) :
+    search_word = forms.CharField(label='Search Word')

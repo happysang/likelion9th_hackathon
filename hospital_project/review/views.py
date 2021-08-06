@@ -1,7 +1,14 @@
+from typing import ContextManager
+from django.http import request
 from review.models import Review
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
 from .forms import CommentForm
+from django.db.models import Q
+from django.db import connection
+from django.shortcuts import render
+
+
 # Create your views here.
 d_list = ['치과', '피부과', '성형외과', '산부인과', '안과', '내과', '외과', '이비인후과', '정형외과',
             '비뇨기과', '정신건강의학과', '재활의학과', '영상의학과', '소아과', '신경외과', '신경과',
@@ -9,6 +16,8 @@ d_list = ['치과', '피부과', '성형외과', '산부인과', '안과', '내�
 
 def review_category_view(request):
     return render (request, 'review_category.html')
+
+
 
 def review_readall_view(request, d_num):
     for x in range(len(d_list)):
@@ -18,6 +27,7 @@ def review_readall_view(request, d_num):
             review_all = review_list.order_by("-date")
             d_name = d_list[x]
             return render(request,"review_readall.html",{'views_review_all':review_all, 'd_num':d_num, 'd_name':d_name},)    
+    
 
 def review_detail_view(request, id):
     review = get_object_or_404(Review,pk= id)
@@ -90,9 +100,19 @@ def add_comment(request, id):
         form=CommentForm() 
     return render(request, 'add_comment.html', {'form':form})
 
+def review_search_view(request):
+    sreview = Review.objects.all()
+    q = request.POST.get('q', "")
+    if q:
+        sreview = sreview.filter(title__icontains=q)
+        c = sreview.count()
+        return render(request, 'review_search.html', {'sreview':sreview, 'q':q, 'count':c})
+    else:
+        return render(request, 'search.html')
 
+    
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse, request
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from .models import Review
