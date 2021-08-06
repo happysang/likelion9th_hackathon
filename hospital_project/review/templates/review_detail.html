@@ -21,7 +21,7 @@
         진료과:{{views_review.dept}} <br>
         내용:{{views_review.body}} <br>
     </div>
-
+ 
 
 <!--bootstrap활용 모달폼-->
 <!-- Button trigger modal -->
@@ -34,19 +34,19 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">쪽지보내기</h5>
+          <h5 class="modal-title" id="exampleModalLabel">쪽지</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <input type="hidden" name="to_user" value="{{ active_direct }}">
                 <div>
-                    <p>
-                        <textarea name="body" placeholder="메시지 내용을 입력하세요" cols="50" rows="5"></textarea>
-                    </p>      
+                    <!--<p>
+                        <textarea name="context" placeholder="메시지 내용을 입력하세요" cols="50" rows="5"></textarea>
+                    </p>    -->  
                 </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-          <a href="{% url 'newconversation' user.username %}"><button type="button" class="btn btn-primary">전송</button></a>
+            <a href="{% url 'newconversation' views_review.user_id %}"><button type="button" class="btn btn-primary">대화시작</button></a>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
         </div>
         </div>
       </div>
