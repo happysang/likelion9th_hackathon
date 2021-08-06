@@ -26,4 +26,5 @@ urlpatterns = [
     path('review/',include('review.urls')),
     path('inner_account/',include('inner_account.urls')),
     path('',include('etc.urls')),
+    path('messages/',include('direct.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

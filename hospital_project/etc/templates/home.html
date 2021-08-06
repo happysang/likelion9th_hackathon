@@ -12,6 +12,13 @@
         {{user.username}}님 안녕하세요?
         <a href="{%url 'urllogout' %}"><button>로그아웃</button></a>
         <a href="{%url 'urlmypage' %}"><button>마이페이지</button></a>
+        <a href = "{%url 'inbox' %}">
+        쪽지함        
+        {% if directs_count %}
+        <span>{{ directs_count }}</span>
+        {% endif %}
+        </a>
+
     {% else %}
         <a href = "{%url 'urllogin' %}"><button>로그인</button></a>
         <a href = "{%url 'urlchoice' %}"><button>회원가입</button></a>
