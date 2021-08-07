@@ -74,27 +74,27 @@ def SendDirect(request):
 	else:
 		HttpResponseBadRequest()
 
-#
-#@login_required
-#def UserSearch(request):
-#	query = request.GET.get("q")
-#	context = {}
-#	
-#	if query:
-#		users = CustomUser.objects.filter(Q(username__icontains=query))
-#
-#		#Pagination
-#		paginator = Paginator(users, 6)
-#		page_number = request.GET.get('page')
-#		users_paginator = paginator.get_page(page_number)
-#
-#		context = {
-#				'users': users_paginator,
-#			}
-#	
-#	template = loader.get_template('search_user.html')
-#	
-#	return HttpResponse(template.render(context, request))
+
+@login_required
+def UserSearch(request):
+	query = request.GET.get("q")
+	context = {}
+	
+	if query:
+		users = CustomUser.objects.filter(Q(username__icontains=query))
+
+		#Pagination
+		paginator = Paginator(users, 6)
+		page_number = request.GET.get('page')
+		users_paginator = paginator.get_page(page_number)
+
+		context = {
+			'users': users_paginator,
+		}
+	
+	template = loader.get_template('search_user.html')
+	
+	return HttpResponse(template.render(context, request))
 
 @login_required
 def NewConversation(request, username):
