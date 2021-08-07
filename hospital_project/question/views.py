@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.core.paginator import Paginator
 from .forms import CommentForm
+from django.db.models import Q
 
 # Create your views here.
 
@@ -87,6 +88,17 @@ def add_comment(request, id):
     else: 
         form=CommentForm() 
     return render(request, 'add_comment.html', {'form':form})
+
+def question_search_view(request):
+    squestion = Question.objects.all()
+    q = request.POST.get('q', "")
+    if q:
+        squestion = squestion.filter(Q(title__icontains=q) | Q(body__icontains=q))
+        c = squestion.count()
+        return render(request, 'question_search.html', {'squestion':squestion, 'q':q, 'count':c})
+    else:
+        return render(request, 'question_search.html')
+
 
 import json
 from django.http import HttpResponse
