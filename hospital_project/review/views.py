@@ -9,7 +9,7 @@ d_list = ['치과', '피부과', '성형외과', '산부인과', '안과', '내�
 
 def review_category_view(request):
     return render (request, 'review_category.html')
-
+ 
 def review_readall_view(request, d_num):
     for x in range(len(d_list)):
         if d_num == x:
