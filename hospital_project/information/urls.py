@@ -15,5 +15,6 @@ urlpatterns = [
     path('fun/', fun, name='urlifun'),
     path('upset/', upset, name='urliupset'),
     path('scrap/', scrap, name='urliscrap'),
+    path('search/', info_search_view, name='urlinfosearch'),
    
 ]

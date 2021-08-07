@@ -88,6 +88,17 @@ def add_comment(request, id):
         form=CommentForm() 
     return render(request, 'add_comment.html', {'form':form})
 
+def question_search_view(request):
+    squestion = Question.objects.all()
+    q = request.POST.get('q', "")
+    if q:
+        squestion = squestion.filter(title__icontains=q)
+        c = squestion.count()
+        return render(request, 'question_search.html', {'squestion':squestion, 'q':q, 'count':c})
+    else:
+        return render(request, 'question_search.html')
+
+
 import json
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required

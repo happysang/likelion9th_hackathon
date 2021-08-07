@@ -85,6 +85,15 @@ def add_comment(request, id):
         form=CommentForm() 
     return render(request, 'add_comment.html', {'form':form})
 
+def info_search_view(request):
+    sinfo = Information.objects.all()
+    q = request.POST.get('q', "")
+    if q:
+        sinfo = sinfo.filter(title__icontains=q)
+        c = sinfo.count()
+        return render(request, 'info_search.html', {'sinfo':sinfo, 'q':q, 'count':c})
+    else:
+        return render(request, 'info_search.html')
 
 import json
 from django.http import HttpResponse
