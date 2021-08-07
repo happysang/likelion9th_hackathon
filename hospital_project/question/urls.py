@@ -15,5 +15,5 @@ urlpatterns = [
     path('fun/', fun, name='urlqfun'),
     path('upset/', upset, name='urlqupset'),
     path('scrap/', scrap, name='urlqscrap'),
-   
+    path('search/', question_search_view, name='urlquestionsearch'),
 ]

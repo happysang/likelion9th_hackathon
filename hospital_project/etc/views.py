@@ -3,6 +3,7 @@ from question.models import Question
 from information.models import Information
 from django.shortcuts import render
 from inner_account.models import CustomUser
+from django.db.models import Q
 
 # Create your views here.
 def home(request):
@@ -32,3 +33,20 @@ def myobject(request):
     informations = Information.objects.all()
     information_list = informations.filter(user_id=request.user.username)
     return render(request, 'myobject.html',{'review_list':review_list, 'question_list':question_list, 'information_list':information_list,})
+
+def all_search_view(request):
+    rsearch_all = Review.objects.all()
+    qsearch_all = Question.objects.all()
+    infosearch_all = Information.objects.all()
+    q = request.POST.get('q', "")
+    if q:
+        search_all = rsearch_all.filter(Q(title__icontains=q) | Q(body__icontains=q))
+        return render(request, 'all_search.html', {'search_all':search_all, 'q':q})
+    if q:
+        search_all = qsearch_all.filter(Q(title__icontains=q) | Q(body__icontains=q))
+        return render(request, 'all_search.html', {'search_all':search_all, 'q':q})
+    if q:
+        search_all = infosearch_all.filter(Q(title__icontains=q) | Q(body__icontains=q))
+        return render(request, 'all_search.html', {'search_all':search_all, 'q':q})
+    else:
+        return render(request, 'all_search.html')
