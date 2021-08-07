@@ -2,6 +2,8 @@ from .models import Information
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
 from .forms import CommentForm
+from django.db.models import Q
+
 # Create your views here.
 d_list = ['치과', '피부과', '성형외과', '산부인과', '안과', '내과', '외과', '이비인후과', '정형외과',
             '비뇨기과', '정신건강의학과', '재활의학과', '영상의학과', '소아과', '신경외과', '신경과',
@@ -89,7 +91,7 @@ def info_search_view(request):
     sinfo = Information.objects.all()
     q = request.POST.get('q', "")
     if q:
-        sinfo = sinfo.filter(title__icontains=q)
+        sinfo = sinfo.filter(Q(title__icontains=q) | Q(body__icontains=q))
         c = sinfo.count()
         return render(request, 'info_search.html', {'sinfo':sinfo, 'q':q, 'count':c})
     else:

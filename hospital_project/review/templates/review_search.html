@@ -10,7 +10,7 @@
     {% block content %}
         <h2>검색 결과🔍</h2>
 
-        <form class="form-inline my-2 my-lg-0" action="{% url 'urlsearch' %}" method="post">
+        <form class="form-inline my-2 my-lg-0" action="{% url 'urlreviewsearch' %}" method="post">
             {% csrf_token %}
             <input class="form-control mr-sm-2" type="search" placeholder="검색어를 입력하세요" aria-label="Search" name="q" value="{{q}}">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

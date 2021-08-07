@@ -104,11 +104,11 @@ def review_search_view(request):
     sreview = Review.objects.all()
     q = request.POST.get('q', "")
     if q:
-        sreview = sreview.filter(title__icontains=q)
+        sreview = sreview.filter(Q(title__icontains=q) | Q(body__icontains=q))
         c = sreview.count()
         return render(request, 'review_search.html', {'sreview':sreview, 'q':q, 'count':c})
     else:
-        return render(request, 'search.html')
+        return render(request, 'review_search.html')
 
     
 import json
