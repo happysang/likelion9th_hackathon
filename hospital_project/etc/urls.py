@@ -7,4 +7,5 @@ urlpatterns = [
     path('mypage/', mypage, name="urlmypage"),
     path('mypagedetail/', mypagedetail, name="urlmypagedetail"),
     path('mypageobject/', myobject, name="urlmyobject"),
+    path('search/', all_search_view, name="urlallsearch"),
 ]

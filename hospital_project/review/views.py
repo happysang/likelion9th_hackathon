@@ -26,7 +26,7 @@ def review_readall_view(request, d_num):
             review_list = reviews.filter(dept=d_list[x])
             review_all = review_list.order_by("-date")
             d_name = d_list[x]
-            return render(request,"review_readall.html",{'views_review_all':review_all, 'd_num':d_num, 'd_name':d_name},)    
+            return render(request,"review_readall.html",{'views_review_all':review_all, 'd_num':d_num, 'd_name':d_name})    
     
 
 def review_detail_view(request, id):
