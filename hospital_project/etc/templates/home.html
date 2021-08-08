@@ -70,7 +70,7 @@
 <header class="navigation">
 	<nav class="navbar navbar-expand-lg  py-4" id="navbar">
 		<div class="container">
-		  <a class="navbar-brand" href="test2.html">
+		  <a class="navbar-brand" href="{%url 'urlhome' %}">
 		  	병의 : <span>보감</span>
 		  </a>
 	  
@@ -79,31 +79,33 @@
 			  <li class="nav-item active">
 				<a class="nav-link" href="{%url 'urlhome' %}">Home <span class="sr-only">(current)</span></a>
 			  </li>
-			  <li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">후기게시판</a>
+			  <!-- <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="{%url 'urlreviewcategory' %}" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">후기게시판</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown03">
-						<li><a class="dropdown-item" href="">과목 선택</a></li>
+						<li><a class="dropdown-item" href="{%url 'urlreviewcategory' %}">후기 보러가기</a></li>
 						<li><a class="dropdown-item" href="#">후기 작성하기</a></li>
 					</ul>
-			  </li>
-			   <li class="nav-item"><a class="nav-link" href="#">질문게시판</a></li>
-			   <li class="nav-item dropdown">
+			  </li> -->
+			<li class="nav-item"><a class="nav-link" href="{%url 'urlreviewcategory' %}">후기게시판</a></li>
+			<li class="nav-item"><a class="nav-link" href="{%url 'urlquestioncategory' %}">질문게시판</a></li>
+			<li class="nav-item"><a class="nav-link" href="{%url 'urlinfocategory' %}">정보게시판</a></li>
+			   <!-- <li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">정보게시판</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdown05">
 						<li><a class="dropdown-item" href="">병원 정보</a></li>
 						<li><a class="dropdown-item" href="">수술 정보</a></li>
 						<li><a class="dropdown-item" href="">그 외</a></li>
-					</ul>
+					</ul> -->
 			</ul>
 		{% if user.is_authenticated %}
+			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
+				<a href="{%url 'urlinbox' %}" class="btn btn-solid-border btn-round-full">쪽지함</a>
+		  	</form>
 			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
 				<a href="{%url 'urllogout' %}" class="btn btn-solid-border btn-round-full">로그아웃</a>
 		  	</form>
 			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
-				<a href="{%url 'urlmypage' %}" class="btn btn-solid-border btn-round-full">마이 페이지</a>
-		  	</form>
-			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
-				<a href="{%url 'urlinbox' %}" class="btn btn-solid-border btn-round-full">쪽지함</a>
+				<a href="{%url 'urlmypage' %}" class="btn btn-solid-border btn-round-full">{{user.username}}님 안녕하세요?</a>
 		  	</form>
 			{% if directs_count %}
 			<span>{{ directs_count }}</span>
@@ -157,8 +159,8 @@
 					<img src="images/blog/1.jpg" alt="" class="img-fluid rounded">
 
 					<div class="card-body mt-2">
-						<h3 class="mt-3 mb-5 lh-36"><a href="#" class="text-white ">다른 사람이 남긴 후기가<br> 궁금하다면?</a></h3>
-						<a href="" class="btn btn-small btn-solid-border btn-round-full text-white">후기게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
+						<h3 class="mt-3 mb-5 lh-36"><a href="{%url 'urlreviewcategory' %}" class="text-white ">다른 사람이 남긴 후기가<br> 궁금하다면?</a></h3>
+						<a href="{%url 'urlreviewcategory' %}" class="btn btn-small btn-solid-border btn-round-full text-white">후기게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
 					</div>
 				</div>
 			</div>
@@ -169,8 +171,8 @@
 					<img src="images/blog/2.jpg" alt="" class="img-fluid rounded">
 
 					<div class="card-body mt-2">
-					<h3 class="mt-3 mb-5 lh-36"><a href="#" class="text-white">각종 수술에 대한 정보가 <br> 필요하다면?</a></h3>
-						<a href="" class="btn btn-small btn-solid-border btn-round-full text-white">정보게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
+					<h3 class="mt-3 mb-5 lh-36"><a href="{%url 'urlinfocategory' %}" class="text-white">각종 수술에 대한 정보가 <br> 필요하다면?</a></h3>
+						<a href="{%url 'urlinfocategory' %}" class="btn btn-small btn-solid-border btn-round-full text-white">정보게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
 					</div>
 				</div>
 			</div>
@@ -180,8 +182,8 @@
 					<img src="images/blog/3.jpg" alt="" class="img-fluid rounded">
 
 					<div class="card-body mt-2">
-						<h3 class="mt-3 mb-5 lh-36"><a href="#" class="text-white">궁금한 점이 있을 때 <br>전문가에게 물어봐!</a></h3>
-						<a href="" class="btn btn-small btn-solid-border btn-round-full text-white">질문게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
+						<h3 class="mt-3 mb-5 lh-36"><a href="{%url 'urlquestioncategory' %}" class="text-white">궁금한 점이 있을 때 <br>전문가에게 물어봐!</a></h3>
+						<a href="{%url 'urlquestioncategory' %}" class="btn btn-small btn-solid-border btn-round-full text-white">질문게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
 					</div>
 				</div>
 			</div>
