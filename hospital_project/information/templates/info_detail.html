@@ -37,24 +37,11 @@
     <hr>
     
     <div>
-        <!-- <input type="button" class="btn btn-info btn-sm like" name="{{ views_review.id }}" value="유익해요"
-            style="margin-top: 7px"> -->
-            &nbsp;
-        <i class="far fa-heart like" name="{{ views_info.id }}"></i>&nbsp;
-        <i class="far fa-grin-squint fun" name="{{ views_info.id }}"></i>&nbsp;
-        <i class="far fa-tired upset" name="{{ views_info.id }}"></i>&nbsp;
-        <i class="far fa-star scrap" name="{{ views_info.id }}"></i>&nbsp;
-        <br>
-
+        <input type="button" class="btn btn-info btn-sm like" name="{{ views_info.id }}" value="유익해요"
+            style="margin-top: 7px">
         <p id="count-{{ views_info.id }}" style="font:bold 1em; margin-top: 3px">
-            좋아요&nbsp;{{ views_info.like.all.count }}개&nbsp;
-            재밌어요&nbsp;{{ views_info.fun.all.count }}개&nbsp;
-            불쾌해요&nbsp;{{ views_info.upset.all.count }}개&nbsp;
-            스크랩 횟수&nbsp;{{ views_info.scrap.all.count }}개
-        </p>
+            좋아요&nbsp;{{ views_info.like.all.count }}개</p>
     </div>
-
-
 
 
 
@@ -79,6 +66,14 @@
         })
     </script>
 
+        
+    <div>
+        <input type="button" class="btn btn-info btn-sm fun" name="{{ views_info.id }}" value="재밌어요"
+            style="margin-top: 7px">
+        <p id="count2-{{ views_info.id }}" style="font:bold 1em; margin-top: 3px">
+            재밌어요&nbsp;{{ views_info.fun.all.count }}개</p>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript">
         $(".fun").click(function () {
@@ -100,6 +95,14 @@
         })
     </script>
 
+
+    <div>
+        <input type="button" class="btn btn-info btn-sm upset" name="{{ views_info.id }}" value="불쾌해요"
+            style="margin-top: 7px">
+        <p id="count3-{{ views_info.id }}" style="font:bold 1em; margin-top: 3px">
+            불쾌해요&nbsp;{{ views_info.upset.all.count }}개</p>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript">
         $(".upset").click(function () {
@@ -120,6 +123,14 @@
             });
         })
     </script>
+
+
+    <div>
+        <input type="button" class="btn btn-info btn-sm scrap" name="{{ views_info.id }}" value="스크랩하기"
+            style="margin-top: 7px">
+        <p id="count4-{{ views_info.id }}" style="font:bold 1em; margin-top: 3px">
+            스크랩 횟수&nbsp;{{ views_info.scrap.all.count }}개</p>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript">
