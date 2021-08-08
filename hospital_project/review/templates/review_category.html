@@ -8,6 +8,14 @@
 </head>
 <body>
     <h1>후기 게시판</h1>
+    <form class="form-inline my-2 my-lg-0" action="{% url 'urlreviewsearch' %}" method="post">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2" type="search" placeholder="검색어를 입력하세요" aria-label="Search" name="q" value="{{q}}">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+    <br><br>
+
     <a href="{% url 'urlreviewreadall' 0%}">치과</a>
     <a href="{% url 'urlreviewreadall' 1%}">피부과</a>
     <a href="{% url 'urlreviewreadall' 2%}">성형외과</a>

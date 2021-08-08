@@ -9,13 +9,13 @@
 <body>
     <h2>{{d_name}} 질문게시판</h2>
 
-    <form class="form-inline my-2 my-lg-0" action="{% url 'urlquestionsearch' %}" method="post">
+    <!-- <form class="form-inline my-2 my-lg-0" action="{% url 'urlquestionsearch' %}" method="post">
         {% csrf_token %}
         <input class="form-control mr-sm-2" type="search" placeholder="검색어를 입력하세요" aria-label="Search" name="q" value="{{q}}">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 
-    <br><br>
+    <br><br> -->
 
     <h3><a href="{%url 'urlquestionnew' d_num %}">질문 작성하기</a></h3>
     ------------------------------------------------ <br>
