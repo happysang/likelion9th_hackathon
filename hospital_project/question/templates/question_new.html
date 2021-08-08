@@ -10,15 +10,11 @@
     </style>
 </head>
 <body>
-    <form action="{%url 'urlreviewcreate' d_num %}" enctype="multipart/form-data" method="POST">
+    <form action="{%url 'urlquestioncreate' d_num%}" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
         제목: <input type="text" name="ctitle"><br>
         아이디: <input type="text" name="cuser_id" value="{{user.username}}" readonly><br>
-        병원명: <input type="text" name="chname"><br>
-        의사명: <input type="text" name="cdname"><br>
-        진료과: <input type="text" name="cdept" value="{{d_name}}" readonly><br>
-        진료 증빙 인증 <br>
-        <input type="file" name="ccert" id=""><br>
+        질문하려는 과: <input type="text" name="cdept" value="{{d_name}}" readonly><br>
         본문 <br>
         <textarea name="cbody" id="" cols="70" rows="40"></textarea><br>
         <button type="submit">작성완료</button>

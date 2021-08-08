@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reviewreadall</title>
+    <title>Questionreadall</title>
 </head>
 <body>
-    <h2>{{d_name}} 후기게시판</h2>
+    <h2>{{d_name}} 질문게시판</h2>
 
-    <h3><a href="{%url 'urlreviewnew' d_num %}">후기 작성하기</a></h3>
+    <h3><a href="{%url 'urlquestionnew' d_num %}">질문 작성하기</a></h3>
     ------------------------------------------------ <br>
-{% for a in views_review_all %}
-    제목:<a href="{% url 'urlreviewdetail' a.id %}">{{a.title}}</a> <br>
-    진료과: {{a.dept}}
+{% for a in views_question_all %}
+    제목:<a href="{% url 'urlquestiondetail' a.id %}">{{a.title}}</a> <br>
+    질문하려는 과: {{a.dept}}
     작성자:{{a.student_id}} <br>
     작성날짜:{{a.date}} <br>
     ------------------------------------------------ <br>

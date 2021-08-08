@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+    <style>
+        body{text-align: center;}
+    </style>
+</head>
+<body>
+    <form action="{%url 'urlquestionupdate' views_equestion.id%}" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        제목: <input type="text" name="utitle" id="" value="{{views_equestion.title}}">
+        아이디: <input type="text" name="user_id" id="" value="{{views_equestion.user_id}}" readonly="readonly"><br>
+        진료과: <input type="text" name="udept" id="" value="{{views_equestion.dept}}"><br>
+        본문 <br>
+        <textarea name="ubody" id="" cols="70" rows="40">{{views_equestion.body}}</textarea><br>
+        <button type="submit">작성완료</button>
+    </form>
+</body>
+</html>

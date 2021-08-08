@@ -1,0 +1,47 @@
+<h2>내가 스크랩 한 글</h2>
+
+<div>
+    <h5>review</h5>
+    {% if review_scraps %}
+        {% for post in review_scraps  %}
+            <a href="{%url 'urlreviewdetail' post.id%}">{{post.title}}</p></a>
+            내용 : {{post.body|truncatewords:50}}
+            <br>
+            ----------------------------------------<br>
+            {% endfor %} 
+    {% else %}
+        스크랩한 후기가 없습니다.
+    {% endif %}
+</div>
+<br><br>
+
+<div>
+    <h5>question</h5>
+    {% if question_scraps %}
+        {% for post in question_scraps %}
+            <a href="{%url 'urlquestiondetail' post.id%}">{{post.title}}</p></a>
+            내용 : {{post.body|truncatewords:50}}
+            <br>
+            ----------------------------------------<br>
+            {% endfor %} 
+    {% else %}
+        스크랩한 질문글이 없습니다.
+    {% endif %}
+</div>
+<br><br>
+
+<div>
+    <h5>information</h5>
+    {% if info_scraps %}
+        {% for post in info_scraps %}
+            <a href="{%url 'urlinfodetail' post.id%}">{{post.title}}</p></a>
+            내용 : {{post.body|truncatewords:50}}
+            <br>
+            ----------------------------------------<br>
+            {% endfor %} 
+    {% else %}
+        스크랩한 정보글이 없습니다.
+    {% endif %}
+</div>
+<br><br>
+
