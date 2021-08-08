@@ -73,7 +73,6 @@
 		  <a class="navbar-brand" href="test2.html">
 		  	병의 : <span>보감</span>
 		  </a>
-
 	  
 		  <div class="collapse navbar-collapse text-center" id="navbarsExample09">
 			<ul class="navbar-nav ml-auto">
@@ -96,13 +95,28 @@
 						<li><a class="dropdown-item" href="">그 외</a></li>
 					</ul>
 			</ul>
-
+		{% if user.is_authenticated %}
+			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
+				<a href="{%url 'urllogout' %}" class="btn btn-solid-border btn-round-full">로그아웃</a>
+		  	</form>
+			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
+				<a href="{%url 'urlmypage' %}" class="btn btn-solid-border btn-round-full">마이 페이지</a>
+		  	</form>
+			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
+				<a href="{%url 'urlinbox' %}" class="btn btn-solid-border btn-round-full">쪽지함</a>
+		  	</form>
+			{% if directs_count %}
+			<span>{{ directs_count }}</span>
+			{% endif %}
+			</a>
+		{% else %}
 			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
 			  <a href="{%url 'urllogin' %}" class="btn btn-solid-border btn-round-full">로그인</a>
 			</form>
-      <form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
+      		<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
 			  <a href="{%url 'urlchoice' %}" class="btn btn-solid-border btn-round-full">회원가입</a>
 			</form>
+		{% endif %}
 		  </div>
 		</div>
 	</nav>
