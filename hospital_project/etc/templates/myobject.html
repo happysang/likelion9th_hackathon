@@ -14,9 +14,10 @@
                 제목: <a href="{%url 'urlreviewdetail' re.id %}"> {{re}} </a>
                 <br>
                 --------------------
+                <br>
             {% endfor %}
         {% else %}
-            등록된 후기가 없습니다.
+            등록된 후기글이 없습니다.
         {% endif %}
     </div>
     <br><br>
@@ -29,6 +30,7 @@
                 제목: <a href="{%url 'urlreviewdetail' info.id %}"> {{info}} </a>
                 <br>
                 --------------------
+                <br>
             {% endfor %}
         {% else %}
             등록된 정보글이 없습니다.
@@ -44,9 +46,10 @@
                 제목: <a href="{%url 'urlreviewdetail' qu.id %}"> {{qu}} </a>
                 <br>
                 --------------------
+                <br>
             {% endfor %}
         {% else %}
-            등록된 질문이 없습니다.
+            등록된 질문글이 없습니다.
         {% endif %}
     </div>
     <br><br>
