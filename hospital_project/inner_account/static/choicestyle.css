@@ -1,11 +1,11 @@
 @font-face {
-  font-family: 'Source Sans Pro';
+  font-family: 'Do Hyeon', sans-serif;
   font-style: normal;
   font-weight: 200;
   src: url(https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcSV-LCoeQqfX1RYOo3i94_wlxdr.ttf) format('truetype');
 }
 @font-face {
-  font-family: 'Source Sans Pro';
+  font-family: 'Do Hyeon', sans-serif;
   font-style: normal;
   font-weight: 300;
   src: url(https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcSV-LCoeQqfX1RYOo3ik4zwlxdr.ttf) format('truetype');
@@ -17,39 +17,39 @@
   font-weight: 300;
 }
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Do Hyeon', sans-serif;
   color: white;
   font-weight: 300;
 }
 body ::-webkit-input-placeholder {
   /* WebKit browsers */
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Do Hyeon', sans-serif;
   color: white;
   font-weight: 300;
 }
 body :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Do Hyeon', sans-serif;
   color: white;
   opacity: 1;
   font-weight: 300;
 }
 body ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Do Hyeon', sans-serif;
   color: white;
   opacity: 1;
   font-weight: 300;
 }
 body :-ms-input-placeholder {
   /* Internet Explorer 10+ */
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Do Hyeon', sans-serif;
   color: white;
   font-weight: 300;
 }
 .wrapper {
-  background: #50a3a2;
-  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+  background: #104868;
+  background: linear-gradient(to bottom right, #78b7ca 0%, #5ec8e2 100%);
   position: absolute;
   top: 50%;
   left: 0;

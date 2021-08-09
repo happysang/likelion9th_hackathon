@@ -3,20 +3,22 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Calm breeze login screen</title>
+  <title>병의보감 : SIGNUP</title>
   <link rel="stylesheet" href="{%static 'choicestyle.css' %}">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Serif+KR:wght@500;900&display=swap" rel="stylesheet">
 </head>
 <body>
 <!-- partial:index.partial.html -->
 <div class="wrapper">
 	<div class="container">
-		<h1>Welcome</h1>	
+		<h1>환영합니다 !</h1>	
 		<form class="form" action="{%url 'urlsignup' 1%}">
 			<button type="submit" id="login-button">일반 유저로 회원가입</button>
 		</form>
         <form class="form" action="{%url 'urlsignup' 2%}">
-			<button type="submit" id="login-button">의사로 회원가입</button>
+			<button type="submit" id="login-button">의사 유저로 회원가입</button>
 		</form>
 	</div>
 	
