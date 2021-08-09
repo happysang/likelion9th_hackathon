@@ -140,7 +140,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'review', 'static'),
     os.path.join(BASE_DIR, 'information', 'static'),
-    os.path.join(BASE_DIR, 'question', 'static')
+    os.path.join(BASE_DIR, 'question', 'static'),
+    os.path.join(BASE_DIR, 'etc', 'staitc'),
 ]
 #현재 static 파일들이 어디에 있는지
 
