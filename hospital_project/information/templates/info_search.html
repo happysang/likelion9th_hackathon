@@ -1,42 +1,56 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'i_search.css' %}">
     <title>Search</title>
 </head>
+
 <body>
     {% block content %}
-        <h2>검색 결과🔍</h2>
+    <h1>검색 결과🔍</h1>
 
+    <div class="wrap">
         <form class="form-inline my-2 my-lg-0" action="{% url 'urlinfosearch' %}" method="post">
             {% csrf_token %}
-            <input class="form-control mr-sm-2" type="search" placeholder="검색어를 입력하세요" aria-label="Search" name="q" value="{{q}}">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <div class="search">
+                <input type="text" class="searchTerm" placeholder="관심있는 병 혹은 질환을 검색해 보세요!" name="q" value="{{q}}">
+                <button type="submit" class="searchButton">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
         </form>
-        
-        {% if not sinfo %}
+    </div>
 
-            <h5><span style="color: blue;"><i>{{q}}</i></span>  에 대한 검색 결과가 없습니다.</h5>
-        
-        {% else %}
-            {% for s in sinfo %}
-                <h5><span style="color: blue;"><i>{{q}}</i></span>  에 대한 게시물은 총 {{count}} 건 입니다.</span></h5>
-                <div class="container"> 
-                    <div class="card">
-                        <div class="card-body">
-                            <h3><a href="{% url 'urlinfodetail' s.id %}">{{s.title}}</a></h3><br>
-                            질문하려는 과: {{s.dept}}
-                            작성자:{{s.student_id}}<br>
-                            작성날짜:{{s.date}}<br>
-                        </div>
-                    </div>
-                </div>        
-            {% endfor %}
+    {% if not sinfo %}
 
-        {% endif %}
+    <h5><span style="color: blue;"><i>{{q}}</i></span> 에 대한 검색 결과가 없습니다.</h5>
+
+    {% else %}
+
+    <h5><span style="color: blue;"><i>{{q}}</i></span> 에 대한 게시물은 총 {{count}} 건 입니다.</span></h5>
+
+    {% for s in sinfo %}
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h3><a href="{% url 'urlinfodetail' s.id %}">{{s.title}}</a></h3><br>
+                질문하려는 과: {{s.dept}}
+                작성자:{{s.student_id}}<br>
+                작성날짜:{{s.date}}<br>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% endif %}
 
     {% endblock %}
 </body>
+
 </html>
