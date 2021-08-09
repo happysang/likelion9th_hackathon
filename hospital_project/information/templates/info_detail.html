@@ -25,6 +25,41 @@
     <a href="{%url 'urlinfoedit' views_info.id%}">수정하기</a>
     <a href="{%url 'urlinfodelete' views_info.id%}" onclick="return confirm('삭제하시겠습니까?')">삭제하기</a>
     <a href="{%url 'urlinforeadall' d_num%}">목록</a>
+    <br><br>
+    <!--bootstrap활용 모달폼-->
+<!-- Button trigger modal -->
+<i class="fas fa-envelope-open-text" data-bs-toggle="modal" data-bs-target="#exampleModal">&nbsp;쪽지</i>
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    쪽지
+</button> -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">쪽지</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" name="to_user" value="{{ active_direct }}">
+                <div>
+                    <p>쪽지를 보내시겠어요?</p>
+                    
+                    <!--<p>
+                        <textarea name="context" placeholder="메시지 내용을 입력하세요" cols="50" rows="5"></textarea>
+                    </p>    -->  
+                </div>
+        <div class="modal-footer">
+            <a href="{% url 'urlnewconversation' views_info.user_id %}"><button type="button" class="btn btn-primary">쪽지 보내기</button></a>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <hr>
     <hr>
     <h3>댓글</h3><br>
     {% for comment in views_info.icomments.all %} 
