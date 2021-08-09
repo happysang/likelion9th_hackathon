@@ -137,6 +137,17 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'review', 'static'),
+    os.path.join(BASE_DIR, 'information', 'static'),
+    os.path.join(BASE_DIR, 'question', 'static')
+]
+#현재 static 파일들이 어디에 있는지
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#static 파일을 어디에 모을 것인지
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
