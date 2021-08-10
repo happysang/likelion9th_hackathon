@@ -1,15 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+{%load static%}
+<html lang="en" >
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mypage/detail</title>
+  <meta charset="UTF-8">
+  <title>Mypage/details</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="{%static 'scrap_style.css'%}">
+
 </head>
 <body>
-    <p>id: {{user.username}}</p>
-    <p>이름: {{user.name}}</p>
-    <p>이메일: {{user.email}}</p>
+    <div class='detail-container'>
+        <h1>Personal information</h1>
+        <dl>
+        <dt>Id</dt>
+        <dd>{{user.username}}</dd>
+        <dt>Name</dt>
+        <dd>{{user.name}}</dd>
+        <dt>Email</dt>
+        <dd>{{user.email}}</dd>
+        </dl>
+        {%if user.ans_auth%}
+        <dt>User status</dt>
+        <dd>Doctor user</dd>
+        {%else%}
+        <dt>User status</dt>
+        <dd>General user</dd>
+        {%endif%}
+        <br><br>
 
+    </div>
 </body>
 </html>

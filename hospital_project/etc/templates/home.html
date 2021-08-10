@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,6 +30,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Song+Myung&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 
+  <!-- 쪽지함 CSS-->
+  <link rel="stylesheet" href="{% static 'direct/static/css/bulma.min.css' %}">
+  <link rel="stylesheet" href="{% static 'direct/static/css/style.css' %}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -98,19 +103,21 @@
 					</ul> -->
 			</ul>
 		{% if user.is_authenticated %}
-			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
-				<a href="{%url 'urlinbox' %}" class="btn btn-solid-border btn-round-full">쪽지함</a>
-		  	</form>
+
 			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
 				<a href="{%url 'urllogout' %}" class="btn btn-solid-border btn-round-full">로그아웃</a>
 		  	</form>
 			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
 				<a href="{%url 'urlmypage' %}" class="btn btn-solid-border btn-round-full">{{user.username}}님 안녕하세요?</a>
 		  	</form>
-			{% if directs_count %}
-			<span>{{ directs_count }}</span>
-			{% endif %}
+			<form>
+			<a href="{% url 'urlinbox' %}" class="navbar-item">
+				<i class="material-icons" style="font-size: x-large;">mail_outline</i>
+				{% if directs_count %}
+				<span class="badge">{{ directs_count }}</span>
+				{% endif %}
 			</a>
+			</form>
 		{% else %}
 			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
 			  <a href="{%url 'urllogin' %}" class="btn btn-solid-border btn-round-full">로그인</a>
@@ -249,11 +256,11 @@
 				<i class="ti-quote-left text-color"></i>
 
 				<div class="testimonial-item-content">
-					<p class="testimonial-text">"치질에 걸린 것 같은데 수술은 어디서,언제 이루어지나요ㅠㅠ 가격대도 알려주세요..."</p>
+					<p class="testimonial-text">{{hot_review.title}}</p>
 
 					<div class="testimonial-author">
-						<h5 class="mb-0 text-capitalize">이란무화과님</h5>
-						<p>2021.07.27</p>
+						<h5 class="mb-0 text-capitalize">{{hot_review.user_id}}</h5>
+						<p>{{hot_review.date}}</p>
 					</div>
 				</div>
 			</div>
@@ -261,11 +268,11 @@
 				<i class="ti-quote-left text-color"></i>
 
 				<div class="testimonial-item-content">
-					<p class="testimonial-text">라섹 수술과 라식 수술의 차이점이 무엇인가요?</p>
+					<p class="testimonial-text">{{hot_question.title}}</p>
 
 					<div class="testimonial-author">
-						<h5 class="mb-0 text-capitalize">김사자님</h5>
-						<p>2021.08.04</p>
+						<h5 class="mb-0 text-capitalize">{{hot_question.user_id}}</h5>
+						<p>{{hot_question.date}}</p>
 					</div>
 				</div>
 			</div>
@@ -273,11 +280,11 @@
 				<i class="ti-quote-left text-color"></i>
 
 				<div class="testimonial-item-content">
-					<p class="testimonial-text">폭염에 쓰러진 사람에게 응급처치 하는 법</p>
+					<p class="testimonial-text">{{hot_info.title}}</p>
 
 					<div class="testimonial-author">
-						<h5 class="mb-0 text-capitalize">[인증] 김멋사 닥터</h5>
-						<p>2021.08.03</p>
+						<h5 class="mb-0 text-capitalize">{{hot_info.user_id}}</h5>
+						<p>{{hot_info.date}}</p>
 					</div>
 				</div>
 			</div>
@@ -313,7 +320,6 @@
 </div>
 
 </section>
-
 
 <!-- footer Start -->
 <footer class="footer section">
