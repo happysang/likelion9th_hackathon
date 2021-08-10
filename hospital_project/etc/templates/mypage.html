@@ -58,7 +58,7 @@
                         </div>
                       </div>
                       <br>
-                    <a href="blog-single.html" class="btn btn-small btn-main btn-round-full">모두 보기</a>
+                    <a href="{%url 'urlmyobject' %}" class="btn btn-small btn-main btn-round-full">모두 보기</a>
                     <!--작성한 글 불러오기 끝-->
                 </div>
             </div>
@@ -80,6 +80,7 @@
                     이름 : {{user.name}}<br>
                     아이디 : {{user.username}}<br>
                     이메일 : {{user.email}}<br>
+                    내 포인트 : {{user.point}}<br>
                     </p>
                     
     
@@ -119,7 +120,7 @@
                 </div>
                 
             </div>
-            <a href="blog-single.html" class="btn btn-small btn-main btn-round-full">모두 보기</a>
+            <a href="{% url 'myscrap' user.id %}" class="btn btn-small btn-main btn-round-full">모두 보기</a>
         </div>
     <!--스크랩한 글 불러오기 끝-->
 
@@ -129,12 +130,7 @@
     
         </div>
     </section>
-    
-    <a href = "{%url 'urlmypagedetail' %}"><button>내 정보보기</button></a>
-    <a href = "{%url 'urlmyobject' %}"><button>내가 쓴 글</button></a>
-    <a href="{% url 'myscrap' user.id %}"><button>내 스크랩</button></a>
-    <p>내 포인트 : {{user.point}}</p>
-    <a href = ""><button>충전하기</button></a>
+
 
 
 {%endblock%}
