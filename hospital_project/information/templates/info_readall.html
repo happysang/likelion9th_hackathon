@@ -1,129 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+{%load static%}
+<html lang="en" >
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inforeadall</title>
-    <style>
-        
+  <meta charset="UTF-8">
+  <title>CodePen - Flatby UI</title>
+  <link rel="stylesheet" href="{%static 'readall_style.css'%}">
 
-        body{
-          
-            background-color:   #9ad0f5;
-            margin: 0;
-            position: relative;
-        }
-        h2{
-            background-color:  #3460bd;
-            margin:0;
-            padding-bottom: 50px;
-            text-align: center;
-            border-bottom: 1px solid black;
-        }
-        .write{
-            text-align: center;
-        }
-        table{
-            
-            display: flex;
-            justify-content: center;
-            border-collapse: collapse;
-            border: none;
-            
-            width: 100%;
-            
-            
-        }
-        .form-inline{
-            display: flex;
-            justify-content: center;
-            position: relative;
-            top: -20px;
-            left: 20px;
-        }
-        .form-control{
-            padding: 10px;
-            border:none;
-            border-radius: 30px;
-            width: 60%;
-            margin-right: 10px;
-            box-shadow: 0 0 4px black;
-            
-        }
-        .form-control:hover{
-            transform: scale(1.01);
-        }
-        .form-control:focus{
-            outline: none;
-        }
-        tr{
-            text-align: center;
-            background-color: white;
-            border-right: 1px solid black;
-            border-left: 1px solid black;
-            border-radius: 50px;
-        }
-        td{
-            padding: 3px;
-            border: none;
-            border-bottom: solid 0.5px black;
-            
-        }
-        th{
-            padding: 5px;
-            background-color: #1a4380;
-            color: white;
-            border: none;
-        }
-        tr:hover{
-        border-radius: 50px;
-        transform: scale(1.005);
-        }
-    
-    </style>
 </head>
 <body>
-   
-    <h2>{{d_name}} 정보게시판</h2>
+<!-- partial:index.partial.html -->
+<html lang="en">
 
-    <form class="form-inline my-2 my-lg-0" action="{% url 'urlinfosearch' %}" method="post">
-        {% csrf_token %}
-        <input  size="100" class="form-control mr-sm-2"type="search" placeholder="궁금하신 정보가 있나요?" aria-label="Search" name="q" value="{{q}}">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
-    </form>
+<head>
+	<meta charset="utf-8" />
+	<title>Information/readall</title>
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+	<link rel="stylesheet" href="./stylesheets/screen.css">
+	<link rel="stylesheet" href="./stylesheets/fonts.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+</head>
 
-   <!-- <h3><a href="{%url 'urlinfonew' d_num %}">정보 작성하기</a></h3> -->
-   <table border="1">
-    <tr>
-        <th width="105">진료과</th>
-        <th width="700">제목</th>
-        <th width="100">작성자</th>
-        <th>작성일</th>
-        <th>조회수</th>
-    </tr>
-{% for a in views_info_all %}
-    <tr>
-        <td>{{a.dept}}</td>
-        <td><a href="{% url 'urlinfodetail' a.id %}">{{a.title}}</a></td>
-        <td>{{a.user_id}}</td>
-        <td>{{a.date}}</td>
-        <td>{{a.view_count}}</td>
-    </tr>
-    <h3><a href="{%url 'urlinfonew' d_num %}">정보 작성하기</a></h3>
-{% endfor %}
-<tr class="write">
-    <td colspan="6"><a href="{%url 'urlinfonew' d_num %}">글쓰기</a></td>
-</tr>
-<tr>
-    <td colspan="6"><center>
-    <a href="#">1</a> 
-    <a href="#">2</a> 
-    <a href="#">3</a> 
-    <a href="#">4</a> 
-    <a href="#">다음▶</a>
-    </center></td>
-</tr>
-</table>
+<body>
+  <h1 style="text-align: center; color: white"><strong>{{d_name}} 정보게시판</strong></h1><br>
+	<section>
+    <a href="{%url 'urlinfonew' d_num%}" class="button button-submit">정보글 작성하기</a>
+    <br>
+    {% for a in views_info_all %}
+		<h1>{{a.title}}</h1>
+		<h2>{{a.name}}</h2>
+		<p>{{a.date}}</p>
+		<a href="{%url 'urlinfodetail' a.id%}" class="button-read-more">Read more &raquo;</a>
+    <br>
+    {% endfor %}
+	</section>
+  
+</body>
+</html>
+<!-- partial -->
+  
 </body>
 </html>
