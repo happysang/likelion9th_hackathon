@@ -129,7 +129,12 @@
     
         </div>
     </section>
-
+    
+    <a href = "{%url 'urlmypagedetail' %}"><button>내 정보보기</button></a>
+    <a href = "{%url 'urlmyobject' %}"><button>내가 쓴 글</button></a>
+    <a href="{% url 'myscrap' user.id %}"><button>내 스크랩</button></a>
+    <p>내 포인트 : {{user.point}}</p>
+    <a href = ""><button>충전하기</button></a>
 
 
 {%endblock%}

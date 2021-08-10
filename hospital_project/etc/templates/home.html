@@ -1,7 +1,6 @@
 {%extends 'base.html'%}
 {%block content%}
-<!-- Header Close --> 
-<!-- Slider Start -->
+{% load static %}
 <div class="main-wrapper ">
 <section class="slider">
 	<div class="container">
@@ -124,11 +123,11 @@
 				<i class="ti-quote-left text-color"></i>
 
 				<div class="testimonial-item-content">
-					<p class="testimonial-text">"치질에 걸린 것 같은데 수술은 어디서,언제 이루어지나요ㅠㅠ 가격대도 알려주세요..."</p>
+					<p class="testimonial-text">{{hot_review.title}}</p>
 
 					<div class="testimonial-author">
-						<h5 class="mb-0 text-capitalize">이란무화과님</h5>
-						<p>2021.07.27</p>
+						<h5 class="mb-0 text-capitalize">{{hot_review.user_id}}</h5>
+						<p>{{hot_review.date}}</p>
 					</div>
 				</div>
 			</div>
@@ -136,11 +135,11 @@
 				<i class="ti-quote-left text-color"></i>
 
 				<div class="testimonial-item-content">
-					<p class="testimonial-text">라섹 수술과 라식 수술의 차이점이 무엇인가요?</p>
+					<p class="testimonial-text">{{hot_question.title}}</p>
 
 					<div class="testimonial-author">
-						<h5 class="mb-0 text-capitalize">김사자님</h5>
-						<p>2021.08.04</p>
+						<h5 class="mb-0 text-capitalize">{{hot_question.user_id}}</h5>
+						<p>{{hot_question.date}}</p>
 					</div>
 				</div>
 			</div>
@@ -148,11 +147,11 @@
 				<i class="ti-quote-left text-color"></i>
 
 				<div class="testimonial-item-content">
-					<p class="testimonial-text">폭염에 쓰러진 사람에게 응급처치 하는 법</p>
+					<p class="testimonial-text">{{hot_info.title}}</p>
 
 					<div class="testimonial-author">
-						<h5 class="mb-0 text-capitalize">[인증] 김멋사 닥터</h5>
-						<p>2021.08.03</p>
+						<h5 class="mb-0 text-capitalize">{{hot_info.user_id}}</h5>
+						<p>{{hot_info.date}}</p>
 					</div>
 				</div>
 			</div>
