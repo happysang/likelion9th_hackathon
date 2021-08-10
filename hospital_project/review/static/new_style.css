@@ -24,7 +24,34 @@ html {
   line-height: 1;
 }
 
-section{
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
 
@@ -72,7 +99,9 @@ strong {
   float: left;
 }
 
-
+img.lefty {
+  margin-right: 12px;
+}
 
 .righty {
   float: right;
@@ -319,7 +348,6 @@ ul.dropdown li:last-child a {
   font-size: 0.8em;
   font-weight: 500;
 }
-/* 버튼 색갈 지정 여기서 */
 .button.button-submit, input[type="button"].button-submit, button.button-submit {
   background: #00986a;
 }
