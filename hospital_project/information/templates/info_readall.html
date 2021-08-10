@@ -22,11 +22,7 @@
 {% for a in views_info_all %}
     제목:<a href="{% url 'urlinfodetail' a.id %}">{{a.title}}</a> <br>
     과: {{a.dept}}
-    {% if user.ans_auth %}
-        작성자:[🏥인증]{{a.user_id}} <br>
-    {% else %}
-        작성자:{{a.user_id}}<br>
-    {% endif %}
+    작성자:{{a.student_id}} <br>
     작성날짜:{{a.date}} <br>
     ------------------------------------------------ <br>
 {% endfor %}

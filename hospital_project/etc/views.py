@@ -7,31 +7,7 @@ from django.db.models import Q
 
 # Create your views here.
 def home(request):
-    reviews = Review.objects.all()
-    questions = Question.objects.all()
-    infos = Information.objects.all()
-    r_max=0
-    q_max=0
-    i_max=0
-
-    for re in reviews:
-        if re.like.count()>= r_max:
-            r_max = re.like.count()
-            hot_review = re     
-
-    for qu in questions:
-        if qu.like.count()>= q_max:
-            q_max = qu.like.count()
-            hot_question = qu 
-
-    for info in infos:
-        if info.like.count()>= i_max:
-            i_max = info.like.count()
-            hot_info = info 
-
-    return render (request, 'home.html', {'hot_review':hot_review,'hot_question':hot_question,'hot_info':hot_info})
-
-
+    return render (request, 'home.html')
 
 def myscrap(request,user_id):  
     user = CustomUser.objects.get(id = user_id)
@@ -43,14 +19,11 @@ def myscrap(request,user_id):
     }
     return render(request, 'myscrap.html',context)
 
-
 def mypage(request):
     return render(request,'mypage.html')
 
-
 def mypagedetail(request):
     return render(request, 'mypagedetail.html')
-
 
 def myobject(request):
     reviews = Review.objects.all()
@@ -60,7 +33,6 @@ def myobject(request):
     informations = Information.objects.all()
     information_list = informations.filter(user_id=request.user.username)
     return render(request, 'myobject.html',{'review_list':review_list, 'question_list':question_list, 'information_list':information_list,})
-
 
 def all_search_view(request):
     rsearch_all = Review.objects.all()
