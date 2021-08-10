@@ -5,51 +5,90 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inforeadall</title>
+    
     <style>
-        .my-2{
+        body{
+            background-color:   #9ad0f5;
+            margin: 0;
+            position: relative;
+        }
+        h2{
+            background-color:  #3460bd;
+            margin:0;
+            padding-bottom: 50px;
+            text-align: center;
+        }
+        .write{
+            text-align: right;
+        }
+        table{
             display: flex;
-            flex-direction: column;
-            margin: 0 50px 30px 50px;
+            justify-content: center;
+            border:  blue;
         }
-        .d{
-            border-style: solid;
-            border-color:black ;
+        .form-inline{
+            display: flex;
+            justify-content: center;
+            position: relative;
+            top: -20px;
         }
-        .c{
-            justify-content: space-between;
+        .form-control{
+            padding: 10px;
+            border:none;
+            border-radius: 30px;
+            width: 60%;
+            margin-right: 10px;
+            
         }
+        .form-control:hover{
+            transform: scale(1.01);
+        }
+        .form-control:focus{
+            outline: none;
+        }
+    
     </style>
 </head>
 <body>
+   
     <h2>{{d_name}} 정보게시판</h2>
 
     <form class="form-inline my-2 my-lg-0" action="{% url 'urlinfosearch' %}" method="post">
         {% csrf_token %}
-        <input class="form-control mr-sm-2"type="search" placeholder="검색어를 입력하세요" aria-label="Search" name="q" value="{{q}}">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <input  size="100" class="form-control mr-sm-2"type="search" placeholder="검색어를 입력하세요" aria-label="Search" name="q" value="{{q}}">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
     </form>
 
-    <br><br>
-
-    <h3><a href="{%url 'urlinfonew' d_num %}">정보 작성하기</a></h3>
-    ------------------------------------------------ <br>
-    <table>
-        <tr class="c">
-            <td>제목</td>
-            <td>과</td>
-            <td>작성자</td>
-            <td>작성날짜</td>
-        </tr>
-{% for a in views_info_all %}
-    <div class="d">
-    <tr>
-    <td>제목:<a href="{% url 'urlinfodetail' a.id %}">{{a.title}}</a></td>
-    <td>과: {{a.dept}}</td>
-    <td>작성자:{{a.student_id}}</td>
-    <td>작성날짜:{{a.date}}</td>
+   <!-- <h3><a href="{%url 'urlinfonew' d_num %}">정보 작성하기</a></h3> -->
+   <table border="1">
+    <tr class="bor">
+        <th>진료과</th>
+        <th width="800">제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+        <th>조회수</th>
     </tr>
-    </div>
-</table>
+{% for a in views_info_all %}
+    <tr>
+        <td>{{a.dept}}</td>
+        <td><a href="{% url 'urlinfodetail' a.id %}">{{a.title}}</a></td>
+        <td>{{a.user_id}}</td>
+        <td>{{a.date}}</td>
+        <td>{{a.view_count}}</td>
+    </tr>
 {% endfor %}
+<tr class="write">
+    <td colspan="6"><a href="{%url 'urlinfonew' d_num %}">글쓰기</a></td>
+</tr>
+<tr>
+    <td colspan="6"><center>
+    <a href="#">1</a> 
+    <a href="#">2</a> 
+    <a href="#">3</a> 
+    <a href="#">4</a> 
+    <a href="#">다음▶</a>
+    </center></td>
+</tr>
+</table>
 </body>
 </html>
