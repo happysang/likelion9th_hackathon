@@ -173,6 +173,10 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
   background: #80f0d4;
 }
 
+.bg-basic {
+background : #9ad0f5;
+}
+
 .bg-primary {
   background: #2455f5;
 }
@@ -1436,3 +1440,6 @@ h3.quote::before {
 }
 
 /*# sourceMappingURL=maps/style.css.map */
+
+
+
