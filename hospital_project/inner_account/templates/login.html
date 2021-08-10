@@ -30,7 +30,7 @@
           {% csrf_token %}
           <input type="text" class="form__input" name="username" value="{{view_loginform.username.value|default_if_none:''}}" placeholder="아이디">
           <input type="password" class="form__input" name="password" value="{{view_loginform.password.value|default_if_none:''}}" placeholder="비밀번호">
-          <button class="form__button button submit" style='cursor:pointer;'>SIGN UP</button>
+          <button class="form__button button submit" style='cursor:pointer;'>로그인</button>
         </form>
       </div>
       <div class="switch" id="switch-cnt">
