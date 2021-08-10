@@ -110,12 +110,14 @@
 			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
 				<a href="{%url 'urlmypage' %}" class="btn btn-solid-border btn-round-full">{{user.username}}님 안녕하세요?</a>
 		  	</form>
+			<form>
 			<a href="{% url 'urlinbox' %}" class="navbar-item">
 				<i class="material-icons" style="font-size: x-large;">mail_outline</i>
 				{% if directs_count %}
 				<span class="badge">{{ directs_count }}</span>
 				{% endif %}
 			</a>
+			</form>
 		{% else %}
 			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
 			  <a href="{%url 'urllogin' %}" class="btn btn-solid-border btn-round-full">로그인</a>
