@@ -1,98 +1,106 @@
-<div>
-  <aside>
-    <h1>
-    쪽지함
-    </h1>
-<br>
-<a href="{% url 'urlhome' %}">홈</a> <br>
-<a href="{% url 'urlusersearch' %}">쪽지 보낼 상대 찾기</a>
-<br>
-
-<ul style="overflow-y: scroll; height: 200px; width:300px">
-{% for message in messages %}
-<a class="{% if active_direct == message.user %}is-active{% endif %}" href="{% url 'urldirects' message.user.username %}">
-<div>
-  <article>
-    <div>
-    </div>
-    <div>
-
-      <div>
-        <p>
-          <!-- 나에게 메세지 보낸 사람 목록-->
-          <strong>{{ message.user }}</strong> 
-        </p>
+{% load static %}
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>쪽지함</title>
+   <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ </head>
+ <body>
+  <div class="columns is-mobile">
+    <div class="column is-one-quarter">
+    <aside class="menu">
+      <h1 class="title is-3">
+      쪽지함
+      </h1>
+    <ul style="overflow-y: scroll; height: 380px" class="menu-list">
+  
+  {% for message in messages %}
+  
+  <a class="{% if active_direct == message.user %}is-active{% endif %}" href="{% url 'urldirects' message.user.username %}">
+  <div class="box">
+    <article class="media">
+      <div class="media-content">
+  
+        <div class="content">
+          <p>
+            <!-- 나에게 메세지 보낸 사람 목록-->
+            <strong>{{ message.user }}</strong> 
+          </p>
+          {% if message.unread %}
+          <p style="font-size: larger; font-weight: bold; color: red;">
+            <i class="material-icons">mark_chat_unread</i> {{ message.unread }}
+          </p>
+          {% endif %}        
+        </div>
+  
       </div>
-
-      <div>
-        {% if message.unread %}
-        <p style="font-weight: bold; color: red;">
-          <i>읽지 않는 쪽지</i> {{ message.unread }}
-        </p>
-        {% endif %}        
-      </div>
-
+    </article>
+  </div>
+  </a>
+  {% endfor %}
+    </ul>
+    </aside>
+  <br>
+  <a href="{% url 'urlusersearch' %}">쪽지 보낼 상대 찾기</a>
+  <br>
+  </div>
+  <div style="margin-top: 70px;  width: 72%;">
+  <div class="column">
+    <div style="overflow-y: scroll; height: 370px;">
+    
+    {% for direct in directs %}
+    <div class="box">
+      <article class="media">
+        <div class="media-left">
+        </div>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>{{ direct.sender }}</strong> &ensp;<small>{{ direct.date|date:'n/d G:i:s'}}</small>
+            </p>
+            {{ direct.body }} 
+          </div>
+        </div>
+      </article>
     </div>
-  </article>
-</div>
-</a>
-{% endfor %}
-
-  </ul>
-  </aside>
-<br>
-</div>
-
-<div  style="overflow-y: scroll; height: 250px; width:500px">
-  {% for direct in directs %}
-  {% if direct.sender == direct.user %}
-  <h4>보낸 쪽지</h4>
-  <article>
-      <div>
-        <p>
-          <strong>{{ direct.sender }} </strong> on: <strong><small>{{ direct.date|date:'N d G:i'}}</small></strong>
-        {{ direct.body }} 
-        </p>
-      </div>
-  </article>
-{% else %}
-<h4>받은 쪽지</h4>
-<article>
-    <div>
-      <p>
-        <strong>{{ direct.sender }} </strong> on: <strong><small>{{ direct.date|date:'N d G:i'}}</small></strong>
-      {{ direct.body }} 
-      </p>
+    {% endfor %}
     </div>
-</article>
-{% endif %}
-{% endfor %}
-</div>
+  </div>
 
 
 <form role="form" method="POST" action="{% url 'urlsend_direct' %}">
   {% csrf_token %}
-<article>
+<article class="media">
   <div>
     <input type="hidden" name="to_user" value="{{ active_direct }}">
-    <div>
-      <p>
-        <textarea name="body" placeholder="메시지 내용을 입력하세요" cols="70" rows="3"></textarea>
+    <div class="field">
+      <p class="control">
+        <textarea class="textarea" name="body" placeholder="메시지 내용을 입력하세요" cols="112" rows="2"></textarea>
       </p>
     </div>
-    <nav>
-      <div>
-        <div>
-          <button type="submit" name="action">전송</button>
-          <a href=""><button>전체 삭제</button></a>
-          <a href=""><button>차단</button></a>
-          <a href=""><button>신고</button></a>
+    <nav class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <button type="submit" name="action" class="button is-info">전송</button> &ensp;
+          <a href=""><button class="button is-info">전체 삭제</button></a>&ensp;
+          <a href=""><button class="button is-info">차단</button></a>&ensp;
+          <a href=""><button class="button is-info">신고</button></a>
         <!--무늬뿐인 삭제,차단,신고-->
-        
         </div>
       </div>
     </nav>
   </div>
 </article>
 </form>
+
 </div>
+</div>
+
+
+ </body>
+ </html>

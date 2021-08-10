@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,6 +30,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Song+Myung&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 
+  <!-- 쪽지함 CSS-->
+  <link rel="stylesheet" href="{% static 'direct/static/css/bulma.min.css' %}">
+  <link rel="stylesheet" href="{% static 'direct/static/css/style.css' %}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -98,18 +103,18 @@
 					</ul> -->
 			</ul>
 		{% if user.is_authenticated %}
-			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
-				<a href="{%url 'urlinbox' %}" class="btn btn-solid-border btn-round-full">쪽지함</a>
-		  	</form>
+
 			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
 				<a href="{%url 'urllogout' %}" class="btn btn-solid-border btn-round-full">로그아웃</a>
 		  	</form>
 			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
 				<a href="{%url 'urlmypage' %}" class="btn btn-solid-border btn-round-full">{{user.username}}님 안녕하세요?</a>
 		  	</form>
-			{% if directs_count %}
-			<span>{{ directs_count }}</span>
-			{% endif %}
+			<a href="{% url 'urlinbox' %}" class="navbar-item">
+				<i class="material-icons" style="font-size: x-large;">mail_outline</i>
+				{% if directs_count %}
+				<span class="badge">{{ directs_count }}</span>
+				{% endif %}
 			</a>
 		{% else %}
 			<form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
