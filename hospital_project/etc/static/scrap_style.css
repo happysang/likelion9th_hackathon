@@ -14,7 +14,7 @@ html {
 
 body {
   padding: 20px;
-  background-color: #5290ec;
+  background-color: #1a4380;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   color: #fff;
@@ -47,6 +47,6 @@ dd {
   margin: 0 0 40px 0;
   font-size: 1.8rem;
   padding-bottom: 5px;
-  border-bottom: 1px solid #5290ec;
-  box-shadow: 0 1px 0 #3b81eb;
+  border-bottom: 1px solid #1a4380;
+  box-shadow: 0 1px 0 #0b397c;
 }

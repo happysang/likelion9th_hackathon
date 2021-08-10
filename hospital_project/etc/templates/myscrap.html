@@ -15,7 +15,7 @@
         {% if review_scraps %}
             {% for post in review_scraps %}
                 <dt>
-                    <a href="{%url 'urlreviewdetail' post.id%}" style="color: #fff;">{{post.title}}</a>
+                    [<a href="{%url 'urlreviewdetail' post.id%}" style="color: #fff;">{{post.title}}</a>]
                 </dt>
                 <dd>
                     내용 : {{post.body|truncatewords:50}}
@@ -33,7 +33,7 @@
             {% if question_scraps %}
                 {% for post in question_scraps %}
                     <dt>
-                        <a href="{%url 'urlquestiondetail' post.id%}" style="color: #fff;">{{post.title}}</a>
+                        [<a href="{%url 'urlquestiondetail' post.id%}" style="color: #fff;">{{post.title}}</a>]
                     </dt>
                     <dd>
                         내용 : {{post.body|truncatewords:50}}
@@ -51,7 +51,7 @@
             {% if info_scraps %}
                 {% for post in info_scraps %}
                     <dt>
-                        <a href="{%url 'urlinfodetail' post.id%}" style="color: #fff;">{{post.title}}</a>
+                        [<a href="{%url 'urlinfodetail' post.id%}" style="color: #fff;">{{post.title}}</a>]
                     </dt>
                     <dd>
                         내용 : {{post.body|truncatewords:50}}

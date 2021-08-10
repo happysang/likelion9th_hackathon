@@ -15,7 +15,7 @@
         {% if review_list%}
             {% for re in review_list %}
                 <dt>
-                    <a href="{%url 'urlreviewdetail' re.id %}" style="color: #fff;"> {{re}} </a>
+                    [<a href="{%url 'urlreviewdetail' re.id %}" style="color: #fff;"> {{re}} </a>]
                 </dt>
                 <dd>
                     내용 : {{re.body|truncatewords:50}}
@@ -34,7 +34,7 @@
         {% if question_list%}
             {% for qu in question_list %}
                 <dt>
-                    <a href="{%url 'urlquestiondetail' qu.id %}" style="color: #fff;"> {{qu}} </a>
+                    [<a href="{%url 'urlquestiondetail' qu.id %}" style="color: #fff;"> {{qu}} </a>]
                 </dt>
                 <dd>
                     내용 : {{qu.body|truncatewords:50}}
@@ -53,7 +53,7 @@
         {% if information_list%}
             {% for info in information_list %}
                 <dt>
-                    <a href="{%url 'urlinfodetail' info.id %}" style="color: #fff;"> {{info}} </a>
+                    [<a href="{%url 'urlinfodetail' info.id %}" style="color: #fff;"> {{info}} </a>]
                 </dt>
                 <dd>
                     내용 : {{info.body|truncatewords:50}}
