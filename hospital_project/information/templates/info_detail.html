@@ -15,7 +15,11 @@
     <div>
         <h3>{{views_info.title}}</h3>
         <h4> 조회수 : {{views_info.view_count}}</h4>
-        아이디:{{views_info.user_id}} <br>
+        {% if user.ans_auth %}
+        작성자:[🏥인증]{{views_info.user_id}} <br>
+        {% else %}
+        작성자:{{views_info.user_id}}<br>
+        {% endif %}
         작성날짜:{{views_info.date}} <br>
         진료과:{{views_info.dept}} <br>
         내용:{{views_info.body}} <br>
