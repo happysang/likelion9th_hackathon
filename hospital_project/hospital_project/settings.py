@@ -142,6 +142,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'information', 'static'),
     os.path.join(BASE_DIR, 'question', 'static'),
     os.path.join(BASE_DIR, 'etc', 'staitc'),
+    os.path.join(BASE_DIR, 'inner_account', 'static')
 ]
 #현재 static 파일들이 어디에 있는지
 
