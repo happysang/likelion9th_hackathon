@@ -25,14 +25,21 @@ def question_readall_view(request, d_num):
 
 def question_detail_view(request, id):
     question = get_object_or_404(Question,pk= id)
-    #조회수 기능
     default_view_count = question.view_count
     question.view_count = default_view_count +1 
     question.save()
     for x in range(len(d_list)):
         if d_list[x] == question.dept:
             d_num = x
-    return render(request,'question_detail.html',{'views_question':question, 'd_num':d_num})
+    comment_form=CommentForm()
+    if request.method == "POST":
+         form=CommentForm(request.POST) 
+         if form.is_valid(): 
+             comment=form.save(commit=False) 
+             comment.post= question 
+             comment.save() 
+         return redirect('urlquestiondetail',id)
+    return render(request,'question_detail.html',{'views_question':question, 'd_num':d_num, 'comment_form':comment_form})
 
 def question_new_view(request, d_num):
     for x in range(len(d_list)):
@@ -75,19 +82,6 @@ def question_delete_view(request, id):
             d_num = x    
     dquestion.delete()
     return redirect('urlquestionreadall', d_num)
-
-def add_comment(request, id): 
-    question=get_object_or_404(Question, pk=id) 
-    if request.method == "POST":
-         form=CommentForm(request.POST) 
-         if form.is_valid(): 
-             comment=form.save(commit=False) 
-             comment.post= question 
-             comment.save() 
-         return redirect('urlquestiondetail',id) 
-    else: 
-        form=CommentForm() 
-    return render(request, 'add_comment.html', {'form':form})
 
 def question_search_view(request):
     squestion = Question.objects.all()

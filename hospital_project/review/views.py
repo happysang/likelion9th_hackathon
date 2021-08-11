@@ -36,7 +36,21 @@ def review_detail_view(request, id):
     for x in range(len(d_list)):
         if d_list[x] == review.dept:
             d_num = x
-    return render(request,'review_detail.html',{'views_review':review, 'd_num':d_num})
+    comment_form=CommentForm()
+    if request.method == "POST":
+        form=CommentForm(request.POST) 
+        if form.is_valid(): 
+             comment=form.save(commit=False) 
+             comment.post= review 
+             comment.save() 
+        return redirect('urlreviewdetail',id)
+    return render(request,'review_detail.html',{'views_review':review, 'd_num':d_num, 'comment_form':comment_form})
+
+
+# def add_comment(request, id): 
+#     review=get_object_or_404(Review, pk=id) 
+ 
+
 
 def review_new_view(request, d_num):
     for x in range(len(d_list)):
@@ -85,19 +99,6 @@ def review_delete_view(request, id):
             d_num = x    
     dreview.delete()
     return redirect('urlreviewreadall', d_num)
-
-def add_comment(request, id): 
-    review=get_object_or_404(Review, pk=id) 
-    if request.method == "POST":
-         form=CommentForm(request.POST) 
-         if form.is_valid(): 
-             comment=form.save(commit=False) 
-             comment.post= review 
-             comment.save() 
-         return redirect('urlreviewdetail',id) 
-    else: 
-        form=CommentForm() 
-    return render(request, 'add_comment.html', {'form':form})
 
 def review_search_view(request):
     sreview = Review.objects.all()

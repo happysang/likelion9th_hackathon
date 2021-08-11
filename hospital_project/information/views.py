@@ -21,6 +21,7 @@ def info_readall_view(request, d_num):
             d_name = d_list[x]
             return render(request,"info_readall.html",{'views_info_all':info_all, 'd_num':d_num, 'd_name':d_name},)    
 
+
 def info_detail_view(request, id):
     info = get_object_or_404(Information,pk= id)
     #조회수 기능
@@ -30,7 +31,16 @@ def info_detail_view(request, id):
     for x in range(len(d_list)):
         if d_list[x] == info.dept:
             d_num = x
-    return render(request,'info_detail.html',{'views_info':info, 'd_num':d_num})
+    comment_form=CommentForm()
+    if request.method == "POST":
+         form=CommentForm(request.POST) 
+         if form.is_valid(): 
+             comment=form.save(commit=False) 
+             comment.post= info
+             comment.save() 
+         return redirect('urlinfodetail',id)
+    return render(request,'info_detail.html',{'views_info':info, 'd_num':d_num, 'comment_form':comment_form})
+
 
 def info_new_view(request, d_num):
     for x in range(len(d_list)):
@@ -74,18 +84,6 @@ def info_delete_view(request, id):
     dinfo.delete()
     return redirect('urlinforeadall', d_num)
 
-def add_comment(request, id): 
-    info=get_object_or_404(Information, pk=id) 
-    if request.method == "POST":
-         form=CommentForm(request.POST) 
-         if form.is_valid(): 
-             comment=form.save(commit=False) 
-             comment.post= info
-             comment.save() 
-         return redirect('urlinfodetail',id) 
-    else: 
-        form=CommentForm() 
-    return render(request, 'add_comment.html', {'form':form})
 
 def info_search_view(request):
     sinfo = Information.objects.all()

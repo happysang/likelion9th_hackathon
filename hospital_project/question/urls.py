@@ -10,7 +10,6 @@ urlpatterns = [
     path('edit/<str:id>', question_edit_view, name='urlquestionedit'),
     path('update/<str:id>', question_update_view, name='urlquestionupdate'),
     path('delete/<str:id>', question_delete_view, name='urlquestiondelete'),
-    path('question/comment/<str:id>', add_comment, name='urlqadd_comment'),
     path('like/', like, name='urlqlike'),
     path('fun/', fun, name='urlqfun'),
     path('upset/', upset, name='urlqupset'),
