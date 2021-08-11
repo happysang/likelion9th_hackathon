@@ -256,7 +256,7 @@
             <i class="ti-quote-left text-color"></i>
 
             <div class="testimonial-item-content">
-               <p class="testimonial-text">{{hot_review.title}}</p>
+               <a href="{%url 'urlreviewdetail' hot_review.id%}"><p class="testimonial-text">{{hot_review.title}}</p></a>
 
                <div class="testimonial-author">
                   <h5 class="mb-0 text-capitalize">{{hot_review.user_id}}</h5>
@@ -268,7 +268,7 @@
             <i class="ti-quote-left text-color"></i>
 
             <div class="testimonial-item-content">
-               <p class="testimonial-text">{{hot_question.title}}</p>
+               <a href="{%url 'urlquestiondetail' hot_question.id%}"><p class="testimonial-text">{{hot_question.title}}</p></a>
 
                <div class="testimonial-author">
                   <h5 class="mb-0 text-capitalize">{{hot_question.user_id}}</h5>
@@ -280,7 +280,7 @@
             <i class="ti-quote-left text-color"></i>
 
             <div class="testimonial-item-content">
-               <p class="testimonial-text">{{hot_info.title}}</p>
+               <a href="{%url 'urlinfodetail' hot_info.id%}"><p class="testimonial-text">{{hot_info.title}}</p></a>
 
                <div class="testimonial-author">
                   <h5 class="mb-0 text-capitalize">{{hot_info.user_id}}</h5>
