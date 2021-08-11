@@ -63,19 +63,29 @@ def signup_view(request,c):
                 elif request.POST['username'] in request.POST['password1']:
                     messages.info(request, '비밀번호에 아이디가 포함될 수 없습니다')
                     return redirect('urlsignup', c )
+                elif not request.POST['email']:
+                    messages.info(request, '이메일을 작성해주세요.')
+                    return redirect('urlsignup', c )
+                elif not request.POST['name']:
+                    messages.info(request, '이름을 작성해주세요.')
+                    return redirect('urlsignup', c )
+                else:
+                    messages.info(request, '알 수 없는 오류입니다. 관리자 문의 : 010-9398-2668')
+                    return redirect('urlsignup', c )
 
         if c == '2':
             signup_form = DoctorForm(request.POST, request.FILES)
+
             if signup_form.is_valid():
+                if not request.POST['cert']:
+                    messages.info(request, '의사 증빙 파일을 첨부해주세요.')
+                    return redirect('urlsignup', c )
                 signup_user = signup_form.save(commit=False)
                 signup_user.point = 300
                 signup_user.ans_auth = False #추후 파일을 보고 True로 변경해준다.
                 signup_user.save()
                 login(request, signup_user)
                 return redirect ('urlhome')
-        # else: # 회원가입이 잘 안됐을 때 나올 view
-        #     form = RegisterForm()
-        #     return render (request, 'signup.html', {'view_signupform':form})
             else:
                  # 회원가입이 잘 안됐을 때 나올 view
                 if CustomUser.objects.filter(username = request.POST['username']).exists():
@@ -97,6 +107,19 @@ def signup_view(request,c):
                 elif request.POST['username'] in request.POST['password1']:
                     messages.info(request, '비밀번호에 아이디가 포함될 수 없습니다')
                     return redirect('urlsignup', c )
+                elif not request.POST['email']:
+                    messages.info(request, '이메일을 작성해주세요.')
+                    return redirect('urlsignup', c )
+                elif not request.POST['name']:
+                    messages.info(request, '이름을 작성해주세요.')
+                    return redirect('urlsignup', c )
+                elif not request.POST['h_name']:
+                    messages.info(request, '병원명을 작성해주세요.')
+                    return redirect('urlsignup', c )
+                else:
+                    messages.info(request, '알 수 없는 오류입니다. 관리자 문의 : 010-9398-2668')
+                    return redirect('urlsignup', c )
+
     else:
         if c == '1':
             form = NormalForm()

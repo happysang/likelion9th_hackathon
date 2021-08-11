@@ -19,11 +19,6 @@
     <link rel="stylesheet" type="text/css" href="main.css"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
   </head>
   <body>
-    {%if messages%}
-    {%for m in messages%}
-        <h4 style="color: red;"><strong>{{m.message}}</strong></h4><br>
-    {%endfor%}
-    {%endif%}
     <div class="main">
       <div class="container a-container" id="a-container">
           
@@ -63,6 +58,11 @@
           *의사회원 인증까지 평균 1~2일의 시간이 
           <br>
           소요됩니다.</p>
+          {%if messages%}
+          {%for m in messages%}
+              <h6 style="color: red;"><strong>{{m.message}}</strong></h6><br>
+          {%endfor%}
+          {%endif%}
         </div>
       </div>
     </div>

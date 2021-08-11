@@ -126,10 +126,10 @@ def like(request):
 
     if object.like.filter(id=user.id).exists():
         object.like.remove(user)
-        message = '좋아요가 취소되었습니다.'
+        message = '유익해요가 취소되었습니다.'
     else:
         object.like.add(user)
-        message = '좋아요를 누르셨습니다.'
+        message = '유익해요를 누르셨습니다.'
 
     context = {'likes_count':object.like.count(), 'message': message}
     return HttpResponse(json.dumps(context), content_type="application/json")
