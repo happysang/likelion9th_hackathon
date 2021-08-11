@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
@@ -6,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"><link rel="stylesheet" href="{% static 'r_search.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"><link rel="stylesheet" href="{% static 'search_style.css' %}">
     <title>category</title>
 </head>
 <style>
@@ -54,9 +53,9 @@ div {
 <body>
 <div align="center" class="fond">
 
-    <div style=" padding:30px; color:white;padding-top:0px; font-size: 40px;">후기 게시판</div>
+<div style=" padding:30px; color:white;padding-top:0px; font-size: 40px;">후기 게시판</div>
 <div class="wrap">
-    <br><br><br><br><br><br><br><br><br>
+    <br><br>
     <form class="form-inline my-2 my-lg-0" action="{% url 'urlreviewsearch' %}" method="post">
         {% csrf_token %}
     <div class="search">
@@ -70,50 +69,50 @@ div {
 
    <div style="width:750px;">
 
-    <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 0%}';">
-        <img src="{% static '치과.png'%}" alt="image" width="50" height="50" ><br>치과</div>
-    <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 1%}';" >
-        <img src="{% static '피부과.png'%}" alt="image" width="50" height="50" ><br>피부과</div>
-    <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 2%}';">
-        <img src="{% static '성형외과.png'%}" alt="image" width="50" height="50" ><br>성형외과</div>
-    <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 3%}';">
-        <img src="{% static '산부인과.png'%}" alt="image" width="50" height="50" ><br>산부인과</div>
+        <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 0%}';">
+            <img src="{% static '치과.png'%}" alt="image" width="50" height="50" ><br>치과</div>
+        <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 1%}';" >
+            <img src="{% static '피부과.png'%}" alt="image" width="50" height="50" ><br>피부과</div>
+        <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 2%}';">
+            <img src="{% static '성형외과.png'%}" alt="image" width="50" height="50" ><br>성형외과</div>
+        <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 3%}';">
+            <img src="{% static '산부인과.png'%}" alt="image" width="50" height="50" ><br>산부인과</div>
 
-    <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 4%}';">
-        <img src="{% static '안과.png'%}" alt="image" width="50" height="50" ><br>안과</div>
-    <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 5%}';">
-        <img src="{% static '내과.png'%}" alt="image" width="50" height="50" ><br>내과</div>
-    <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 6%}';" >
-        <img src="{% static '외과.png'%}" alt="image" width="50" height="50" ><br>외과</div>
-    <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 7%}';">
-        <img src="{% static '이비인후과.png'%}" alt="image" width="50" height="50" ><br>이비인후과</div>
+        <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 4%}';">
+            <img src="{% static '안과.png'%}" alt="image" width="50" height="50" ><br>안과</div>
+        <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 5%}';">
+            <img src="{% static '내과.png'%}" alt="image" width="50" height="50" ><br>내과</div>
+        <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 6%}';" >
+            <img src="{% static '외과.png'%}" alt="image" width="50" height="50" ><br>외과</div>
+        <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 7%}';">
+            <img src="{% static '이비인후과.png'%}" alt="image" width="50" height="50" ><br>이비인후과</div>
 
-    <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 8%}';">
-        <img src="{% static '정형외과.png'%}" alt="image" width="50" height="50" ><br>정형외과</div>
-    <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 9%}';" >
-        <img src="{% static '비뇨기과.png'%}" alt="image" width="50" height="50" ><br>비뇨기과</div>
-    <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 10%}';">
-        <img src="{% static '정신건강의학과.png'%}" alt="image" width="50" height="50" ><br>정신건강의학과</div>
-    <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 11%}';">
-        <img src="{% static '재활의학과.png'%}" alt="image" width="50" height="50" ><br>재활의학과</div>
+        <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 8%}';">
+            <img src="{% static '정형외과.png'%}" alt="image" width="50" height="50" ><br>정형외과</div>
+        <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 9%}';" >
+            <img src="{% static '비뇨기과.png'%}" alt="image" width="50" height="50" ><br>비뇨기과</div>
+        <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 10%}';">
+            <img src="{% static '정신건강의학과.png'%}" alt="image" width="50" height="50" ><br>정신건강의학과</div>
+        <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 11%}';">
+            <img src="{% static '재활의학과.png'%}" alt="image" width="50" height="50" ><br>재활의학과</div>
 
-    <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 12%}';">
-        <img src="{% static '영상의학과.png'%}" alt="image" width="50" height="50" ><br>영상의학과</div>
-    <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 13%}';">
-        <img src="{% static '소아과.png'%}" alt="image" width="50" height="50" ><br>소아과</div>
-    <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 14%}';" >
-        <img src="{% static '신경외과.png'%}" alt="image" width="50" height="50" ><br>신경외과</div>
-    <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 15%}';">
-        <img src="{% static '신경과.png'%}" alt="image" width="50" height="50" ><br>신경과</div>
+        <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 12%}';">
+            <img src="{% static '영상의학과.png'%}" alt="image" width="50" height="50" ><br>영상의학과</div>
+        <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 13%}';">
+            <img src="{% static '소아과.png'%}" alt="image" width="50" height="50" ><br>소아과</div>
+        <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 14%}';" >
+            <img src="{% static '신경외과.png'%}" alt="image" width="50" height="50" ><br>신경외과</div>
+        <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 15%}';">
+            <img src="{% static '신경과.png'%}" alt="image" width="50" height="50" ><br>신경과</div>
 
-    <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 16%}';">
-        <img src="{% static '마취통증의학과.png'%}" alt="image" width="50" height="50" ><br>마취통증의학과</div>
-    <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 17%}';" >
-        <img src="{% static '가정의학과.png'%}" alt="image" width="50" height="50" ><br>가정의학과</div>
-    <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 18%}';">
-        <img src="{% static '한의원.png'%}" alt="image" width="50" height="50" ><br>한의원</div>
+        <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 16%}';">
+            <img src="{% static '마취통증의학과.png'%}" alt="image" width="50" height="50" ><br>마취통증의학과</div>
+        <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 17%}';" >
+            <img src="{% static '가정의학과.png'%}" alt="image" width="50" height="50" ><br>가정의학과</div>
+        <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;" onClick="location.href='{% url 'urlreviewreadall' 18%}';">
+            <img src="{% static '한의원.png'%}" alt="image" width="50" height="50" ><br>한의원</div>
 
-</div>
+    </div>
 </div>
 </body>
 </html>
