@@ -1,136 +1,55 @@
-{%extends 'base.html'%}
-{%block content%}
-<div class="main-wrapper ">
- 
-    <section class="section blog-wrap bg-basic">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="row">
-        <div class="col-lg-6 col-md-6 mb-5">
-            <div class="blog-item">
-                <img src="images/blog/1.jpg" alt="" class="img-fluid rounded">
-    
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Flex Hover Slider | HTML + CSS + jQuery</title>
+  <link rel="stylesheet" href="{%static 'mypage_style.css' %}">
 
-            </div>
-        </div>
-    
-        <div class="col-lg-6 col-md-6 mb-5">
-            <div class="blog-item">
-                <img src="images/blog/2.jpg" alt="" class="img-fluid rounded">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="flex-container">
+	<div class="spinner"><p>
+		<div class="cube1"></div>
+		<div class="cube2"></div>
+		Loading...
+		</p>
+	</div>
+	<div class="flex-slide home">
+		<a href="{%url 'urlhome' %}" style="text-decoration: none;"><div class="flex-title flex-title-home">home</div></a>
+		<!-- <div class="flex-about flex-about-home"><p>Click here to navigate to the home section of the website</p></div> -->
+	</div>
+	<div class="flex-slide about">
+		<a href="{%url 'urlmypagedetail' %}" style="text-decoration: none;"><div class="flex-title">profile</div></a>
+		<!-- <div class="flex-about"><p>Click here to navigate to the About section of the website</p></div> -->
+	</div>
+	<div class="flex-slide work">
+		<a href="{%url 'urlmyobject' %}" style="text-decoration: none;"><div class="flex-title">my posts</div></a>
+		<!-- <div class="flex-about"><p>Listing relevant snippets of work:</p>
+			<ul>
+				<li>First piece of work</li>
+				<li>Second piece of work</li>
+				<li>Third piece of work</li>
+			</ul>
+		</div> -->
+	</div>
+	<div class="flex-slide contact">
+		<a href="{%url 'myscrap' user.id %}" style="text-decoration: none;"><div class="flex-title">my scrap</div></a>
+				<!-- <div class="flex-about">
+					<p>Use the contact form below</p>
+					<form class="contact-form">
+						<p>Email <input type="text" name="email"></p>
+						<p>Comment <textarea type="text" name="comment" row="5"></textarea></p>
+						<p><input type="submit" name="email" value="Send Message"></p>
+					</form>
 
-            </div>
-        </div>
-    
-        <div class="col-lg-6 col-md-6 mb-5">
-            
-            <div class="card-body p-4 text-center">
-                <h5 class="mb-0 mt-4">{{user.name}}님</h5><br>
-                <p>{{user.email}}</p>
-    
+		</div> -->
+	</div>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/769286/jquery.waitforimages.min.js'></script><script  src="{%static 'mypage_script.js' %}"></script>
 
-            </div>
-            
-        </div>
-        <div class="col-lg-6 col-md-6 mb-5">
-            <div class="blog-item">
-                <img src="images/blog/4.jpg" alt="" class="img-fluid rounded">
-    
-                <div class="blog-item-content bg-white p-4">
-                    <div class="blog-item-meta py-1 px-2">
-                        <span class="text-muted text-capitalize mr-3"><i class="ti-pencil-alt mr-2"></i>내가 쓴 글</span>
-                    </div>  <br>
-                    <div>
-                        <!--쓴 글 불러오기-->
-                        <div class="media border-bottom py-3">
-                            <a href="#"><img class="mr-4"  alt=""></a>
-                            <div class="media-body">
-                                <h6 class="my-2"><a href="#">Thoughtful living in los Angeles</a></h6>
-                                <span class="text-sm text-muted">03 Mar 2018</span>
-                            </div>
-                        </div>
-                        <div class="media border-bottom py-3">
-                            <a href="#"><img class="mr-4" alt=""></a>
-                           <div class="media-body">
-                                <h6 class="my-2"><a href="#">Vivamus molestie gravida turpis.</a></h6>
-                                <span class="text-sm text-muted">03 Mar 2018</span>
-                            </div>
-                        </div>
-                      </div>
-                      <br>
-                    <a href="{%url 'urlmyobject' %}" class="btn btn-small btn-main btn-round-full">모두 보기</a>
-                    <!--작성한 글 불러오기 끝-->
-                </div>
-            </div>
-        </div>
-    </div>
-  </div>
-                <div class="col-lg-4">
-                    <div class="sidebar-wrap">
-    <!--개인정보 수정하기-->
-        <div class="sidebar-widget card border-0 mb-3">
-            <div class="blog-item">
-                <img src="images/blog/3.jpg" alt="" class="img-fluid rounded">
-    
-                <div class="blog-item-content bg-white p-4">
-                    <div class="blog-item-meta py-1 px-2">
-                        <span class="text-muted text-capitalize mr-3"><i class="ti-pencil-alt mr-2"> 나의 개인정보</i></span><br>
-                    </div>            
-                    <p class="mb-4">
-                    이름 : {{user.name}}<br>
-                    아이디 : {{user.username}}<br>
-                    이메일 : {{user.email}}<br>
-                    <!-- 내 포인트 : {{user.point}}<br> -->
-                    </p>
-                    
-    
-                    <!-- <a href="blog-single.html" class="btn btn-small btn-main btn-round-full">그 외 정보 수정하기</a> -->
-                </div>
-            </div>
-        </div>
-    <!--개인정보 수정하기 끝-->
-
-    
-    <!--스크랩한 글 불러오기-->
-
-        <div class="sidebar-widget latest-post card border-0 p-4 mb-3">
-            <h5>내가 스크랩 한 글</h5>
-    
-            <div class="media border-bottom py-3">
-                <a href="#"><img class="mr-4"  alt=""></a>
-                <div class="media-body">
-                    <h6 class="my-2"><a href="#">Thoughtful living in los Angeles</a></h6>
-                    <span class="text-sm text-muted">03 Mar 2018</span>
-                </div>
-            </div>
-    
-            <div class="media border-bottom py-3">
-                <a href="#"><img class="mr-4" alt=""></a>
-               <div class="media-body">
-                    <h6 class="my-2"><a href="#">Vivamus molestie gravida turpis.</a></h6>
-                    <span class="text-sm text-muted">03 Mar 2018</span>
-                </div>
-            </div>
-    
-            <div class="media py-3">
-                <a href="#"><img class="mr-4" alt=""></a>
-                <div class="media-body">
-                    <h6 class="my-2"><a href="#">Fusce lobortis lorem at ipsum semper sagittis</a></h6>
-                    <span class="text-sm text-muted">03 Mar 2018</span>
-                </div>
-                
-            </div>
-            <a href="{% url 'myscrap' user.id %}" class="btn btn-small btn-main btn-round-full">모두 보기</a>
-        </div>
-    <!--스크랩한 글 불러오기 끝-->
-
-    </div>
-                </div>   
-            </div>
-    
-        </div>
-    </section>
-
-
-
-{%endblock%}
+</body>
+</html>
