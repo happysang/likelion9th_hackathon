@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{%load static%}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,192 +9,202 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
-    <title>infodetail</title>
+    <title>Information/detail</title>
     <script src="https://kit.fontawesome.com/9e7c2b9921.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{%static 'detail_style.css'%}">
 </head>
-<body style="text-align: center;"> 
-    <div>
-        <h3>{{views_info.title}}</h3>
-        <h4> 조회수 : {{views_info.view_count}}</h4>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+	<link rel="stylesheet" href="./stylesheets/screen.css">
+	<link rel="stylesheet" href="./stylesheets/fonts.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+</head>
+<body>
+<br><br>
+	<section style="text-align: center;">
+		<h1>{{views_info.title}}</h1>
+        <h2>과: {{views_info.dept}}</h2>
+		<h3>조회수: {{views_info.view_count}}</h3>
         {% if user.ans_auth %}
-        작성자:[🏥인증]{{views_info.user_id}} <br>
+		<p>작성자: :[🏥인증] {{views_info.user_id}}</p>
         {% else %}
-        작성자:{{views_info.user_id}}<br>
+        <p>작성자: {{views_info.user_id}}</p>
         {% endif %}
-        작성날짜:{{views_info.date}} <br>
-        진료과:{{views_info.dept}} <br>
-        내용:{{views_info.body}} <br>
-    </div>
-    <br>
-    <div>
-    <a href="{%url 'urlinfoedit' views_info.id%}">수정하기</a>
-    <a href="{%url 'urlinfodelete' views_info.id%}" onclick="return confirm('삭제하시겠습니까?')">삭제하기</a>
-    <a href="{%url 'urlinforeadall' d_num%}">목록</a>
-    <br><br>
-    <!--bootstrap활용 모달폼-->
-<!-- Button trigger modal -->
-<i class="fas fa-envelope-open-text" data-bs-toggle="modal" data-bs-target="#exampleModal">&nbsp;쪽지</i>
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    쪽지
-</button> -->
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">쪽지</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <input type="hidden" name="to_user" value="{{ active_direct }}">
-                <div>
-                    <p>쪽지를 보내시겠어요?</p>
-                    
-                    <!--<p>
-                        <textarea name="context" placeholder="메시지 내용을 입력하세요" cols="50" rows="5"></textarea>
-                    </p>    -->  
+		<p>작성날짜: {{views_info.date}}</p>
+        <p>내용: {{views_info.body}}</p>
+        <br>
+        <div>
+            <a href="{%url 'urlinforeadall' d_num%}" class="button button-cancel">Back</a>
+			<a href="{%url 'urlinfoedit' views_info.id%}" class="button button-submit">Update</a>
+			<a href="{%url 'urlinfodelete' views_info.id%}" class="button button-delete" onclick="return confirm('삭제하시겠습니까?')">Delete</a>
+		</div>
+		<br><br>
+
+        <!-- 쪽지 -->
+        <i class="fas fa-envelope-open-text" data-bs-toggle="modal" data-bs-target="#exampleModal">&nbsp;쪽지</i>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">쪽지</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-        <div class="modal-footer">
-            <a href="{% url 'urlnewconversation' views_info.user_id %}"><button type="button" class="btn btn-primary">쪽지 보내기</button></a>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <div class="modal-body">
+                    <input type="hidden" name="to_user" value="{{ active_direct }}">
+                        <div>
+                            <p>쪽지를 보내시겠어요?</p>
+                            
+                            <!--<p>
+                                <textarea name="context" placeholder="메시지 내용을 입력하세요" cols="50" rows="5"></textarea>
+                            </p>    -->  
+                        </div>
+                <div class="modal-footer">
+                    <a href="{% url 'urlnewconversation' views_info.user_id %}"><button type="button" class="btn btn-primary">쪽지 보내기</button></a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div> 
+    <!-- 좋아요 유쾌해요 불쾌해요 스크랩  -->
+    <section style="text-align: left;">
+        <div>
+            <input type="button" class="btn btn-info btn-sm like" name="{{ views_info.id }}" value="유익해요"
+                style="margin-top: 7px">
+            <p id="count-{{ views_info.id }}" style="font:bold 1em; margin-top: 3px">
+                좋아요&nbsp;{{ views_info.like.all.count }}개</p>
         </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    <hr>
-    <hr>
-    <h3>댓글</h3><br>
-    {% for comment in views_info.icomments.all %} 
-    <div class="comment"> 
-        <div><strong>{{ comment.author_name }}</strong>    {{ comment.created_at }}</div> 
-        <p>{{ comment.comment_text }}</p> 
-    </div> 
-    {% empty %} 
-    <p>아직 작성된 댓글이 없습니다.</p> 
-    {% endfor %}
-    <a href="{%url 'urliadd_comment' views_info.id %}">댓글 작성</a>
-    <br><br>
-    </div>
-    <hr>
     
-    <div>
-        <input type="button" class="btn btn-info btn-sm like" name="{{ views_info.id }}" value="유익해요"
-            style="margin-top: 7px">
-        <p id="count-{{ views_info.id }}" style="font:bold 1em; margin-top: 3px">
-            좋아요&nbsp;{{ views_info.like.all.count }}개</p>
+    
+    
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript">
+            $(".like").click(function () { // .like 버튼을 클릭 감지
+                var pk = $(this).attr('name')
+                $.ajax({ // ajax로 서버와 통신
+                    type: "POST", // 데이터를 전송하는 방법
+                    url: "{% url 'urlilike' %}", // 통신할 url을 지정
+                    data: { 'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}' }, // 서버로 데이터 전송시 옵션, pk를 넘겨야 어떤 video인지 알 수 있음
+                    dataType: "json",
+                    success: function (response) { // 성공
+                        alert(response.message);
+                        $("#count-" + pk).html("좋아요&nbsp;" + response.likes_count + "개"); // 좋아요 개수 변경
+                    },
+                    error: function (request, status, error) { // 실패
+                        alert("로그인이 필요합니다.")
+                        window.location.replace("{%url 'urlhome' %}") // 로그인 페이지로 넘어가기
+                    },
+                });
+            })
+        </script>
+    
+            
+        <div>
+            <input type="button" class="btn btn-info btn-sm fun" name="{{ views_info.id }}" value="재밌어요"
+                style="margin-top: 7px">
+            <p id="count2-{{ views_info.id }}" style="font:bold 1em; margin-top: 3px">
+                재밌어요&nbsp;{{ views_info.fun.all.count }}개</p>
+        </div>
+    
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript">
+            $(".fun").click(function () {
+                var pk = $(this).attr('name')
+                $.ajax({ 
+                    type: "POST",
+                    url: "{% url 'urlifun' %}", 
+                    data: { 'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}' },
+                    dataType: "json",
+                    success: function (response) {
+                        alert(response.message);
+                        $("#count2-" + pk).html("재밌어요&nbsp;" + response.funs_count + "개");
+                    },
+                    error: function (request, status, error) {
+                        alert("로그인이 필요합니다.")
+                        window.location.replace("{%url 'urlhome' %}")
+                    },
+                });
+            })
+        </script>
+    
+    
+        <div>
+            <input type="button" class="btn btn-info btn-sm upset" name="{{ views_info.id }}" value="불쾌해요"
+                style="margin-top: 7px">
+            <p id="count3-{{ views_info.id }}" style="font:bold 1em; margin-top: 3px">
+                불쾌해요&nbsp;{{ views_info.upset.all.count }}개</p>
+        </div>
+    
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript">
+            $(".upset").click(function () {
+                var pk = $(this).attr('name')
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'urliupset' %}",
+                    data: { 'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}' },
+                    dataType: "json",
+                    success: function (response) {
+                        alert(response.message);
+                        $("#count3-" + pk).html("불쾌해요&nbsp;" + response.upsets_count + "개");
+                    },
+                    error: function (request, status, error) {
+                        alert("로그인이 필요합니다.")
+                        window.location.replace("{%url 'urlhome' %}")
+                    },
+                });
+            })
+        </script>
+    
+    
+        <div>
+            <input type="button" class="btn btn-info btn-sm scrap" name="{{ views_info.id }}" value="스크랩하기"
+                style="margin-top: 7px">
+            <p id="count4-{{ views_info.id }}" style="font:bold 1em; margin-top: 3px">
+                스크랩 횟수&nbsp;{{ views_info.scrap.all.count }}개</p>
+        </div>
+    
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript">
+            $(".scrap").click(function () {
+                var pk = $(this).attr('name')
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'urliscrap' %}",
+                    data: { 'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}' },
+                    dataType: "json",
+                    success: function (response) {
+                        alert(response.message);
+                        $("#count4-" + pk).html("스크랩 횟수&nbsp;" + response.scraps_count + "회");
+                    },
+                    error: function (request, status, error) {
+                        alert("로그인이 필요합니다.")
+                        window.location.replace("{%url 'urlhome' %}")
+                    },
+                });
+            })
+        </script>
+    
+    </section>
+    </section>
+
+    <!-- 댓글 -->
+    <section>
+    <h2 style="text-align: center;"><a href="{%url 'urliadd_comment' views_info.id %}">Write comment</a></h2>
+    <br>
+    {% for comment in views_info.icomments.all %}
+    <div class="content">
+      <h2 class="title">{{ comment.author_name }}</h2>
+      <h5 class="by-line">{{ comment.created_at }}</h5>
+      <p>{{ comment.comment_text }}</p>
     </div>
-
-
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript">
-        $(".like").click(function () { // .like 버튼을 클릭 감지
-            var pk = $(this).attr('name')
-            $.ajax({ // ajax로 서버와 통신
-                type: "POST", // 데이터를 전송하는 방법
-                url: "{% url 'urlilike' %}", // 통신할 url을 지정
-                data: { 'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}' }, // 서버로 데이터 전송시 옵션, pk를 넘겨야 어떤 video인지 알 수 있음
-                dataType: "json",
-                success: function (response) { // 성공
-                    alert(response.message);
-                    $("#count-" + pk).html("좋아요&nbsp;" + response.likes_count + "개"); // 좋아요 개수 변경
-                },
-                error: function (request, status, error) { // 실패
-                    alert("로그인이 필요합니다.")
-                    window.location.replace("{%url 'urlhome' %}") // 로그인 페이지로 넘어가기
-                },
-            });
-        })
-    </script>
-
-        
-    <div>
-        <input type="button" class="btn btn-info btn-sm fun" name="{{ views_info.id }}" value="재밌어요"
-            style="margin-top: 7px">
-        <p id="count2-{{ views_info.id }}" style="font:bold 1em; margin-top: 3px">
-            재밌어요&nbsp;{{ views_info.fun.all.count }}개</p>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript">
-        $(".fun").click(function () {
-            var pk = $(this).attr('name')
-            $.ajax({ 
-                type: "POST",
-                url: "{% url 'urlifun' %}", 
-                data: { 'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}' },
-                dataType: "json",
-                success: function (response) {
-                    alert(response.message);
-                    $("#count2-" + pk).html("재밌어요&nbsp;" + response.funs_count + "개");
-                },
-                error: function (request, status, error) {
-                    alert("로그인이 필요합니다.")
-                    window.location.replace("{%url 'urlhome' %}")
-                },
-            });
-        })
-    </script>
-
-
-    <div>
-        <input type="button" class="btn btn-info btn-sm upset" name="{{ views_info.id }}" value="불쾌해요"
-            style="margin-top: 7px">
-        <p id="count3-{{ views_info.id }}" style="font:bold 1em; margin-top: 3px">
-            불쾌해요&nbsp;{{ views_info.upset.all.count }}개</p>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript">
-        $(".upset").click(function () {
-            var pk = $(this).attr('name')
-            $.ajax({
-                type: "POST",
-                url: "{% url 'urliupset' %}",
-                data: { 'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}' },
-                dataType: "json",
-                success: function (response) {
-                    alert(response.message);
-                    $("#count3-" + pk).html("불쾌해요&nbsp;" + response.upsets_count + "개");
-                },
-                error: function (request, status, error) {
-                    alert("로그인이 필요합니다.")
-                    window.location.replace("{%url 'urlhome' %}")
-                },
-            });
-        })
-    </script>
-
-
-    <div>
-        <input type="button" class="btn btn-info btn-sm scrap" name="{{ views_info.id }}" value="스크랩하기"
-            style="margin-top: 7px">
-        <p id="count4-{{ views_info.id }}" style="font:bold 1em; margin-top: 3px">
-            스크랩 횟수&nbsp;{{ views_info.scrap.all.count }}개</p>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript">
-        $(".scrap").click(function () {
-            var pk = $(this).attr('name')
-            $.ajax({
-                type: "POST",
-                url: "{% url 'urliscrap' %}",
-                data: { 'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}' },
-                dataType: "json",
-                success: function (response) {
-                    alert(response.message);
-                    $("#count4-" + pk).html("스크랩 횟수&nbsp;" + response.scraps_count + "회");
-                },
-                error: function (request, status, error) {
-                    alert("로그인이 필요합니다.")
-                    window.location.replace("{%url 'urlhome' %}")
-                },
-            });
-        })
-    </script>
+    <hr>
+    {% empty %} 
+      <p>아직 작성된 댓글이 없습니다.</p> 
+    {% endfor %}
+    </section>  
+</div> 
 </body>
 </html>

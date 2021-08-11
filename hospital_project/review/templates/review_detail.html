@@ -25,14 +25,14 @@
 <br><br>
 	<section style="text-align: center;">
         {% if views_review.check%}
-            * 진료 인증이 완료된 글 입니다. *<br>
+            * 진료 인증이 완료된 글 입니다. *<br><br>
         {% else %}
-            * 아직 진료 인증이 완료된 글이 아닙니다. *<br>
+            * 진료 인증이 완료된 글이 아닙니다. *<br><br>
         {% endif %}
 		<h1>{{views_review.title}}</h1>
         <h2>과: {{views_review.dept}}</h2>
-		<h3>조회수 : {{views_review.view_count}}</h3>
-		<p>아이디: {{views_review.user_id}}</p>
+		<h3>조회수: {{views_review.view_count}}</h3>
+		<p>작성자: {{views_review.user_id}}</p>
 		<p>작성날짜: {{views_review.date}}</p>
         <p>병원명: {{views_review.hname}}</p>
         <p>의사명: {{views_review.dname}}</p>
