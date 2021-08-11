@@ -12,6 +12,10 @@
     <title>Review/detail</title>
     <script src="https://kit.fontawesome.com/9e7c2b9921.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{%static 'detail_style.css'%}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+        h1,h2,p,span, a.button.button, input.btn.btn{ font-family: 'Gowun Dodum', sans-serif;}
+    </style>
 </head>
 <head>
 	<meta charset="utf-8" />
@@ -25,9 +29,9 @@
 <br><br>
 	<section style="text-align: center;">
         {% if views_review.check%}
-            * 진료 인증이 완료된 글 입니다. *<br><br>
+            <p>* 진료 인증이 완료된 글 입니다. *</p><br>
         {% else %}
-            * 진료 인증이 완료된 글이 아닙니다. *<br><br>
+            <p>* 진료 인증이 완료된 글이 아닙니다. *</p><br>
         {% endif %}
 		<h1>{{views_review.title}}</h1>
         <h2>과: {{views_review.dept}}</h2>
@@ -46,7 +50,7 @@
 		<br><br>
 
         <!-- 쪽지 -->
-        <i class="fas fa-envelope-open-text" data-bs-toggle="modal" data-bs-target="#exampleModal">&nbsp;쪽지</i>
+        <i class="fas fa-envelope-open-text" data-bs-toggle="modal" data-bs-target="#exampleModal">&nbsp;<span>쪽지</span></i>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
