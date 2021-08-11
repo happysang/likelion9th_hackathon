@@ -12,7 +12,7 @@ body{
 }
 
 .searchTerm {
-  width: 100%;
+  width: 50%;
   border: 3px solid #00B4CC;
   border-right: none;
   padding: 5px;

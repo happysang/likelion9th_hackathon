@@ -52,13 +52,13 @@ div {
 </style>
 <body>
 <div align="center" class="fond">
-<div class="wrap">
+
 <div style=" padding:30px; color:white;padding-top:0px; font-size: 40px;">후기 게시판</div>
 
     <br><br>
     <form class="form-inline my-2 my-lg-0" action="{% url 'urlreviewsearch' %}" method="post">
         {% csrf_token %}
-    <div class="search">
+    <div>
        <input type="text" class="searchTerm" placeholder="관심있는 병 혹은 질환을 검색해 보세요!" name="q" value="{{q}}">
        <button type="submit" class="searchButton">
          <i class="fa fa-search"></i>
@@ -113,7 +113,7 @@ div {
             <img src="{% static '한의원.png'%}" alt="image" width="50" height="50" ><br>한의원</div>
 
     </div>
-</div>
+
 </body>
 </html>
 
