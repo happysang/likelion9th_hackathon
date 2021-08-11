@@ -116,19 +116,7 @@
 </head>
 
 <body>
-
-    <form action="{%url 'urlreviewupdate' views_ereview.id%}" enctype="multipart/form-data" method="POST">
-        {% csrf_token %}
-        제목: <input type="text" name="utitle" id="" value="{{views_ereview.title}}">
-        아이디: <input type="text" name="uuser_id" id="" value="{{views_ereview.user_id}}" readonly="readonly"><br>
-        병원명: <input type="text" name="uhname" id="" value="{{views_ereview.hname}}" readonly="readonly">
-        의사명: <input type="text" name="udname" id="" value="{{views_ereview.dname}}">
-        진료과: <input type="text" name="udept" id="" value="{{views_ereview.dept}}"><br>
-        본문 <br>
-        <textarea name="ubody" id="" cols="70" rows="40">{{views_ereview.body}}</textarea><br>
-        <button type="submit">작성완료</button>
-    </form>
-
+    
     <h1 id="header" class="text-primary">real review write</h1>
     <div id="form-main">
         <div id="form-div">
