@@ -24,6 +24,11 @@
 <body>
 <br><br>
 	<section style="text-align: center;">
+        {% if views_review.check%}
+            * 진료 인증이 완료된 글 입니다. *<br>
+        {% else %}
+            * 아직 진료 인증이 완료된 글이 아닙니다. *<br>
+        {% endif %}
 		<h1>{{views_review.title}}</h1>
         <h2>과: {{views_review.dept}}</h2>
 		<h3>조회수 : {{views_review.view_count}}</h3>

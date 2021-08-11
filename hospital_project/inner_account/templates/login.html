@@ -19,12 +19,9 @@
     <link rel="stylesheet" type="text/css" href="main.css"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
   </head>
   <body>
-    {%if messages%}
-    {%for m in messages%}
-        <h4 style="color: red;"><strong>{{m.message}}</strong></h4><br>
-    {%endfor%}
-    {%endif%}
+
     <div class="main">
+
       <div class="container a-container" id="a-container">
         <form class="form" id="a-form" action="{%url 'urllogin' %}" method="POST">
           {% csrf_token %}
@@ -39,6 +36,11 @@
          <div class="switch__container" id="switch-c1">
           <h2 class="switch__title title">병의 : 보감</h2>
           <p class="switch__description description">원활한 서비스 이용을 위해 로그인해주세요</p>
+          {%if messages%}
+          {%for m in messages%}
+              <h4 style="color: red;"><strong>{{m.message}}</strong></h4><br>
+          {%endfor%}
+          {%endif%}
         </div> 
       </div>
     </div>
