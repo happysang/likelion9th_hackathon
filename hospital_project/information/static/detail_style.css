@@ -24,7 +24,34 @@ html {
   line-height: 1;
 }
 
-section{
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
 
@@ -72,7 +99,9 @@ strong {
   float: left;
 }
 
-
+img.lefty {
+  margin-right: 12px;
+}
 
 .righty {
   float: right;
@@ -319,7 +348,6 @@ ul.dropdown li:last-child a {
   font-size: 0.8em;
   font-weight: 500;
 }
-/* 버튼 색갈 지정 여기서 */
 .button.button-submit, input[type="button"].button-submit, button.button-submit {
   background: #00986a;
 }
@@ -670,40 +698,4 @@ section.flatby h2 a {
 }
 section.flatby hr {
   margin-top: 80px;
-}
-/* 댓글 css  */
-.content {
-  position: absolute;
-  display: inline-block;
-  text-align: center;
-  width: 30%;
-  height: 100px;
-  z-index: 99;
-  color: #000;
-  left: 0px;
-  opacity: 1;
-}
-.content h1 {
-  font-size: 3em;
-  margin-bottom: 0px;
-}
-.content h5.by-line {
-  padding: 10px 0px;
-}
-.content p {
-  line-height: 1.5;
-  text-align: left;
-  font-size: 1.2em;
-  padding: 10px 10px 30px;
-}
-.content button {
-  position: relative;
-  padding: 10px 25px;
-  color: #fff;
-  background: #000;
-  border: 3px solid #000;
-  font-size: 1em;
-  font-weight: 700;
-  cursor: pointer;
-  margin: 15px auto;
 }

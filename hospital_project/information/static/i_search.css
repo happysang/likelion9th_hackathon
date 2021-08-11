@@ -40,9 +40,9 @@ body{
 
 /*Resize the wrap to see the search bar change!*/
 .wrap{
-  width: 30%;
+  width: 50%;
   position: absolute;
-  top: 20%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
