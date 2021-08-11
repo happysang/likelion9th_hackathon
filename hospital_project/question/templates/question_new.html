@@ -4,20 +4,144 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>New</title>
+
+    <meta name="robots" content="noindex">
+    <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css'>
+    <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css'> 
+
     <style>
-        body{text-align: center;}
+
+        @import "compass/css3";
+       @import url(https://fonts.googleapis.com/css?family=Pacifico);
+
+       h1#header{
+        text-align: center;
+        padding:20px;
+        font-size: 32px;
+        font-family: "Pacifico";
+        text-shadow: (0 2px 2px darken(#CDE, 40%));
+        margin-top: 50px;
+
+        }
+
+       html{   background: rgba(163, 196, 238, 0.911);
+            background-size: cover;
+            height:100%;
+        }
+
+        #form-main{
+            width:100%;
+            float:left;
+            padding-top:0px;
+        }
+
+        #form-div {
+            background-color: #fff;
+            padding-left:35px;
+            padding-right:35px;
+            padding-top:35px;
+            padding-bottom:35px;
+            width: 1000px;
+            float: left;
+            left: 50%;
+            position: absolute;
+            margin-top: 50px;
+            margin-left: -485px;
+            -moz-border-radious: 7px;
+            -webkit-border-radious: 7px;
+        }
+        
+
+        /* Icons ---------------------------------- */
+
+        #button-blue{
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            float:left;
+            width: 100%;
+            border: #fbfbfb solid 4px;
+            cursor:pointer;
+            background-color: #3498db;
+            color:white;
+            font-size:24px;
+            padding-top:18px;
+            padding-bottom:18px;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            transition: all 0.3s;
+        margin-top: 5px;
+        font-weight:700;
+        }
+
+        #button-blue:hover{
+            background-color: rgba(0,0,0,0);
+            color: #0493bd;
+        }
+	
+        .submit:hover {
+            color: #3498db;
+        }
+	
+        .ease {
+            width: 0px;
+            height: 74px;
+            background-color: #fbfbfb;
+            -webkit-transition: .3s ease;
+            -moz-transition: .3s ease;
+            -o-transition: .3s ease;
+            -ms-transition: .3s ease;
+            transition: .3s ease;
+        }
+
+        .submit:hover .ease{
+        width:100%;
+        background-color:white;
+        }
+
+        @media only screen and (max-width: 580px) {
+            #form-div{
+                left: 3%;
+                margin-right: 3%;
+                width: 88%;
+                margin-left: 0;
+                padding-left: 3%;
+                padding-right: 3%;
+            }
+        }
+
     </style>
+
 </head>
+
 <body>
-    <form action="{%url 'urlquestioncreate' d_num%}" enctype="multipart/form-data" method="POST">
-        {% csrf_token %}
-        제목: <input type="text" name="ctitle"><br>
-        아이디: <input type="text" name="cuser_id" value="{{user.username}}" readonly><br>
-        질문하려는 과: <input type="text" name="cdept" value="{{d_name}}" readonly><br>
-        본문 <br>
-        <textarea name="cbody" id="" cols="70" rows="40"></textarea><br>
-        <button type="submit">작성완료</button>
-    </form>
+    <h1 id="header" class="text-primary">question write</h1>
+    <div id="form-main">
+        <div id="form-div">
+            <form action="{%url 'urlquestioncreate' d_num %}" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <p class="form-group">
+                    <input type="text" class="form-control" name="ctitle" placeholder="제목을 입력해주세요.">
+                </p>
+
+                <p class="form-group">
+                    <input type="text" class="form-control" name="cuser_id" value="{{user.username}}" readonly>
+                </p>
+
+                <p class="form-group">
+                    <input type="text" class="form-control" name="cdept" value="{{d_name}}" readonly>
+                </p>
+
+                <p class="form-group">
+                <textarea class="form-control" name="cbody" id="" rows="16" placeholder="구체적인 신체증상, 현상 등을 자세하게 기입해주세요.
+답변 내용은 단순한 소견일 뿐, 반드시 내원하시어 진찰을 받으시길 바랍니다."></textarea>
+                </p>        
+                <div class="submit">
+                    <input type="submit" value="작성완료" id="button-blue"/>
+                    <div class="ease"></div>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
