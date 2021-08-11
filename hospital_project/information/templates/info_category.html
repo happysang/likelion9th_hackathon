@@ -52,9 +52,9 @@
 </style>
 <body>
 <div align="center" class="fond">
+
 <div style=" padding:30px; color:white;padding-top:0px; font-size: 40px;">정보 게시판</div>
-<div class="wrap">
-    <br><br>
+
     <form class="form-inline my-2 my-lg-0" action="{% url 'urlinfosearch' %}" method="post">
         {% csrf_token %}
         <div class="search">
@@ -112,6 +112,6 @@
             <img src="{% static '한의원.png'%}" alt="image" width="50" height="50" ><br>한의원</div>
             
     </div>
-</div>
+
     </body>
     </html>
