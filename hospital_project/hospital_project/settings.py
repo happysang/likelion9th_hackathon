@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'question',
     'review',
     'direct',
+    'six',
 ]
 
 MIDDLEWARE = [
@@ -160,3 +161,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # 이용자가 업로드한 파일을 모으는 곳
 MEDIA_URL = '/media/'
 # 이용자에게 업로드한 파일을 보여줄 때의 url
+
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'byeonguibogam@gmail.com'
+EMAIL_HOST_PASSWORD = 'quddmlqhrka'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

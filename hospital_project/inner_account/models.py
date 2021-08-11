@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
     #일반, 의사 공통
-    email = models.EmailField()
+    email = models.EmailField(unique = True)
     name = models.CharField(max_length=10)
     #의사 한정
     h_name = models.CharField(max_length=30)
