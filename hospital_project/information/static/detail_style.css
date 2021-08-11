@@ -331,6 +331,7 @@ ul.dropdown li:last-child a {
 }
 .button:hover, input[type="button"]:hover, button:hover {
   background: #000;
+
 }
 .button.button-and-icon, input[type="button"].button-and-icon, button.button-and-icon {
   padding-left: 6.5em;
@@ -383,6 +384,7 @@ ul.dropdown li:last-child a {
 .button.button-cta:hover, input[type="button"].button-cta:hover, button.button-cta:hover {
   background: #000;
 }
+
 .button.button-buy, input[type="button"].button-buy, button.button-buy {
   display: inline-block;
   width: 100%;
