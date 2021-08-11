@@ -62,11 +62,12 @@ def signup_view(request,c):
                     'uid': urlsafe_base64_encode(force_bytes(signup_user.pk)),
                     'token': account_activation_token.make_token(signup_user),
                 })
-                mail_title = "계정 활성화 확인 이메일"
+                mail_title = "병의보감 인증 메일입니다."
                 mail_to = request.POST["email"]
                 email = EmailMessage(mail_title, message, to=[mail_to])
                 email.send()
                 #이메일 인증 추가 끝
+                messages.info(request, '이메일로 인증메일을 전송했습니다!')
                 return redirect ('urlhome')
             else:
                  # 회원가입이 잘 안됐을 때 나올 view
@@ -107,7 +108,7 @@ def signup_view(request,c):
             signup_form = DoctorForm(request.POST, request.FILES)
 
             if signup_form.is_valid():
-                if not request.POST['cert']:
+                if not request.FILES['cert']:
                     messages.info(request, '의사 증빙 파일을 첨부해주세요.')
                     return redirect('urlsignup', c )
                 signup_user = signup_form.save(commit=False)
@@ -124,11 +125,12 @@ def signup_view(request,c):
                     'uid': urlsafe_base64_encode(force_bytes(signup_user.pk)),
                     'token': account_activation_token.make_token(signup_user),
                 })
-                mail_title = "계정 활성화 확인 이메일"
+                mail_title = "병의보감 인증 메일입니다."
                 mail_to = request.POST["email"]
                 email = EmailMessage(mail_title, message, to=[mail_to])
                 email.send()
                 #이메일 인증 추가 끝
+                messages.info(request, '이메일로 인증메일을 전송했습니다!')
                 return redirect ('urlhome')
             else:
                  # 회원가입이 잘 안됐을 때 나올 view
