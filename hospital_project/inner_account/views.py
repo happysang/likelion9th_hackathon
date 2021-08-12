@@ -67,7 +67,7 @@ def signup_view(request,c):
                 email = EmailMessage(mail_title, message, to=[mail_to])
                 email.send()
                 #이메일 인증 추가 끝
-                messages.info(request, '[작성하신 이메일로 인증메일을 전송했습니다! \n 인증이 완료되어야 서비스를 이용하실 수 있습니다.]')
+                messages.info(request, '작성하신 이메일로 인증메일을 전송했습니다! \n 인증이 완료되어야 서비스를 이용하실 수 있습니다]')
                 return redirect ('urlhome')
             else:
                  # 회원가입이 잘 안됐을 때 나올 view
