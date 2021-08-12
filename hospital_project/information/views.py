@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
 from .forms import CommentForm
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 # Create your views here.
 d_list = ['치과', '피부과', '성형외과', '산부인과', '안과', '내과', '외과', '이비인후과', '정형외과',
@@ -19,7 +20,12 @@ def info_readall_view(request, d_num):
             info_list = infos.filter(dept=d_list[x])
             info_all = info_list.order_by("-date")
             d_name = d_list[x]
-            return render(request,"info_readall.html",{'views_info_all':info_all, 'd_num':d_num, 'd_name':d_name},)    
+
+            paginator = Paginator(info_all,5)
+            page = request.GET.get('page')
+            posts = paginator.get_page(page)
+            
+            return render(request,"info_readall.html",{'views_info_all':posts, 'd_num':d_num, 'd_name':d_name},)    
 
 
 def info_detail_view(request, id):

@@ -25,7 +25,7 @@
 
 <body>
   <h1 style="text-align: center; color: white"><strong>{{d_name}} 후기게시판</strong></h1><br>
-	<section>
+	<section style="text-align: center;">
     <a href="{%url 'urlreviewnew' d_num%}" class="button button-submit">후기글 작성하기</a>
     <br>
     {% for a in views_review_all %}
@@ -37,6 +37,26 @@
     {% endfor %}
 	</section>
   
+
+    <div style="text-align: center; color: aliceblue;">
+        <br><br>
+		<a href="?page = 1">처음</a>
+        {% if views_review_all.has_previous %}
+            <a href="?page={{ views_review_all.previous_page_number }}">이전</a>
+        {% endif %}
+
+        <span>{{views_review_all.number}}</span>
+        <span>of</span>
+        <span>
+            {{views_review_all.paginator.num_pages}}
+        </span>
+
+        {% if views_review_all.has_next %}
+            <a href="?page={{ views_review_all.next_page_number }}">다음</a>
+        {% endif %}
+		<a href="?page={{ views_review_all.paginator.num_pages }}">마지막</a>
+    </div>
+	<br><br>
 </body>
 </html>
 <!-- partial -->
