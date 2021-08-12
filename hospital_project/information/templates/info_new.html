@@ -50,7 +50,13 @@
 			</label>
 
             <br>
-
+			<div style="display: none;">
+				{% if user.ans_auth %}
+					<input type="checkbox" name ="doc" value="True" checked="checked" >
+				{% else %}
+					<input type="checkbox" name ="doc" value="False">
+				{% endif %}
+				</div>
 			<button class="button-submit">작성완료</button>
 			<button type="button" onclick="location.href='{%url 'urlinforeadall' d_num%}'" class="button-submit">돌아가기</button>
 	

@@ -31,11 +31,7 @@
 		<h1>{{views_info.title}}</h1><hr style="border: solid 2px;">
         <h2>과: {{views_info.dept}}</h2>
 		<h3>조회수: {{views_info.view_count}}</h3>
-        {% if user.ans_auth %}
-		<p>작성자: :[🏥인증] {{views_info.user_id}}</p>
-        {% else %}
-        <p>작성자: {{views_info.user_id}}</p>
-        {% endif %}
+		<p>작성자: : {{views_info.user_id}}</p>
 		<p>작성날짜: {{views_info.date}}</p><hr style="border: solid 2px;">
         <p>내용: {{views_info.body}}</p><hr style="border: solid 2px;">
         <br>
@@ -225,8 +221,12 @@
            
            <form method="POST">
               <label>
-                 {% csrf_token %}
+                {% csrf_token %}
+                {% if user.ans_auth %}
+                    <input type="hidden" class="form__input" name=author_name value="{{comment_form.doc.value|default_if_none:True">
+                {% else %}
                  <input type="hidden" class="form__input" name=author_name value="{{comment_form.author_name.value|default_if_none:user.username}}">
+                 {% endif %}
                  <textarea name = comment_text value="{{comment_form.comment_text.value|default_if_none:''}}" placeholder="댓글을 작성해주세요." style="width: 1000px;"></textarea>
               </label>
   

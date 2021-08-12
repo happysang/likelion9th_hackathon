@@ -48,7 +48,8 @@ def review_detail_view(request, id):
         form=CommentForm(request.POST) 
         if form.is_valid(): 
              comment=form.save(commit=False)
-             comment.author_name = "✔️"+request.POST['author_name']
+             if comment.doc:
+                comment.author_name = "✔️"+request.POST['author_name']
              comment.post= review 
              comment.save() 
         return redirect('urlreviewdetail',id)
@@ -77,7 +78,10 @@ def review_create_view(request, d_num):
         creview.dept = request.POST['cdept']
         creview.cert = request.FILES.get('ccert')
         creview.body = request.POST['cbody']
+        creview.doc = request.POST.get('doc')
         creview.date = timezone.now()
+        if creview.doc:
+            creview.user_id = "✔️"+request.POST['cuser_id']
         creview.save()
         return redirect('urlreviewreadall', d_num)
     else:
