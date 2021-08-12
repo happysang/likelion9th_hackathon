@@ -174,7 +174,11 @@
 
                <div class="card-body mt-2">
                   <h3 class="mt-3 mb-5 lh-36"><a href="{%url 'urlreviewcategory' %}" class="text-white ">다른 사람이 남긴 후기가<br> 궁금하다면?</a></h3>
+                  {%if not user.is_authenticated%}
+                  <a href="{%url 'urlneedlogin' %}" class="btn btn-small btn-solid-border btn-round-full text-white">정보게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
+                  {%else%}
                   <a href="{%url 'urlreviewcategory' %}" class="btn btn-small btn-solid-border btn-round-full text-white">후기게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
+                  {%endif%}
                </div>
             </div>
          </div>
@@ -186,7 +190,11 @@
 
                <div class="card-body mt-2">
                <h3 class="mt-3 mb-5 lh-36"><a href="{%url 'urlinfocategory' %}" class="text-white">각종 의료에 대한 정보가 <br> 필요하다면?</a></h3>
+               {%if not user.is_authenticated%}
+               <a href="{%url 'urlneedlogin' %}" class="btn btn-small btn-solid-border btn-round-full text-white">정보게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
+               {%else%}
                   <a href="{%url 'urlinfocategory' %}" class="btn btn-small btn-solid-border btn-round-full text-white">정보게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
+               {%endif%}
                </div>
             </div>
          </div>
@@ -197,7 +205,11 @@
 
                <div class="card-body mt-2">
                   <h3 class="mt-3 mb-5 lh-36"><a href="{%url 'urlquestioncategory' %}" class="text-white">궁금한 점이 있을 때 <br>전문가에게 물어봐!</a></h3>
+                  {%if not user.is_authenticated%}
+                  <a href="{%url 'urlneedlogin' %}" class="btn btn-small btn-solid-border btn-round-full text-white">정보게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
+                  {%else%}
                   <a href="{%url 'urlquestioncategory' %}" class="btn btn-small btn-solid-border btn-round-full text-white">질문게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
+                  {%endif%}
                </div>
             </div>
          </div>
@@ -263,8 +275,11 @@
             <i class="ti-quote-left text-color"></i>
 
             <div class="testimonial-item-content">
+               {%if not user.is_authenticated%}
+               <a href="{%url 'urlneedlogin'%}"><p class="testimonial-text">{{hot_review.title}}</p></a>
+               {%else%}
                <a href="{%url 'urlreviewdetail' hot_review.id%}"><p class="testimonial-text">{{hot_review.title}}</p></a>
-
+               {%endif%}
                <div class="testimonial-author">
                   <h5 class="mb-0 text-capitalize">{{hot_review.user_id}}</h5>
                   <p>{{hot_review.date}}</p>
@@ -275,8 +290,11 @@
             <i class="ti-quote-left text-color"></i>
 
             <div class="testimonial-item-content">
+               {%if not user.is_authenticated%}
+               <a href="{%url 'urlneedlogin'%}"><p class="testimonial-text">{{hot_question.title}}</p></a>
+               {%else%}
                <a href="{%url 'urlquestiondetail' hot_question.id%}"><p class="testimonial-text">{{hot_question.title}}</p></a>
-
+               {%endif%}
                <div class="testimonial-author">
                   <h5 class="mb-0 text-capitalize">{{hot_question.user_id}}</h5>
                   <p>{{hot_question.date}}</p>
@@ -287,8 +305,11 @@
             <i class="ti-quote-left text-color"></i>
 
             <div class="testimonial-item-content">
+               {%if not user.is_authenticated%}
+               <a href="{%url 'urlneedlogin'%}"><p class="testimonial-text">{{hot_info.title}}</p></a>
+               {%else%}
                <a href="{%url 'urlinfodetail' hot_info.id%}"><p class="testimonial-text">{{hot_info.title}}</p></a>
-
+               {%endif%}
                <div class="testimonial-author">
                   <h5 class="mb-0 text-capitalize">{{hot_info.user_id}}</h5>
                   <p>{{hot_info.date}}</p>

@@ -1,9 +1,10 @@
 from review.models import Review
 from question.models import Question
 from information.models import Information
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from inner_account.models import CustomUser
 from django.db.models import Q
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
@@ -78,3 +79,9 @@ def all_search_view(request):
         return render(request, 'all_search.html', {'search_all':search_all, 'q':q})
     else:
         return render(request, 'all_search.html')
+
+
+def needlogin(request):
+    messages.info(request, '로그인 후 서비스 이용이 가능합니다.')
+    return redirect('urlhome')
+                
