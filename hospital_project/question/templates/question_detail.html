@@ -210,7 +210,7 @@
     {% for comment in views_question.qcomments.all %}
     <div class="content">
         <h2 class="title" style="display: inline;">{{ comment.author_name }}</h2>&nbsp;:&nbsp; {{ comment.comment_text }}
-        <h6 class="by-line" style="font-size: small;">{{ comment.created_at }}</h6>
+        <h6 class="by-line" style="font-size: small;">{{ comment.created_at }} {{comment.doc}}</h6>
       </div>
     <hr>
     {% empty %} 
@@ -225,12 +225,16 @@
            <form method="POST">
             <label>
                 {% csrf_token %}
+                <div style="display: none;">
                 {% if user.ans_auth %}
-                    <input type="hidden" class="form__input" name=author_name value="{{comment_form.doc.value|default_if_none:True">
+                    <input type="text" class="form__input" name="doc" value="{{comment_form.doc.value|default_if_none:'doc'}}">
                 {% else %}
-                 <input type="hidden" class="form__input" name=author_name value="{{comment_form.author_name.value|default_if_none:user.username}}">
-                 {% endif %}
-                 <textarea name = comment_text value="{{comment_form.comment_text.value|default_if_none:''}}" placeholder="댓글을 작성해주세요." style="width: 1000px;"></textarea>
+                    <input type="text" class="form__input" name="doc" value="{{comment_form.doc.value|default_if_none:'not'}}">
+                {% endif %}
+                </div>
+                <br><br>
+                     <input type="hidden" class="form__input" name="author_name" value="{{comment_form.author_name.value|default_if_none:user.username}}"> 
+                    <textarea name = comment_text value="{{comment_form.comment_text.value|default_if_none:''}}" placeholder="댓글을 작성해주세요." style="width: 1000px;"></textarea>
               </label>
               <button class="button-submit">작성하기</button>
            </form>

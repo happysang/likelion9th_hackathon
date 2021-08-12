@@ -47,11 +47,11 @@ def review_detail_view(request, id):
     if request.method == "POST":
         form=CommentForm(request.POST) 
         if form.is_valid(): 
-             comment=form.save(commit=False)
-             if comment.doc:
+            comment=form.save(commit=False)
+            if comment.doc == 'doc':
                 comment.author_name = "✔️"+request.POST['author_name']
-             comment.post= review 
-             comment.save() 
+            comment.post= review 
+            comment.save() 
         return redirect('urlreviewdetail',id)
     return render(request,'review_detail.html',{'views_review':review, 'd_num':d_num, 'comment_form':comment_form})
 

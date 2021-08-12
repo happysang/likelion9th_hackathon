@@ -27,7 +27,7 @@ class Qcomment(models.Model):
     author_name=models.CharField(max_length=20) 
     comment_text=models.TextField() 
     created_at=models.DateTimeField(default=timezone.now)
-    doc = models.BooleanField(default=False)
+    doc = models.CharField(max_length=20, null=True)
 
     def approve(self): 
         self.save() 

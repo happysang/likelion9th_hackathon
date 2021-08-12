@@ -42,7 +42,7 @@ def info_detail_view(request, id):
          form=CommentForm(request.POST) 
          if form.is_valid(): 
              comment=form.save(commit=False) 
-             if comment.doc:
+             if comment.doc == 'doc':
                     comment.author_name = "✔️"+request.POST['author_name']
              comment.post= info
              comment.save() 

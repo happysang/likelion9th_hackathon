@@ -220,14 +220,18 @@
         <div class="comment-submit">
            
            <form method="POST">
-              <label>
+            <label>
                 {% csrf_token %}
+                <div style="display: none;">
                 {% if user.ans_auth %}
-                    <input type="hidden" class="form__input" name=author_name value="{{comment_form.doc.value|default_if_none:True">
+                    <input type="text" class="form__input" name="doc" value="{{comment_form.doc.value|default_if_none:'doc'}}">
                 {% else %}
-                 <input type="hidden" class="form__input" name=author_name value="{{comment_form.author_name.value|default_if_none:user.username}}">
-                 {% endif %}
-                 <textarea name = comment_text value="{{comment_form.comment_text.value|default_if_none:''}}" placeholder="댓글을 작성해주세요." style="width: 1000px;"></textarea>
+                    <input type="text" class="form__input" name="doc" value="{{comment_form.doc.value|default_if_none:'not'}}">
+                {% endif %}
+                </div>
+                <br><br>
+                     <input type="hidden" class="form__input" name="author_name" value="{{comment_form.author_name.value|default_if_none:user.username}}"> 
+                    <textarea name = comment_text value="{{comment_form.comment_text.value|default_if_none:''}}" placeholder="댓글을 작성해주세요." style="width: 1000px;"></textarea>
               </label>
   
               <button class="button-submit">작성하기</button>

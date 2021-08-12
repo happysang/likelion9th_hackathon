@@ -37,14 +37,14 @@ def question_detail_view(request, id):
             d_num = x
     comment_form=CommentForm()
     if request.method == "POST":
-         form=CommentForm(request.POST) 
-         if form.is_valid(): 
-             comment=form.save(commit=False)
-             if comment.doc:
+        form=CommentForm(request.POST) 
+        if form.is_valid(): 
+            comment=form.save(commit=False)
+            if comment.doc == 'doc':
                 comment.author_name = "✔️"+request.POST['author_name']
-             comment.post= question 
-             comment.save() 
-         return redirect('urlquestiondetail',id)
+            comment.post= question 
+            comment.save() 
+        return redirect('urlquestiondetail',id)
     return render(request,'question_detail.html',{'views_question':question, 'd_num':d_num, 'comment_form':comment_form})
 
 def question_new_view(request, d_num):
