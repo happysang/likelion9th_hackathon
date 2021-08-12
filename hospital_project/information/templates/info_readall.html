@@ -25,12 +25,13 @@
 </head>
 
 <body>
-  <h1 style="text-align: center; color: white"><strong>{{d_name}} 정보게시판</strong></h1><br>
+  <h1 style="text-align: center; color: white"><strong>{{d_name}} 정보게시판</strong></h1>
+  <h6 style="text-align: center; color: white; font-style:oblique;" >✔️표시는 인증된 의사에게만 부여됩니다.</h6>
 	<section style="text-align: center;">
 
     {% for a in views_info_all %}
 		<h1>{{a.title}}</h1>
-		<h2>{{a.name}}</h2>
+		<h2>{{a.user_id}}</h2>
 		<p>{{a.date}}</p>
 		<a href="{%url 'urlinfodetail' a.id%}" class="button-read-more">Read more &raquo;</a>
     <br>
