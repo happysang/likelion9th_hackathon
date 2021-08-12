@@ -34,6 +34,7 @@ def info_detail_view(request, id):
     default_view_count = info.view_count
     info.view_count = default_view_count +1 
     info.save()
+    doctor_name = info.user_id.replace("✔️","")
     for x in range(len(d_list)):
         if d_list[x] == info.dept:
             d_num = x
@@ -47,7 +48,7 @@ def info_detail_view(request, id):
              comment.post= info
              comment.save() 
          return redirect('urlinfodetail',id)
-    return render(request,'info_detail.html',{'views_info':info, 'd_num':d_num, 'comment_form':comment_form})
+    return render(request,'info_detail.html',{'views_info':info, 'd_num':d_num, 'comment_form':comment_form, 'doctor_name':doctor_name})
 
 
 def info_new_view(request, d_num):

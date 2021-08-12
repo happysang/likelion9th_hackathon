@@ -35,6 +35,21 @@
 		<p>작성날짜: {{views_question.date}}</p><hr style="border: solid 2px;">
         <p>내용: {{views_question.body}}</p><hr style="border: solid 2px;">
         <br>
+
+    {% if user.ans_auth%}
+        {% if user.username == doctor_name %}
+        <div>
+            <a href="{%url 'urlhome'%}" class="button button-cancel">Home</a>
+            <a href="{%url 'urlquestionedit' views_question.id%}" class="button button-submit">Update</a>
+			<a href="{%url 'urlquestiondelete' views_question.id%}" class="button button-delete" onclick="return confirm('삭제하시겠습니까?')">Delete</a>
+            <a href="{%url 'urlquestionreadall' d_num%}" class="button button-cancel">Back</a>
+        </div>
+        {%else%}
+        <a href="{%url 'urlhome'%}" class="button button-cancel">Home</a>
+        <a href="{%url 'urlquestionreadall' d_num%}" class="button button-cancel">Back</a>
+        {%endif%}
+        <br>
+    {% else %}
         {%if user.username == views_question.user_id%}
         <div>
             <a href="{%url 'urlhome'%}" class="button button-cancel">Home</a>
@@ -47,6 +62,7 @@
         <a href="{%url 'urlquestionreadall' d_num%}" class="button button-cancel">Back</a>
         {%endif%}
 		<br>
+    {% endif %}
 
         <!-- 쪽지 -->
         <i class="fas fa-envelope-open-text" data-bs-toggle="modal" data-bs-target="#exampleModal">&nbsp;쪽지</i>
