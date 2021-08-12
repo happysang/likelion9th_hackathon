@@ -222,17 +222,17 @@
         <h1>댓글</h1>
         <br>
         <div class="comment-submit">
-            {% if user.ans_auth %}
            <form method="POST">
-              <label>
-                 {% csrf_token %}
+            <label>
+                {% csrf_token %}
+                {% if user.ans_auth %}
+                    <input type="hidden" class="form__input" name=author_name value="{{comment_form.doc.value|default_if_none:True">
+                {% else %}
                  <input type="hidden" class="form__input" name=author_name value="{{comment_form.author_name.value|default_if_none:user.username}}">
+                 {% endif %}
                  <textarea name = comment_text value="{{comment_form.comment_text.value|default_if_none:''}}" placeholder="댓글을 작성해주세요." style="width: 1000px;"></textarea>
               </label>
               <button class="button-submit">작성하기</button>
-            {% else %}
-            <p>인증된 의사만이 댓글을 달 수 있습니다.</p>
-            {% endif %}
            </form>
         </div>
      </div>

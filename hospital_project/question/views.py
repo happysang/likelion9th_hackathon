@@ -39,7 +39,9 @@ def question_detail_view(request, id):
     if request.method == "POST":
          form=CommentForm(request.POST) 
          if form.is_valid(): 
-             comment=form.save(commit=False) 
+             comment=form.save(commit=False)
+             if comment.doc:
+                comment.author_name = "✔️"+request.POST['author_name']
              comment.post= question 
              comment.save() 
          return redirect('urlquestiondetail',id)
@@ -59,7 +61,10 @@ def question_create_view(request, d_num):
         cquestion.user_id = request.POST['cuser_id']
         cquestion.dept = request.POST['cdept']
         cquestion.body = request.POST['cbody']
+        cquestion.doc = request.POST.get('doc')
         cquestion.date = timezone.now()
+        if cquestion.doc:
+            cquestion.user_id = "✔️"+request.POST['cuser_id']
         cquestion.save()
         return redirect('urlquestionreadall', d_num)
     else:
