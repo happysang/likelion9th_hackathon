@@ -12,12 +12,28 @@
 <!-- partial:index.partial.html -->
 <div class="container clearfix">
     <div class="people-list" id="people-list">
-      <div class="search">
-        <input type="text"  />
-        <i class="fa fa-search"></i>
-      </div>
-      <ul class="list">
 
+      <!-- <div class="search">
+        <input type="text" placeholder="search" />
+        <i class="fa fa-search"></i>
+      </div> -->
+      <ul class="list">
+            <form>
+                <input name="q" type="text" placeholder="검색할 사용자 아이디" value="{{ request.GET.q }}">
+                <button type="submit">검색</button>
+            </form>
+            {% if users %}
+              <p style="text-align: center;">[검색 내역]</p>
+            {% endif %}
+            {% for user in users %}
+                  <a href="{% url 'urlnewconversation' user.username %}">
+                    <img src="{% static '사람.png' %}" alt="avatar" height="40" width="35"><br>
+                    <div style="text-decoration: none; color: aliceblue;">{{ user.username }}</div>
+                  </a>
+                  <br>
+            {% endfor %}
+            <br>
+            <p style="text-align: center;">[대화 내역]</p>
         {% for message in messages %}
         <li class="clearfix">
         <a class="{% if active_direct == message.user %}is-active{% endif %}" href="{% url 'urldirects' message.user.username %}">

@@ -34,6 +34,15 @@ def Inbox(request):
 		'active_direct': active_direct,
 		}
 
+	
+	query = request.GET.get("q")
+	if query:
+		users = CustomUser.objects.filter(Q(username__icontains=query))
+		paginator = Paginator(users, 6)
+		page_number = request.GET.get('page')
+		users_paginator = paginator.get_page(page_number)
+		context['users'] = users_paginator
+
 	template = loader.get_template('direct.html')
 
 	return HttpResponse(template.render(context, request))
@@ -55,6 +64,14 @@ def Directs(request, username):
 		'messages': messages,
 		'active_direct':active_direct,
 	}
+
+	query = request.GET.get("q")
+	if query:
+		users = CustomUser.objects.filter(Q(username__icontains=query))
+		paginator = Paginator(users, 6)
+		page_number = request.GET.get('page')
+		users_paginator = paginator.get_page(page_number)
+		context['users'] = users_paginator
 
 	template = loader.get_template('direct.html')
 
@@ -78,12 +95,8 @@ def SendDirect(request):
 @login_required
 def UserSearch(request):
 	query = request.GET.get("q")
-	context = {}
-	
 	if query:
 		users = CustomUser.objects.filter(Q(username__icontains=query))
-
-		#Pagination
 		paginator = Paginator(users, 6)
 		page_number = request.GET.get('page')
 		users_paginator = paginator.get_page(page_number)
@@ -92,7 +105,7 @@ def UserSearch(request):
 			'users': users_paginator,
 		}
 	
-	template = loader.get_template('search_user.html')
+	template = loader.get_template('direct.html')
 	
 	return HttpResponse(template.render(context, request))
 
