@@ -42,6 +42,8 @@ def info_detail_view(request, id):
          form=CommentForm(request.POST) 
          if form.is_valid(): 
              comment=form.save(commit=False) 
+             if comment.doc:
+                    comment.author_name = "✔️"+request.POST['author_name']
              comment.post= info
              comment.save() 
          return redirect('urlinfodetail',id)
@@ -63,6 +65,9 @@ def info_create_view(request, d_num):
         cinfo.dept = request.POST['cdept']
         cinfo.body = request.POST['cbody']
         cinfo.date = timezone.now()
+        cinfo.doc = request.POST.get('doc')
+        if cinfo.doc:
+            cinfo.user_id = "✔️"+request.POST['cuser_id']
         cinfo.save()
         return redirect('urlinforeadall', d_num)
     else:

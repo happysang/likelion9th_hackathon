@@ -35,6 +35,7 @@
             <input type="email" class="form__input" name="email" value="{{d_view_signupform.email.value|default_if_none:''}}" placeholder="이메일">
             <input type="text" class="form__input" name="name" value="{{d_view_signupform.name.value|default_if_none:''}}" placeholder="이름">          
             <button class="form__button button submit" style="cursor:pointer;" >회원가입</button>
+            </form>
     {% else %}
             <form class="form" id="a-form" action="{%url 'urlsignup' 2%}" enctype="multipart/form-data" method="POST" > 
             {% csrf_token %}
@@ -46,6 +47,7 @@
             <input type="text" class="form__input" name="h_name" value="{{d_view_signupform.h_name.value|default_if_none:''}}" placeholder="병원 명">
             <input type="file" class="form__input" name="cert" value="{{d_view_signupform.cert.value|default_if_none:''}}" placeholder="의사 인증 파일">            
             <button class="form__button button submit" style="cursor:pointer;">회원가입</button>
+            </form>
     {% endif %}
       </div>
       <div class="switch" id="switch-cnt">
