@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
-    <title>Question/detail</title>
+    <title>병의:보감</title>
     <script src="https://kit.fontawesome.com/9e7c2b9921.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{%static 'detail_style.css'%}">
     <style>
@@ -28,19 +28,25 @@
 <body>
 <br><br>
 	<section style="text-align: center;">
-		<h1>{{views_question.title}}</h1>
+		<h1>{{views_question.title}}</h1><hr style="border: solid 2px;">
         <h2>과: {{views_question.dept}}</h2>
 		<h3>조회수: {{views_question.view_count}}</h3>
 		<p>작성자: {{views_question.user_id}}</p>
-		<p>작성날짜: {{views_question.date}}</p>
-        <p>내용: {{views_question.body}}</p>
+		<p>작성날짜: {{views_question.date}}</p><hr style="border: solid 2px;">
+        <p>내용: {{views_question.body}}</p><hr style="border: solid 2px;">
         <br>
+        {%if user.username == views_question.user_id%}
         <div>
-            <a href="{%url 'urlquestionreadall' d_num%}" class="button button-cancel">Back</a>
-			<a href="{%url 'urlquestionedit' views_question.id%}" class="button button-submit">Update</a>
+            <a href="{%url 'urlhome'%}" class="button button-cancel">Home</a>
+            <a href="{%url 'urlquestionedit' views_question.id%}" class="button button-submit">Update</a>
 			<a href="{%url 'urlquestiondelete' views_question.id%}" class="button button-delete" onclick="return confirm('삭제하시겠습니까?')">Delete</a>
-		</div>
-		<br><br>
+            <a href="{%url 'urlquestionreadall' d_num%}" class="button button-cancel">Back</a>
+        </div>
+        {%else%}
+        <a href="{%url 'urlhome'%}" class="button button-cancel">Home</a>
+        <a href="{%url 'urlquestionreadall' d_num%}" class="button button-cancel">Back</a>
+        {%endif%}
+		<br>
 
         <!-- 쪽지 -->
         <i class="fas fa-envelope-open-text" data-bs-toggle="modal" data-bs-target="#exampleModal">&nbsp;쪽지</i>
@@ -221,7 +227,7 @@
               <label>
                  {% csrf_token %}
                  <input type="hidden" class="form__input" name=author_name value="{{comment_form.author_name.value|default_if_none:user.username}}">
-                 <textarea class="long" name = comment_text value="{{comment_form.comment_text.value|default_if_none:''}}" placeholder="댓글을 작성해주세요."></textarea>
+                 <textarea name = comment_text value="{{comment_form.comment_text.value|default_if_none:''}}" placeholder="댓글을 작성해주세요." style="width: 1000px;"></textarea>
               </label>
               <button class="button-submit">작성하기</button>
             {% else %}

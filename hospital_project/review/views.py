@@ -47,7 +47,8 @@ def review_detail_view(request, id):
     if request.method == "POST":
         form=CommentForm(request.POST) 
         if form.is_valid(): 
-             comment=form.save(commit=False) 
+             comment=form.save(commit=False)
+             comment.author_name = "✔️"+request.POST['author_name']
              comment.post= review 
              comment.save() 
         return redirect('urlreviewdetail',id)
