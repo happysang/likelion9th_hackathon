@@ -81,9 +81,7 @@
      
         <div class="collapse navbar-collapse text-center" id="navbarsExample09">
          <ul class="navbar-nav ml-auto">
-           <li class="nav-item active">
-            <a class="nav-link" href="{%url 'urlhome' %}">Home <span class="sr-only">(current)</span></a>
-           </li>
+           
            <!-- <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" href="{%url 'urlreviewcategory' %}" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">후기게시판</a>
                <ul class="dropdown-menu" aria-labelledby="dropdown03">
@@ -91,6 +89,11 @@
                   <li><a class="dropdown-item" href="#">후기 작성하기</a></li>
                </ul>
            </li> -->
+         
+      {% if user.is_authenticated %}
+         <li class="nav-item active">
+         <a class="nav-link" href="{%url 'urlhome' %}">Home <span class="sr-only">(current)</span></a>
+         </li>
          <li class="nav-item"><a class="nav-link" href="{%url 'urlreviewcategory' %}">후기게시판</a></li>
          <li class="nav-item"><a class="nav-link" href="{%url 'urlquestioncategory' %}">질문게시판</a></li>
          <li class="nav-item"><a class="nav-link" href="{%url 'urlinfocategory' %}">정보게시판</a></li>
@@ -102,7 +105,6 @@
                   <li><a class="dropdown-item" href="">그 외</a></li>
                </ul> -->
          </ul>
-      {% if user.is_authenticated %}
 
          <form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
             <a href="{%url 'urllogout' %}" class="btn btn-solid-border btn-round-full">로그아웃</a>
