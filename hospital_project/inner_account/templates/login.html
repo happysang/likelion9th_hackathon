@@ -31,7 +31,10 @@
           {% csrf_token %}
           <input type="text" class="form__input" name="username" value="{{view_loginform.username.value|default_if_none:''}}" placeholder="아이디">
           <input type="password" class="form__input" name="password" value="{{view_loginform.password.value|default_if_none:''}}" placeholder="비밀번호">
+          <div style="display: inlion-block;">
           <button class="form__button button submit" style='cursor:pointer; background-color: #1a4380;'>로그인</button>
+          <button type="button" onclick="location.href='{%url 'urlhome'%}'" class="form__button button submit" style="background-color: #1a4380;">돌아가기</button>
+          </div>  
         </form>
       </div>
       <div class="switch" id="switch-cnt" style="background-color: #1a4380;">
