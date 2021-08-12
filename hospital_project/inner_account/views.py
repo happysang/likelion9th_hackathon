@@ -67,7 +67,7 @@ def signup_view(request,c):
                 email = EmailMessage(mail_title, message, to=[mail_to])
                 email.send()
                 #이메일 인증 추가 끝
-                messages.info(request, '이메일로 인증메일을 전송했습니다!')
+                messages.info(request, '[작성하신 이메일로 인증메일을 전송했습니다! \n 인증이 완료되어야 서비스를 이용하실 수 있습니다.]')
                 return redirect ('urlhome')
             else:
                  # 회원가입이 잘 안됐을 때 나올 view
@@ -100,9 +100,9 @@ def signup_view(request,c):
                 elif not request.POST['name']:
                     messages.info(request, '이름을 작성해주세요.')
                     return redirect('urlsignup', c )
-                # else:
-                #     messages.info(request, '알 수 없는 오류입니다. 관리자 문의 : 010-9398-2668')
-                #     return redirect('urlsignup', c )
+                else:
+                    messages.info(request, '알 수 없는 오류입니다. 관리자 문의 : byeonguibogam@gmail.com')
+                    return redirect('urlsignup', c )
 
         if c == '2':
             signup_form = DoctorForm(request.POST, request.FILES)
@@ -130,7 +130,7 @@ def signup_view(request,c):
                 email = EmailMessage(mail_title, message, to=[mail_to])
                 email.send()
                 #이메일 인증 추가 끝
-                messages.info(request, '이메일로 인증메일을 전송했습니다!')
+                messages.info(request, '[작성하신 이메일로 인증메일을 전송했습니다! 확인해주세요!]')
                 return redirect ('urlhome')
             else:
                  # 회원가입이 잘 안됐을 때 나올 view
@@ -163,7 +163,7 @@ def signup_view(request,c):
                     messages.info(request, '병원명을 작성해주세요.')
                     return redirect('urlsignup', c )
                 else:
-                    messages.info(request, '알 수 없는 오류입니다. 관리자 문의 : 010-9398-2668')
+                    messages.info(request, '알 수 없는 오류입니다. 관리자 문의 : byeonguibogam@gmail.com')
                     return redirect('urlsignup', c )
 
     else:

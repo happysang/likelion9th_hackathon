@@ -71,11 +71,7 @@
 -->
 
 <!-- Header Start --> 
-{%if messages%}
-{%for m in messages%}
-    <h6 style="color: red;"><strong>{{m.message}}</strong></h6><br>
-{%endfor%}
-{%endif%}
+
 <header class="navigation">
    <nav class="navbar navbar-expand-lg  py-4" id="navbar">
       <div class="container">
@@ -133,6 +129,11 @@
         </div>
       </div>
    </nav>
+   {%if messages%}
+   {%for m in messages%}
+      <h6 style=" text-align: center; font-style: oblique; color: rgb(0, 0, 0);"><strong>{{m.message}}</strong></h6><br>
+   {%endfor%}
+   {%endif%}
 </header>
 
 <!-- Header Close --> 
