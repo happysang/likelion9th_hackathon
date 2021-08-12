@@ -21,7 +21,11 @@ def question_readall_view(request, d_num):
             question_list = qusetions.filter(dept=d_list[x])
             question_all = question_list.order_by("-date")
             d_name = d_list[x]
-            return render(request,"question_readall.html",{'views_question_all':question_all, 'd_num':d_num, 'd_name':d_name},)    
+
+            paginator = Paginator(question_all,5)
+            page = request.GET.get('page')
+            posts = paginator.get_page(page)
+            return render(request,"question_readall.html",{'views_question_all':posts, 'd_num':d_num, 'd_name':d_name},)    
 
 def question_detail_view(request, id):
     question = get_object_or_404(Question,pk= id)
