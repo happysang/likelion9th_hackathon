@@ -67,7 +67,7 @@ def info_create_view(request, d_num):
         cinfo.body = request.POST['cbody']
         cinfo.date = timezone.now()
         cinfo.doc = request.POST.get('doc')
-        if cinfo.doc:
+        if cinfo.doc == 'doc':
             cinfo.user_id = "✔️"+request.POST['cuser_id']
         cinfo.save()
         return redirect('urlinforeadall', d_num)

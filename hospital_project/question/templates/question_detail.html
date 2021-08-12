@@ -74,7 +74,11 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    {% if views_question.doc == 'doc' %}
+                    <input type="hidden" name="to_user" value="{{ doctor_name }}">
+                    {% else %}
                     <input type="hidden" name="to_user" value="{{ active_direct }}">
+                    {% endif %}
                         <div>
                             <p>쪽지를 보내시겠어요?</p>
                             
@@ -83,7 +87,11 @@
                             </p>    -->  
                         </div>
                 <div class="modal-footer">
+                    {% if views_question.doc == 'doc'%}
+                    <a href="{% url 'urlnewconversation'  doctor_name %}"><button type="button" class="btn btn-primary">쪽지 보내기</button></a>
+                    {% else %}
                     <a href="{% url 'urlnewconversation' views_question.user_id %}"><button type="button" class="btn btn-primary">쪽지 보내기</button></a>
+                    {% endif %}
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
                 </div>
                 </div>
@@ -112,7 +120,7 @@
                     dataType: "json",
                     success: function (response) { // 성공
                         alert(response.message);
-                        $("#count-" + pk).html("좋아요&nbsp;" + response.likes_count + "개"); // 좋아요 개수 변경
+                        $("#count-" + pk).html("유익해요&nbsp;" + response.likes_count + "개"); // 좋아요 개수 변경
                     },
                     error: function (request, status, error) { // 실패
                         alert("로그인이 필요합니다.")

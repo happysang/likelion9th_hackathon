@@ -14,7 +14,7 @@ class Review(models.Model):
     dname = models.CharField(max_length=10)
     dept = models.CharField(max_length=20)
     body = models.TextField(max_length=300)
-    doc = models.BooleanField(default=False, null=True) #의사가 글쓸 때 확인용
+    doc = models.CharField(max_length=20, null=True) #의사가 글쓸 때 확인용
     cert = models.ImageField(upload_to="review/%y/%m/%d", blank=True, null =True)
     check = models.BooleanField(default=False) #의료 인증
     like = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True,related_name="rlike") #유익해요

@@ -81,7 +81,7 @@ def review_create_view(request, d_num):
         creview.body = request.POST['cbody']
         creview.doc = request.POST.get('doc')
         creview.date = timezone.now()
-        if creview.doc:
+        if creview.doc == 'doc':
             creview.user_id = "✔️"+request.POST['cuser_id']
         creview.save()
         return redirect('urlreviewreadall', d_num)

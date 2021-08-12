@@ -10,7 +10,7 @@ class Information(models.Model):
     date = models.DateTimeField()
     dept = models.CharField(max_length=20)
     body = models.TextField(max_length=300)
-    doc = models.BooleanField(default=False, null = True) #의사가 글쓸 때 확인용
+    doc = models.CharField(max_length=20, null=True) #의사가 글쓸 때 확인용
     like = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True,related_name="ilike") #유익해요
     fun = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name="ifun") #재밌어요
     upset = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name="iupset") #불쾌해요

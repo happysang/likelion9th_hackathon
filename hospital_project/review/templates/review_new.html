@@ -68,9 +68,9 @@
             <br>
 				<div style="display: none;">
 				{% if user.ans_auth %}
-					<input type="checkbox" name ="doc" value="True" checked="checked" >
+					<input type="text" name ="doc" value="doc" readonly >
 				{% else %}
-					<input type="checkbox" name ="doc" value="False">
+					<input type="checkbox" name ="doc" value="not">
 				{% endif %}
 				</div>
 			<button class="button-submit">작성완료</button>

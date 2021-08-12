@@ -64,7 +64,7 @@ def question_create_view(request, d_num):
         cquestion.body = request.POST['cbody']
         cquestion.doc = request.POST.get('doc')
         cquestion.date = timezone.now()
-        if cquestion.doc:
+        if cquestion.doc == 'doc':
             cquestion.user_id = "✔️"+request.POST['cuser_id']
         cquestion.save()
         return redirect('urlquestionreadall', d_num)
