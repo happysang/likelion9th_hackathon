@@ -27,8 +27,7 @@
 <body>
   <h1 style="text-align: center; color: white"><strong>{{d_name}} 정보게시판</strong></h1><br>
 	<section style="text-align: center;">
-    <a href="{%url 'urlinfonew' d_num%}" class="button button-submit">정보글 작성하기</a>
-    <br>
+
     {% for a in views_info_all %}
 		<h1>{{a.title}}</h1>
 		<h2>{{a.name}}</h2>
@@ -36,6 +35,11 @@
 		<a href="{%url 'urlinfodetail' a.id%}" class="button-read-more">Read more &raquo;</a>
     <br>
     {% endfor %}
+    <br>
+    <div style="display: inline-block;">
+    <a href="{%url 'urlinfonew' d_num%}" class="button button-submit">정보글 작성하기</a>
+    <a href="{%url 'urlhome'%}" class="button button-cancel">돌아가기</a>
+    </div>
 	</section>
 
 	<div style="text-align: center; color: aliceblue;">

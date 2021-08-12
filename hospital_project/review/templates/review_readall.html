@@ -26,8 +26,7 @@
 <body>
   <h1 style="text-align: center; color: white"><strong>{{d_name}} 후기게시판</strong></h1><br>
 	<section style="text-align: center;">
-    <a href="{%url 'urlreviewnew' d_num%}" class="button button-submit">후기글 작성하기</a>
-    <br>
+    
     {% for a in views_review_all %}
 		<h1>{{a.title}}</h1>
 		<h2>{{a.name}}</h2>
@@ -35,6 +34,11 @@
 		<a href="{%url 'urlreviewdetail' a.id%}" class="button-read-more">Read more &raquo;</a>
     <br>
     {% endfor %}
+    <br>
+    <div style="display: inline-block;">
+    <a href="{%url 'urlreviewnew' d_num%}" class="button button-submit">후기글 작성하기</a>
+    <a href="{%url 'urlhome'%}" class="button button-cancel">돌아가기</a>
+    </div>
 	</section>
   
 
