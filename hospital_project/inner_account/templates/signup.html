@@ -34,7 +34,7 @@
             <input type="password" class="form__input" name="password2" value="{{d_view_signupform.password2.value|default_if_none:''}}" placeholder="비밀번호 확인">
             <input type="email" class="form__input" name="email" value="{{d_view_signupform.email.value|default_if_none:''}}" placeholder="이메일">
             <input type="text" class="form__input" name="name" value="{{d_view_signupform.name.value|default_if_none:''}}" placeholder="이름">          
-            <button class="form__button button submit" style="cursor:pointer;" >회원가입</button>
+            <button class="form__button button submit" style="cursor:pointer; background-color: #1a4380;">회원가입</button>
     {% else %}
             <form class="form" id="a-form" action="{%url 'urlsignup' 2%}" enctype="multipart/form-data" method="POST" > 
             {% csrf_token %}
@@ -43,16 +43,16 @@
             <input type="password" class="form__input" name="password2" value="{{d_view_signupform.password2.value|default_if_none:''}}" placeholder="비밀번호 확인">
             <input type="email" class="form__input" name="email" value="{{d_view_signupform.email.value|default_if_none:''}}" placeholder="이메일">
             <input type="text" class="form__input" name="name" value="{{d_view_signupform.name.value|default_if_none:''}}" placeholder="이름">
-            <input type="text" class="form__input" name="h_name" value="{{d_view_signupform.h_name.value|default_if_none:''}}" placeholder="병원 명">
+            <input type="text" class="form__input" name="h_name" value="{{d_view_signupform.h_name.value|default_if_none:''}}" placeholder="병원명">
             <input type="file" class="form__input" name="cert" value="{{d_view_signupform.cert.value|default_if_none:''}}" placeholder="의사 인증 파일">            
-            <button class="form__button button submit" style="cursor:pointer;">회원가입</button>
+            <button class="form__button button submit" style="cursor:pointer; background-color: #1a4380;">회원가입</button>
     {% endif %}
       </div>
-      <div class="switch" id="switch-cnt">
+      <div class="switch" id="switch-cnt" style="background-color: #1a4380;">
         <div class="switch__circle"></div>
         <div class="switch__circle switch__circle--t"></div>
         <div class="switch__container" id="switch-c1">
-          <h2 class="switch__title title">회원가입</h2>
+          <h2 class="switch__title title" style="color: #fff;">회원가입</h2>
           <p class="switch__description description">*비밀번호는 8자리 이상이어야 합니다.<br>
           <br>
           *의사회원 가입 시, 

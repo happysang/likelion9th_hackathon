@@ -31,14 +31,14 @@
           {% csrf_token %}
           <input type="text" class="form__input" name="username" value="{{view_loginform.username.value|default_if_none:''}}" placeholder="아이디">
           <input type="password" class="form__input" name="password" value="{{view_loginform.password.value|default_if_none:''}}" placeholder="비밀번호">
-          <button class="form__button button submit" style='cursor:pointer;'>로그인</button>
+          <button class="form__button button submit" style='cursor:pointer; background-color: #1a4380;'>로그인</button>
         </form>
       </div>
-      <div class="switch" id="switch-cnt">
+      <div class="switch" id="switch-cnt" style="background-color: #1a4380;">
         <div class="updown"></div>
         <div class="switch__circle"></div>
          <div class="switch__container" id="switch-c1">
-          <h2 class="switch__title title">병의 : 보감</h2>
+          <h2 class="switch__title title" style="color: #fff; font-family: 'Gowun Dodum', sans-serif;" >병의 : 보감</h2>
           <p class="switch__description description">원활한 서비스 이용을 위해 로그인해주세요</p>
           {%if messages%}
           {%for m in messages%}
