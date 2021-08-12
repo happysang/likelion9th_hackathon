@@ -1,0 +1,106 @@
+{% load static %}
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>쪽지함</title>
+   <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ </head>
+ <body>
+  <div class="columns is-mobile">
+    <div class="column is-one-quarter">
+    <aside class="menu">
+      <h1 class="title is-3">
+      쪽지함
+      </h1>
+    <ul style="overflow-y: scroll; height: 380px" class="menu-list">
+  
+  {% for message in messages %}
+  
+  <a class="{% if active_direct == message.user %}is-active{% endif %}" href="{% url 'urldirects' message.user.username %}">
+  <div class="box">
+    <article class="media">
+      <div class="media-content">
+  
+        <div class="content">
+          <p>
+            <!-- 나에게 메세지 보낸 사람 목록-->
+            <strong>{{ message.user }}</strong> 
+          </p>
+          {% if message.unread %}
+          <p style="font-size: larger; font-weight: bold; color: red;">
+            <i class="material-icons">mark_chat_unread</i> {{ message.unread }}
+          </p>
+          {% endif %}        
+        </div>
+  
+      </div>
+    </article>
+  </div>
+  </a>
+  {% endfor %}
+    </ul>
+    </aside>
+  <br>
+  <a href="{% url 'urlusersearch' %}">쪽지 보낼 상대 찾기</a>
+  <br>
+  </div>
+  <div style="margin-top: 70px;  width: 72%;">
+  <div class="column">
+    <div style="overflow-y: scroll; height: 370px;">
+    
+    {% for direct in directs %}
+    <div class="box">
+      <article class="media">
+        <div class="media-left">
+        </div>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>{{ direct.sender }}</strong> &ensp;<small>{{ direct.date|date:'n/d G:i:s'}}</small>
+            </p>
+            {{ direct.body }} 
+          </div>
+        </div>
+      </article>
+    </div>
+    {% endfor %}
+    </div>
+  </div>
+
+
+<form role="form" method="POST" action="{% url 'urlsend_direct' %}">
+  {% csrf_token %}
+<article class="media">
+  <div>
+    <input type="hidden" name="to_user" value="{{ active_direct }}">
+    <div class="field">
+      <p class="control">
+        <textarea class="textarea" name="body" placeholder="메시지 내용을 입력하세요" cols="112" rows="2"></textarea>
+      </p>
+    </div>
+    <nav class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <button type="submit" name="action" class="button is-info">전송</button> &ensp;
+          <a href=""><button class="button is-info">전체 삭제</button></a>&ensp;
+          <a href=""><button class="button is-info">차단</button></a>&ensp;
+          <a href=""><button class="button is-info">신고</button></a>
+        <!--무늬뿐인 삭제,차단,신고-->
+        </div>
+      </div>
+    </nav>
+  </div>
+</article>
+</form>
+
+</div>
+</div>
+
+
+ </body>
+ </html>
