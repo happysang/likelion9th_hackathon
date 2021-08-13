@@ -278,13 +278,18 @@
             <div class="testimonial-item-content">
                {%if not user.is_authenticated%}
                <a href="{%url 'urlneedlogin'%}"><p class="testimonial-text">{{hot_review.title}}</p></a>
+               <div class="testimonial-author">
+                  <a href="{%url 'urlneedlogin'%}" class="mb-0 text-capitalize" ><h5 >{{hot_review.user_id}}</h5></a>
+                  <p>{{hot_review.date}}</p>
+               </div>
                {%else%}
                <a href="{%url 'urlreviewdetail' hot_review.id%}"><p class="testimonial-text">{{hot_review.title}}</p></a>
-               {%endif%}
                <div class="testimonial-author">
                   <a href="{%url 'urlreviewdetail' hot_review.id%}" class="mb-0 text-capitalize" ><h5 >{{hot_review.user_id}}</h5></a>
                   <p>{{hot_review.date}}</p>
                </div>
+               {%endif%}
+               
             </div>
          </div>
          <div class="testimonial-item position-relative">
@@ -293,13 +298,17 @@
             <div class="testimonial-item-content">
                {%if not user.is_authenticated%}
                <a href="{%url 'urlneedlogin'%}"><p class="testimonial-text">{{hot_question.title}}</p></a>
-               {%else%}
-               <a href="{%url 'urlquestiondetail' hot_question.id%}"><p class="testimonial-text">{{hot_question.title}}</p></a>
-               {%endif%}
                <div class="testimonial-author">
-                  <h5 class="mb-0 text-capitalize">{{hot_question.user_id}}</h5>
+                  <a href="{%url 'urlneedlogin'%}" class="mb-0 text-capitalize" ><h5 >{{hot_question.user_id}}</h5></a>
                   <p>{{hot_question.date}}</p>
                </div>
+               {%else%}
+               <a href="{%url 'urlquestiondetail' hot_question.id%}"><p class="testimonial-text">{{hot_question.title}}</p></a>
+               <div class="testimonial-author">
+                  <a href="{%url 'urlquestiondetail' hot_question.id%}" class="mb-0 text-capitalize" ><h5 >{{hot_question.user_id}}</h5></a>
+                  <p>{{hot_question.date}}</p>
+               </div>
+               {%endif%}
             </div>
          </div>
          <div class="testimonial-item position-relative">
@@ -308,13 +317,17 @@
             <div class="testimonial-item-content">
                {%if not user.is_authenticated%}
                <a href="{%url 'urlneedlogin'%}"><p class="testimonial-text">{{hot_info.title}}</p></a>
-               {%else%}
-               <a href="{%url 'urlinfodetail' hot_info.id%}"><p class="testimonial-text">{{hot_info.title}}</p></a>
-               {%endif%}
                <div class="testimonial-author">
-                  <h5 class="mb-0 text-capitalize">{{hot_info.user_id}}</h5>
+                  <a href="{%url 'urlneedlogin'%}" class="mb-0 text-capitalize" ><h5 >{{hot_info.user_id}}</h5></a>
                   <p>{{hot_info.date}}</p>
                </div>
+               {%else%}
+               <a href="{%url 'urlinfodetail' hot_info.id%}"><p class="testimonial-text">{{hot_info.title}}</p></a>
+               <div class="testimonial-author">
+                  <a href="{%url 'urlinfodetail' hot_info.id%}" class="mb-0 text-capitalize" ><h5 >{{hot_info.user_id}}</h5></a>
+                  <p>{{hot_info.date}}</p>
+               </div>
+               {%endif%}
             </div>
          </div>
          </div>

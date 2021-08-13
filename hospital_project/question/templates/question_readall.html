@@ -31,15 +31,16 @@
  
     {% for a in views_question_all %}
 		<h1>{{a.title}}</h1>
-		<h2>{{a.name}}</h2>
+		<h2>{{a.user_id}}</h2>
 		<p>{{a.date}}</p>
 		<a href="{%url 'urlquestiondetail' a.id%}" class="button-read-more">Read more &raquo;</a>
+    <hr style="border: solid 2px;">
     <br>
     {% endfor %}
     <br>
     <div style="display: inline-block;">
     <a href="{%url 'urlquestionnew' d_num%}" class="button button-submit">질문글 작성하기</a>
-    <a href="{%url 'urlhome'%}" class="button button-cancel">돌아가기</a>
+    <a href="{%url 'urlquestioncategory'%}" class="button button-cancel">돌아가기</a>
     </div>
 	</section>
 
