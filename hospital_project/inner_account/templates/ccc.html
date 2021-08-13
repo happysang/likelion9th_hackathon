@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>병의:보감</title>
+  <link rel="stylesheet" href="{%static 'choicestyle.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Serif+KR:wght@500;900&display=swap" rel="stylesheet">
+  <style>
+	@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+	h1,h2,p,span, a.button.button, input.btn.btn, button{ font-family: 'Gowun Dodum', sans-serif;}
+  </style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="wrapper">
+	<div class="container">
+		<h1>환영합니다 !</h1>	
+		<form class="form" action="{%url 'urlsignup' 1%}">
+			<button type="submit" id="login-button">일반 유저로 회원가입</button>
+		</form>
+        <form class="form" action="{%url 'urlsignup' 2%}">
+			<button type="submit" id="login-button">의사 유저로 회원가입</button>
+		</form>
+	</div>
+	
+	<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="{%static 'choicescripts.js' %}"></script>
+
+</body>
+</html>
