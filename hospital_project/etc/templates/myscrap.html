@@ -48,8 +48,8 @@
                         스크랩한 질문글이 없습니다.
                     </dt>    
             {% endif %}
-            </dl>
-            <br><br>
+        </dl>
+        <br><br>
         <h1>Information</h1>
         <dl>
             {% if info_scraps %}
@@ -60,14 +60,43 @@
                     <dd>
                         내용 : {{post.body|truncatewords:50}}
                     </dd>
+
                 {% endfor %} 
             {% else %}
                     <dt>
                         스크랩한 정보글이 없습니다.
                     </dt>    
             {% endif %}
-            </dl>
-            <br><br>
+        </dl>
+        <br><br>
+        
+            <div style="text-align: center;">
+                <a href="{%url 'urlhome'%}" class="buttonhom" style=
+                 "background-color:transparent;
+                  border-radius:28px;
+                  border:1px solid #4e6096;
+                  display:inline-block;
+                  cursor:pointer;
+                  color:#ffffff;
+                  font-family:Verdana;
+                  font-size:17px;
+                  padding:10px 30px;
+                  text-decoration:none;
+                  text-shadow:0px 1px 0px #283966;"> home</a>
+                  
+                  <a href="{%url 'urlmypage'%}" class="buttonhom" style=
+                 "background-color:transparent;
+                  border-radius:28px;
+                  border:1px solid #4e6096;
+                  display:inline-block;
+                  cursor:pointer;
+                  color:#ffffff;
+                  font-family:Verdana;
+                  font-size:17px;
+                  padding:10px 30px;
+                  text-decoration:none;
+                  text-shadow:0px 1px 0px #283966;"> back</a>
+                </div>
 
     </div>
 </body>

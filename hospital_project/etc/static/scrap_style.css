@@ -47,6 +47,6 @@ dd {
   margin: 0 0 40px 0;
   font-size: 1.8rem;
   padding-bottom: 5px;
-  border-bottom: 1px solid #1a4380;
-  box-shadow: 0 1px 0 #0b397c;
+  /* border-bottom: 1px solid #1a4380;
+  box-shadow: 0 1px 0 #0b397c; */
 }
