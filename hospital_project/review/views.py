@@ -14,7 +14,7 @@ from django.core.paginator import Paginator
 # Create your views here.
 d_list = ['치과', '피부과', '성형외과', '산부인과', '안과', '내과', '외과', '이비인후과', '정형외과',
             '비뇨기과', '정신건강의학과', '재활의학과', '영상의학과', '소아과', '신경외과', '신경과',
-            '마취통증의학과', '가정의학과', '한의원', '모든 진료과']
+            '마취통증의학과', '가정의학과', '한의원', '그 외']
 
 def review_category_view(request):
     return render (request, 'review_category.html')

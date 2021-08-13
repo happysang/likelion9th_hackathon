@@ -282,7 +282,7 @@
                <a href="{%url 'urlreviewdetail' hot_review.id%}"><p class="testimonial-text">{{hot_review.title}}</p></a>
                {%endif%}
                <div class="testimonial-author">
-                  <h5 class="mb-0 text-capitalize">{{hot_review.user_id}}</h5>
+                  <a href="{%url 'urlreviewdetail' hot_review.id%}" class="mb-0 text-capitalize" ><h5 >{{hot_review.user_id}}</h5></a>
                   <p>{{hot_review.date}}</p>
                </div>
             </div>
