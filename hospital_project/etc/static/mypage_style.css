@@ -106,7 +106,7 @@ body {
 
 .home {
   height: 100vh;
-  background: linear-gradient(rgba(0, 16, 245, 0.666), rgba(0, 0, 0, 0.5));
+  background: linear-gradient(#1f4a8b,#1f4a8b );
   /* url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/769286/beach-2089959_1280.jpg); */
   background-size: cover;
   background-position: center center;
@@ -178,7 +178,7 @@ body {
   }
 }
 .about {
-  background: linear-gradient(rgba(52, 65, 255, 0.666), rgba(0, 0, 0, 0.5)); 
+  background: linear-gradient(#173869,#173869); 
   /* url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/769286/beach-2089959_1280.jpg); */
   background-size: cover;
   background-position: center center;
@@ -198,7 +198,7 @@ textarea {
 }
 
 .contact {
-  background: linear-gradient(rgba(0, 101, 252, 0.666), rgba(0, 0, 0, 0.5));
+  background: linear-gradient(#163766,#163766);
   /* url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/769286/lake-696098_1920.jpg); */
   background-size: cover;
   background-position: center center;
@@ -206,7 +206,7 @@ textarea {
 }
 
 .work {
-  background: linear-gradient(rgba(50, 105, 224, 0.666), rgba(0, 0, 0, 0.5));
+  background: linear-gradient(#1f4a8b,#1f4a8b);
   /* url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/769286/forest-208517_1280.jpg); */
   background-size: cover;
   background-position: center center;
