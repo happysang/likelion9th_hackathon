@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    <title>병의:보감</title>
+    <script src="https://kit.fontawesome.com/9e7c2b9921.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{%static 'detail_style.css'%}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+        h1,h2,p,span, a.button.button, input.btn.btn{ font-family: 'Gowun Dodum', sans-serif;}
+    </style>
+</head>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+	<link rel="stylesheet" href="./stylesheets/screen.css">
+	<link rel="stylesheet" href="./stylesheets/fonts.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+</head>
+<body>
+<br><br>
+	<section style="text-align: center;">
+        <h1>검색 결과🔍</h1>
+        {% if not squestion %}
+            <p><span style="color: blue;"><i>{{q}}</i></span>에 대한 검색 결과가 없습니다.</h5>
+            </p><br>
+        {% else %}
+            <p><span style="color: blue;"><i>{{q}}</i></span> 에 대한 게시물은 총 {{count}} 건 입니다.</span></p><br>
+        
+        {% for s in squestion %}
+        <div>
+		<h2><a href="{% url 'urlquestiondetail' s.id %}">{{s.title}}</a></h2>
+        <h2>과: {{s.dept}}</h2>
+		<h3>조회수: {{views_question.view_count}}</h3>
+		<p>작성자: {{s.student_id}}</p>
+		<p>작성날짜: {{s.date}}</p>
+        <br>
+        <hr>
+        <br>
+        </div>
+        {% endfor %}
+        <a href="{%url 'urlquestioncategory'%}" class="button button-submit">다시 검색하기</a>
+        {% endif %}
+
+</body>
+</html>

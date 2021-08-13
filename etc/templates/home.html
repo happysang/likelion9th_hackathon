@@ -1,0 +1,400 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="megakit,business,company,agency,multipurpose,modern,bootstrap4">
+  
+  <meta name="author" content="themefisher.com">
+
+  <title>병의:보감</title>
+
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="static/plugins/bootstrap/css/bootstrap.min.css">
+  <!-- Icon Font Css -->
+  <link rel="stylesheet" href="static/plugins/themify/css/themify-icons.css">
+  <link rel="stylesheet" href="static/plugins/fontawesome/css/all.css">
+  <link rel="stylesheet" href="static/plugins/magnific-popup/dist/magnific-popup.css">
+  <!-- Owl Carousel CSS -->
+  <link rel="stylesheet" href="static/plugins/slick-carousel/slick/slick.css">
+  <link rel="stylesheet" href="static/plugins/slick-carousel/slick/slick-theme.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="static/css/style.css">
+
+  <!-- logofont-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Song+Myung&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+  <!-- 쪽지함 CSS-->
+  <link rel="stylesheet" href="{% static 'direct/static/css/bulma.min.css' %}">
+  <link rel="stylesheet" href="{% static 'direct/static/css/style.css' %}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <!--홈
+    {% if user.is_authenticated %}
+        {{user.username}}님 안녕하세요?
+        <a href="{%url 'urllogout' %}"><button>로그아웃</button></a>
+        <a href="{%url 'urlmypage' %}"><button>마이페이지</button></a>
+        <a href = "{%url 'urlinbox' %}">
+        쪽지함        
+        {% if directs_count %}
+        <span>{{ directs_count }}</span>
+        {% endif %}
+        </a> <br>
+        
+        <form class="form-inline my-2 my-lg-0" action="{% url 'urlallsearch' %}" method="post">
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" type="search" placeholder="검색어를 입력하세요" aria-label="Search" name="q" value="{{q}}">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+    {% else %}
+        <form class="form-inline my-2 my-lg-0" action="{% url 'urlallsearch' %}" method="post">
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" type="search" placeholder="검색어를 입력하세요" aria-label="Search" name="q" value="{{q}}">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    {% endif %}
+    <br><br>
+    <a href = "{%url 'urlinfocategory' %}"><button>정보페이지</button></a> <br>
+    <a href = "{%url 'urlquestioncategory' %}"><button>질문페이지</button></a> <br>
+    <a href = "{%url 'urlreviewcategory' %}"><button>후기페이지</button></a> <br>
+</body>
+</html>
+-->
+
+<!-- Header Start --> 
+
+<header class="navigation">
+   <nav class="navbar navbar-expand-lg  py-4" id="navbar">
+      <div class="container">
+        <a class="navbar-brand" href="{%url 'urlhome' %}">
+           병의 : <span>보감</span>
+        </a>
+     
+        <div class="collapse navbar-collapse text-center" id="navbarsExample09">
+         <ul class="navbar-nav ml-auto">
+           
+           <!-- <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="{%url 'urlreviewcategory' %}" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">후기게시판</a>
+               <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                  <li><a class="dropdown-item" href="{%url 'urlreviewcategory' %}">후기 보러가기</a></li>
+                  <li><a class="dropdown-item" href="#">후기 작성하기</a></li>
+               </ul>
+           </li> -->
+         
+      {% if user.is_authenticated %}
+         <li class="nav-item active">
+         <a class="nav-link" href="{%url 'urlhome' %}">Home <span class="sr-only">(current)</span></a>
+         </li>
+         <li class="nav-item"><a class="nav-link" href="{%url 'urlreviewcategory' %}">후기게시판</a></li>
+         <li class="nav-item"><a class="nav-link" href="{%url 'urlquestioncategory' %}">질문게시판</a></li>
+         <li class="nav-item"><a class="nav-link" href="{%url 'urlinfocategory' %}">정보게시판</a></li>
+            <!-- <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">정보게시판</a>
+               <ul class="dropdown-menu" aria-labelledby="dropdown05">
+                  <li><a class="dropdown-item" href="">병원 정보</a></li>
+                  <li><a class="dropdown-item" href="">수술 정보</a></li>
+                  <li><a class="dropdown-item" href="">그 외</a></li>
+               </ul> -->
+         </ul>
+
+         <form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
+            <a href="{%url 'urllogout' %}" class="btn btn-solid-border btn-round-full">로그아웃</a>
+           </form>
+         <form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
+            <a href="{%url 'urlmypage' %}" class="btn btn-solid-border btn-round-full">{{user.username}}님 안녕하세요?</a>
+           </form>
+         <form>
+         <a href="{% url 'urlinbox' %}" class="navbar-item">
+            <i class="material-icons" style="font-size: x-large;">mail_outline</i>
+            {% if directs_count %}
+            <span class="badge">{{ directs_count }}</span>
+            {% endif %}
+         </a>
+         </form>
+      {% else %}
+         <form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
+           <a href="{%url 'urllogin' %}" class="btn btn-solid-border btn-round-full">로그인</a>
+         </form>
+            <form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
+           <a href="{%url 'urlchoice' %}" class="btn btn-solid-border btn-round-full">회원가입</a>
+         </form>
+      {% endif %}
+        </div>
+      </div>
+   </nav>
+   {%if messages%}
+   {%for m in messages%}
+      <h6 style=" text-align: center; font-style: oblique; color: rgb(0, 0, 0);"><strong>{{m.message}}</strong></h6><br>
+   {%endfor%}
+   {%endif%}
+</header>
+
+<!-- Header Close --> 
+
+<div class="main-wrapper ">
+<!-- Slider Start -->
+<section class="slider">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-9 col-md-10">
+            <div class="block">
+            
+               <h1 class="animated fadeInUp mb-5" style="font-family: 'Song Myung', serif;">병의 : 보감 <br></h1> 
+               <h3 style="color: aliceblue; font-family: 'Song Myung', serif;">보감 : </h3>&nbsp;<h4 style="color: aliceblue;">다른사람이나 후세에 본보기가 될 만한 귀중한 일이나 사물. <br>또는, 그런 것을 적은 책</h4><br><br><br><br>
+               <a href="#find" style="scroll-behavior:smooth;" class="btn btn-main animated fadeInUp btn-round-full" > 살펴보기<i class="btn-icon fa fa-angle-right ml-2"></i></a>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!--slider close-->
+<!--second section start-->
+<section class="section latest-blog bg-2" id = 'find'>
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-lg-7 text-center">
+            <div class="section-title">
+               <h2 class="mt-3 content-title text-white">지금 바로 만나보세요!</h2>
+            </div>
+         </div>
+      </div>
+
+      <div class="row justify-content-center">
+           <div class="col-lg-4 col-md-6 mb-5">
+              <div class="card bg-transparent border-0">
+               <img src="images/blog/1.jpg" alt="" class="img-fluid rounded">
+
+               <div class="card-body mt-2">
+                  <h3 class="mt-3 mb-5 lh-36"><a href="{%url 'urlreviewcategory' %}" class="text-white ">다른 사람이 남긴 후기가<br> 궁금하다면?</a></h3>
+                  {%if not user.is_authenticated%}
+                  <a href="{%url 'urlneedlogin' %}" class="btn btn-small btn-solid-border btn-round-full text-white">정보게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
+                  {%else%}
+                  <a href="{%url 'urlreviewcategory' %}" class="btn btn-small btn-solid-border btn-round-full text-white">후기게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
+                  {%endif%}
+               </div>
+            </div>
+         </div>
+
+
+         <div class="col-lg-4 col-md-6 mb-5">
+            <div class="card border-0 bg-transparent">
+               <img src="images/blog/2.jpg" alt="" class="img-fluid rounded">
+
+               <div class="card-body mt-2">
+               <h3 class="mt-3 mb-5 lh-36"><a href="{%url 'urlinfocategory' %}" class="text-white">각종 의료에 대한 정보가 <br> 필요하다면?</a></h3>
+               {%if not user.is_authenticated%}
+               <a href="{%url 'urlneedlogin' %}" class="btn btn-small btn-solid-border btn-round-full text-white">정보게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
+               {%else%}
+                  <a href="{%url 'urlinfocategory' %}" class="btn btn-small btn-solid-border btn-round-full text-white">정보게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
+               {%endif%}
+               </div>
+            </div>
+         </div>
+
+         <div class="col-lg-4 col-md-6 mb-5">
+            <div class="card border-0 bg-transparent">
+               <img src="images/blog/3.jpg" alt="" class="img-fluid rounded">
+
+               <div class="card-body mt-2">
+                  <h3 class="mt-3 mb-5 lh-36"><a href="{%url 'urlquestioncategory' %}" class="text-white">궁금한 점이 있을 때 <br>전문가에게 물어봐!</a></h3>
+                  {%if not user.is_authenticated%}
+                  <a href="{%url 'urlneedlogin' %}" class="btn btn-small btn-solid-border btn-round-full text-white">정보게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
+                  {%else%}
+                  <a href="{%url 'urlquestioncategory' %}" class="btn btn-small btn-solid-border btn-round-full text-white">질문게시판 <i class="btn-icon fa fa-angle-right ml-2"></i></a>
+                  {%endif%}
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+
+
+<!-- second section close-->
+<!-- Section Intro Start -->
+
+<section class="section intro bg-blue">
+   <div class="container">
+      <div class="row ">
+         <div class="col-lg-8">
+            <div class="section-title">
+               <h2 class="mt-3 content-title text-white">병원가는게 두려우세요? <br>지금 병의 : 보감에서 확인하세요! </h2>
+            </div>
+         </div>
+      </div>
+      <div class="row justify-content-center">
+         <div class="col-lg-4 col-md-6 col-12">
+            <div class="intro-item mb-5 mb-lg-0"> 
+               <i class="ti-desktop color-one text-white"></i>
+               <h4 class="mt-4 mb-3 text-white">이 병원 가도 될까?</h4>
+               <p>누구나 자유롭게 회원가입 후 병원 후기를 알아보실 수 있습니다.</p>
+            </div>
+         </div>
+         <div class="col-lg-4 col-md-6">
+            <div class="intro-item mb-5 mb-lg-0">
+               <i class="ti-medall color-one text-white"></i> 
+               <h4 class="mt-4 mb-3 text-white">검증된 의료진의 피드백까지</h4>
+               <p>일반 회원 뿐만 아니라 검증된 의료진,전문가의 피드백도 받아보실 수 있습니다.</p>
+            </div>
+         </div>
+         <div class="col-lg-4 col-md-6">
+            <div class="intro-item">
+               <i class="ti-layers-alt color-one text-white"></i>
+               <h4 class="mt-4 mb-3 text-white">많은 사람들과 함께!</h4>
+               <p>사용자끼리 대화하며 정보를 공유할 수 있습니다.</p>
+            </div>
+         </div> 
+      </div>
+   </div>
+</section>
+
+<!-- Section Intro END -->
+<!-- Section Testimonial Start -->
+<section class="section testimonial bg-sky">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-7 ">
+            <div class="section-title">
+               <h2 class="mt-3 content-title">금주의 핫한 게시물&#129409;</h2>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="container">
+      <div class="row testimonial-wrap">
+         <div class="testimonial-item position-relative">
+            <i class="ti-quote-left text-color"></i>
+
+            <div class="testimonial-item-content">
+               {%if not user.is_authenticated%}
+               <a href="{%url 'urlneedlogin'%}"><p class="testimonial-text">{{hot_review.title}}</p></a>
+               <div class="testimonial-author">
+                  <a href="{%url 'urlneedlogin'%}" class="mb-0 text-capitalize" ><h5 >{{hot_review.user_id}}</h5></a>
+                  <p>{{hot_review.date}}</p>
+               </div>
+               {%else%}
+               <a href="{%url 'urlreviewdetail' hot_review.id%}"><p class="testimonial-text">{{hot_review.title}}</p></a>
+               <div class="testimonial-author">
+                  <a href="{%url 'urlreviewdetail' hot_review.id%}" class="mb-0 text-capitalize" ><h5 >{{hot_review.user_id}}</h5></a>
+                  <p>{{hot_review.date}}</p>
+               </div>
+               {%endif%}
+               
+            </div>
+         </div>
+         <div class="testimonial-item position-relative">
+            <i class="ti-quote-left text-color"></i>
+
+            <div class="testimonial-item-content">
+               {%if not user.is_authenticated%}
+               <a href="{%url 'urlneedlogin'%}"><p class="testimonial-text">{{hot_question.title}}</p></a>
+               <div class="testimonial-author">
+                  <a href="{%url 'urlneedlogin'%}" class="mb-0 text-capitalize" ><h5 >{{hot_question.user_id}}</h5></a>
+                  <p>{{hot_question.date}}</p>
+               </div>
+               {%else%}
+               <a href="{%url 'urlquestiondetail' hot_question.id%}"><p class="testimonial-text">{{hot_question.title}}</p></a>
+               <div class="testimonial-author">
+                  <a href="{%url 'urlquestiondetail' hot_question.id%}" class="mb-0 text-capitalize" ><h5 >{{hot_question.user_id}}</h5></a>
+                  <p>{{hot_question.date}}</p>
+               </div>
+               {%endif%}
+            </div>
+         </div>
+         <div class="testimonial-item position-relative">
+            <i class="ti-quote-left text-color"></i>
+
+            <div class="testimonial-item-content">
+               {%if not user.is_authenticated%}
+               <a href="{%url 'urlneedlogin'%}"><p class="testimonial-text">{{hot_info.title}}</p></a>
+               <div class="testimonial-author">
+                  <a href="{%url 'urlneedlogin'%}" class="mb-0 text-capitalize" ><h5 >{{hot_info.user_id}}</h5></a>
+                  <p>{{hot_info.date}}</p>
+               </div>
+               {%else%}
+               <a href="{%url 'urlinfodetail' hot_info.id%}"><p class="testimonial-text">{{hot_info.title}}</p></a>
+               <div class="testimonial-author">
+                  <a href="{%url 'urlinfodetail' hot_info.id%}" class="mb-0 text-capitalize" ><h5 >{{hot_info.user_id}}</h5></a>
+                  <p>{{hot_info.date}}</p>
+               </div>
+               {%endif%}
+            </div>
+         </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- Section Testimonial End -->
+<section class="mt-70 position-relative">
+   <div class="container">
+   <div class="cta-block-2 bg-gray p-5 rounded border-1">
+      <div class="row justify-content-center align-items-center ">
+         <div class="col-lg-7">
+            <span class="text-color">병의:보감의 지식 전문가가 되어보세요! </span>
+            <h2 class="mt-2 mb-4 mb-lg-0">믿을 수 있는 후기와 정보 공유, <br>그리고 홍보의 기회까지!</h2>
+         </div>
+         <div class="col-lg-4">
+            <a href="{%url 'urlchoice' %}" class="btn btn-main btn-round-full float-lg-right ">지원하기 &#10142;</a>
+         </div>
+      </div>
+   </div>
+</div>
+
+</section>
+
+<!-- footer Start -->
+<footer class="footer section">
+   <div class="container">
+      <div class="footer-btm pt-4">
+         <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12">
+               <div class="copyright">
+                  &copy; Copyright Reserved to <span class="text-color">멋쟁이사자처럼 In KGU</span> by <strong style="white-space:nowrap;">병의:보감</strong>
+               </div>
+            </div>
+
+
+         </div>
+      </div>
+   </div>
+</footer>
+   
+    </div>
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+    
+    <!-- Main jQuery -->
+    <script src="static/plugins/jquery/jquery.js"></script>
+    <script src="static/js/contact.js"></script>
+    <!-- Bootstrap 4.3.1 -->
+    <script src="static/plugins/bootstrap/js/popper.js"></script>
+    <script src="static/plugins/bootstrap/js/bootstrap.min.js"></script>
+   <!--  Magnific Popup-->
+    <script src="static/plugins/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+    <!-- Slick Slider -->
+    <script src="static/plugins/slick-carousel/slick/slick.min.js"></script>
+    <!-- Counterup -->
+    <script src="static/plugins/counterup/jquery.waypoints.min.js"></script>
+    <script src="static/plugins/counterup/jquery.counterup.min.js"></script>
+
+    <!-- Google Map -->
+    <script src="static/plugins/google-map/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>    
+    
+    <script src="static/js/script.js"></script>
+
+  </body>
+  </html>

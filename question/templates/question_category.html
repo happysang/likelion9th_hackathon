@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'search_style.css' %}">
+    <title>병의:보감</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+    .fond {
+        position: absolute;
+        padding-top: 20px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #1a4380;
+    }
+
+    .style_prevu_kit {
+        display: inline-block;
+        border: 0;
+        width: 160px;
+        height: 100px;
+        margin-right: -6px;
+        padding-top: 20px;
+        position: relative;
+        -webkit-transition: all 200ms ease-in;
+        -webkit-transform: scale(1);
+        -ms-transition: all 200ms ease-in;
+        -ms-transform: scale(1);
+        -moz-transition: all 200ms ease-in;
+        -moz-transform: scale(1);
+        transition: all 200ms ease-in;
+        transform: scale(1);
+
+    }
+
+    .style_prevu_kit:hover {
+        box-shadow: 0px 0px 150px #000000;
+        z-index: 2;
+        -webkit-transition: all 200ms ease-in;
+        -webkit-transform: scale(1.5);
+        -ms-transition: all 200ms ease-in;
+        -ms-transform: scale(1.5);
+        -moz-transition: all 200ms ease-in;
+        -moz-transform: scale(1.5);
+        transition: all 200ms ease-in;
+        transform: scale(1.5);
+    }
+
+    div {
+        font-family: 'Gowun Dodum', sans-serif;
+        font-weight: 600;
+    }
+</style>
+
+<body>
+<div align="center" class="fond">
+
+<div style=" padding:30px; color:white;padding-top:0px; font-size: 40px;">질문 게시판</div>
+
+    <form class="form-inline my-2 my-lg-0" action="{% url 'urlquestionsearch' %}" method="post">
+        {% csrf_token %}
+        <div class="search">
+           <input type="text" class="searchTerm" placeholder="관심있는 병 혹은 질환을 검색해 보세요!" name="q" value="{{q}}">
+           <button type="submit" class="searchButton">
+           <i class="fa fa-search"></i>
+           </button>
+        </div>
+     </form>
+        <br>
+    
+
+        <div style="width:750px;">
+
+                <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 0%}';">
+                    <img src="{% static '치과.png'%}" alt="image" width="50" height="50"><br>치과
+                </div>
+                <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 1%}';">
+                    <img src="{% static '피부과.png'%}" alt="image" width="50" height="50"><br>피부과
+                </div>
+                <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 2%}';">
+                    <img src="{% static '성형외과.png'%}" alt="image" width="50" height="50"><br>성형외과
+                </div>
+                <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 3%}';">
+                    <img src="{% static '산부인과.png'%}" alt="image" width="50" height="50"><br>산부인과
+                </div>
+
+                <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 4%}';">
+                    <img src="{% static '안과.png'%}" alt="image" width="50" height="50"><br>안과
+                </div>
+                <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 5%}';">
+                    <img src="{% static '내과.png'%}" alt="image" width="50" height="50"><br>내과
+                </div>
+                <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 6%}';">
+                    <img src="{% static '외과.png'%}" alt="image" width="50" height="50"><br>외과
+                </div>
+                <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 7%}';">
+                    <img src="{% static '이비인후과.png'%}" alt="image" width="50" height="50"><br>이비인후과
+                </div>
+
+                <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 8%}';">
+                    <img src="{% static '정형외과.png'%}" alt="image" width="50" height="50"><br>정형외과
+                </div>
+                <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 9%}';">
+                    <img src="{% static '비뇨기과.png'%}" alt="image" width="50" height="50"><br>비뇨기과
+                </div>
+                <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 10%}';">
+                    <img src="{% static '정신건강의학과.png'%}" alt="image" width="50" height="50"><br>정신건강의학과
+                </div>
+                <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 11%}';">
+                    <img src="{% static '재활의학과.png'%}" alt="image" width="50" height="50"><br>재활의학과
+                </div>
+
+                <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 12%}';">
+                    <img src="{% static '영상의학과.png'%}" alt="image" width="50" height="50"><br>영상의학과
+                </div>
+                <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 13%}';">
+                    <img src="{% static '소아과.png'%}" alt="image" width="50" height="50"><br>소아과
+                </div>
+                <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 14%}';">
+                    <img src="{% static '신경외과.png'%}" alt="image" width="50" height="50"><br>신경외과
+                </div>
+                <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 15%}';">
+                    <img src="{% static '신경과.png'%}" alt="image" width="50" height="50"><br>신경과
+                </div>
+
+                <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 16%}';">
+                    <img src="{% static '마취통증의학과.png'%}" alt="image" width="50" height="50"><br>마취통증의학과
+                </div>
+                <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 17%}';">
+                    <img src="{% static '가정의학과.png'%}" alt="image" width="50" height="50"><br>가정의학과
+                </div>
+                <div class="style_prevu_kit" style="background-color:#9ad1f5; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 18%}';">
+                    <img src="{% static '한의원.png'%}" alt="image" width="50" height="50"><br>한의원
+                </div>
+                <div class="style_prevu_kit" style="background-color:#5290ec; cursor:pointer;"
+                    onClick="location.href='{% url 'urlquestionreadall' 19%}';">
+                    <img src="{% static '병원.png'%}" alt="image" width="50" height="50"><br>그 외
+                </div>
+        </div>
+        <br><br>
+        <div style="text-align: center;">
+            <a href="{%url 'urlhome'%}" class="buttonhom" style=
+             "background-color:transparent;
+              border-radius:28px;
+              border:1px solid #4e6096;
+              display:inline-block;
+              cursor:pointer;
+              color:#ffffff;
+              font-family:Verdana;
+              font-size:17px;
+              padding:10px 30px;
+              text-decoration:none;
+              text-shadow:0px 1px 0px #283966;"> home</a>
+              
+             
+            </div>
+            <br><br>
+</body>
+</html>

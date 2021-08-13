@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>병의:보감</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="{%static 'scrap_style.css'%}">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+    h1,h2,p,span, a.button.button, input.btn.btn, dt, dd{ font-family: 'Gowun Dodum', sans-serif;}
+</style>
+
+</head>
+<body>
+    <div class='detail-container'>
+        <h1>Review</h1>
+        <dl>
+        {% if review_scraps %}
+            {% for post in review_scraps %}
+                <dt>
+                    [<a href="{%url 'urlreviewdetail' post.id%}" style="color: #fff;">{{post.title}}</a>]
+                </dt>
+                <dd>
+                    내용 : {{post.body|truncatewords:50}}
+                </dd>
+            {% endfor %} 
+        {% else %}
+                <dt>
+                    스크랩한 후기글이 없습니다.
+                </dt>    
+        {% endif %}
+        </dl>
+        <br><br>
+        <h1>Question</h1>
+        <dl>
+            {% if question_scraps %}
+                {% for post in question_scraps %}
+                    <dt>
+                        [<a href="{%url 'urlquestiondetail' post.id%}" style="color: #fff;">{{post.title}}</a>]
+                    </dt>
+                    <dd>
+                        내용 : {{post.body|truncatewords:50}}
+                    </dd>
+                {% endfor %} 
+            {% else %}
+                    <dt>
+                        스크랩한 질문글이 없습니다.
+                    </dt>    
+            {% endif %}
+        </dl>
+        <br><br>
+        <h1>Information</h1>
+        <dl>
+            {% if info_scraps %}
+                {% for post in info_scraps %}
+                    <dt>
+                        [<a href="{%url 'urlinfodetail' post.id%}" style="color: #fff;">{{post.title}}</a>]
+                    </dt>
+                    <dd>
+                        내용 : {{post.body|truncatewords:50}}
+                    </dd>
+
+                {% endfor %} 
+            {% else %}
+                    <dt>
+                        스크랩한 정보글이 없습니다.
+                    </dt>    
+            {% endif %}
+        </dl>
+        <br><br>
+        
+            <div style="text-align: center;">
+                <a href="{%url 'urlhome'%}" class="buttonhom" style=
+                 "background-color:transparent;
+                  border-radius:28px;
+                  border:1px solid #4e6096;
+                  display:inline-block;
+                  cursor:pointer;
+                  color:#ffffff;
+                  font-family:Verdana;
+                  font-size:17px;
+                  padding:10px 30px;
+                  text-decoration:none;
+                  text-shadow:0px 1px 0px #283966;"> home</a>
+                  
+                  <a href="{%url 'urlmypage'%}" class="buttonhom" style=
+                 "background-color:transparent;
+                  border-radius:28px;
+                  border:1px solid #4e6096;
+                  display:inline-block;
+                  cursor:pointer;
+                  color:#ffffff;
+                  font-family:Verdana;
+                  font-size:17px;
+                  padding:10px 30px;
+                  text-decoration:none;
+                  text-shadow:0px 1px 0px #283966;"> back</a>
+                </div>
+
+    </div>
+</body>
+</html>

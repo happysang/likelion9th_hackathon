@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Split Landing Page</title>
+  <link rel="stylesheet" href="{%static 'cstyle.css' %}">
+  <style>
+	@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+	*{ font-family: 'Gowun Dodum', sans-serif;}
+  </style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container">
+  <div class="split left">
+	<form class="form" action="{%url 'urlsignup' 1%}">
+    <button type="submit" class="button">일반 유저로 회원가입</button>
+	</form>
+  </div>
+	<div class="split right">
+	<form class="form" action="{%url 'urlsignup' 2%}">
+	<button type="submit" class="button">의사 유저로 회원가입</button>
+	</form>
+   
+   
+  </div>
+</div>
+<!-- partial -->
+  <script  src="{%static 'cscript.js' %}"></script>
+
+</body>
+</html>

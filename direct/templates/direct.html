@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>병의:보감</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'><link rel="stylesheet" href="{% static 'direct_style.css' %}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container clearfix">
+    <div class="people-list" id="people-list">
+
+      <!-- <div class="search">
+        <input type="text" placeholder="search" />
+        <i class="fa fa-search"></i>
+      </div> -->
+      <ul class="list">
+            <form>
+                <input name="q" type="text" placeholder="검색할 사용자 아이디" value="{{ request.GET.q }}">
+                <button type="submit">검색</button>
+            </form>
+            {% if users %}
+              <p style="text-align: center;">[검색 내역]</p>
+            {% endif %}
+            {% for user in users %}
+                  <a href="{% url 'urlnewconversation' user.username %}">
+                    <img src="{% static '사람.png' %}" alt="avatar" height="40" width="35"><br>
+                    <div style="text-decoration: none; color: aliceblue;">{{ user.username }}</div>
+                  </a>
+                  <br>
+            {% endfor %}
+            <br>
+            <p style="text-align: center;">[대화 내역]</p>
+        {% for message in messages %}
+        <li class="clearfix">
+        <a class="{% if active_direct == message.user %}is-active{% endif %}" href="{% url 'urldirects' message.user.username %}">
+                  <!-- 나에게 메세지 보낸 사람 목록-->
+                  <img src="{% static '사람.png' %}" alt="avatar" height="40" width="35">
+                  <div class="about">
+                    <div style="text-decoration: none; color: aliceblue;">{{ message.user }}</div>
+                    {% if message.unread %}
+                    <p style="font-size: larger; font-weight: bold; color: red;">
+                      <i class="material-icons">mark_chat_unread</i> {{ message.unread }}
+                    </p>
+                    {% endif %} 
+                  </div>
+        </a>
+        </li>
+        {% endfor %}       
+      </ul>
+    </div>
+    
+    <div class="chat">
+
+      <div class="chat-header clearfix">
+        <div class="chat-about">
+          <div class="chat-with">Chat</div>
+        </div>
+      </div> <!-- end chat-header -->
+      
+      <div class="chat-history">
+        <ul>
+        {% for direct in directs %}
+          {% if user == direct.sender %}
+          <li class="clearfix">
+            <div class="message-data align-right">
+              <span class="message-data-time" >{{ direct.date|date:'n/d G:i:s'}}</span> &nbsp; &nbsp;
+              <span class="message-data-name" >{{ direct.sender }}</span> <i class="fa fa-circle me"></i>
+              
+            </div>
+            <div class="message other-message float-right">
+              {{ direct.body }}
+            </div>
+          </li>
+          
+          {% else %}
+          <li>
+            <div class="message-data">
+              <span class="message-data-name"><i class="fa fa-circle online"></i> {{ direct.sender }}</span>
+              <span class="message-data-time">{{ direct.date|date:'n/d G:i:s'}}</span>
+            </div>
+            <div class="message my-message">
+              {{ direct.body }}
+            </div>
+          </li>
+          {% endif %}
+        {% endfor %}  
+          
+          
+        </ul>
+        
+      </div> <!-- end chat-history -->
+      
+      <div class="chat-message clearfix">
+        <form role="form" method="POST" action="{% url 'urlsend_direct' %}">
+          {% csrf_token %}
+            <input type="hidden" name="to_user" value="{{ active_direct }}">
+                <textarea class="textarea" name="body" placeholder="메시지 내용을 입력하세요" cols="112" rows="2"></textarea>
+                  <button type="submit" name="action">전송</button> &ensp;
+                <!--무늬뿐인 삭제,차단,신고-->
+        </form>
+
+      </div> <!-- end chat-message -->
+      
+    </div> <!-- end chat -->
+    
+  </div> <!-- end container -->
+  <br><br>
+  <div style="text-align: center;">
+    <a href="{%url 'urlhome'%}" class="buttonhom" style=
+     "background-color:transparent;
+      border-radius:28px;
+      border:1px solid #4e6096;
+      display:inline-block;
+      cursor:pointer;
+      color:#ffffff;
+      font-family:Verdana;
+      font-size:17px;
+      padding:10px 30px;
+      text-decoration:none;
+      text-shadow:0px 1px 0px #283966;"> home</a>
+      
+     
+    </div>
+
+  
+<!-- <script id="message-template" type="text/x-handlebars-template">
+  <li class="clearfix">
+    <div class="message-data align-right">
+      <span class="message-data-time" >{{time}}, Today</span> &nbsp; &nbsp;
+      <span class="message-data-name" >Olia</span> <i class="fa fa-circle me"></i>
+    </div>
+    <div class="message other-message float-right">
+      {{messageOutput}}
+    </div>
+  </li>
+</script>
+
+<script id="message-response-template" type="text/x-handlebars-template">
+  <li>
+    <div class="message-data">
+      <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
+      <span class="message-data-time">{{time}}, Today</span>
+    </div>
+    <div class="message my-message">
+      {{response}}
+    </div>
+  </li>
+</script> -->
+
+
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js'></script><script  src="{% static 'direct_script.js' %}"></script>
+
+</body>
+</html>

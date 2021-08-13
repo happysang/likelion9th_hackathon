@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>병의:보감</title>
+  <link rel="stylesheet" href="{%static 'readall_style.css'%}">
+  <style>
+	@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+	h1,h2,p,span, a.button.button, input.btn.btn{ font-family: 'Gowun Dodum', sans-serif;}
+</style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Question/readall</title>
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+	<link rel="stylesheet" href="./stylesheets/screen.css">
+	<link rel="stylesheet" href="./stylesheets/fonts.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+</head>
+
+<body>
+  <h1 style="text-align: center; color: white"><strong>{{d_name}} 질문게시판</strong></h1><br>
+  <h6 style="text-align: center; color: white; font-style:oblique;" >✔️표시는 인증된 의사에게만 부여됩니다.</h6>
+	<section style="text-align: center;">
+ 
+    {% for a in views_question_all %}
+		<h1>{{a.title}}</h1>
+		<h2>{{a.user_id}}</h2>
+		<p>{{a.date}}</p>
+		<a href="{%url 'urlquestiondetail' a.id%}" class="button-read-more">Read more &raquo;</a>
+    <hr style="border: solid 2px;">
+    <br>
+    {% endfor %}
+    <br>
+    <div style="display: inline-block;">
+    <a href="{%url 'urlquestionnew' d_num%}" class="button button-submit">질문글 작성하기</a>
+    <a href="{%url 'urlquestioncategory'%}" class="button button-cancel">돌아가기</a>
+    </div>
+	</section>
+
+	<div style="text-align: center; color: aliceblue;">
+        <br><br>
+		<a href="?page = 1">처음</a>
+        {% if views_question_all.has_previous %}
+            <a href="?page={{ views_question_all.previous_page_number }}">이전</a>
+        {% endif %}
+
+        <span>{{views_question_all.number}}</span>
+        <span>of</span>
+        <span>
+            {{views_question_all.paginator.num_pages}}
+        </span>
+
+        {% if views_question_all.has_next %}
+            <a href="?page={{ views_question_all.next_page_number }}">다음</a>
+        {% endif %}
+		<a href="?page={{ views_question_all.paginator.num_pages }}">마지막</a>
+    </div>
+	<br><br>
+
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>

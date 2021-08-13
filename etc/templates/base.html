@@ -1,0 +1,146 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="megakit,business,company,agency,multipurpose,modern,bootstrap4">
+    
+    <meta name="author" content="themefisher.com">
+    
+    <title>병의:보감</title>
+    
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.min.css'%}">
+    <!-- Icon Font Css -->
+    <link rel="stylesheet" href="{% static 'plugins/themify/css/themify-icons.css'%}">
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome/css/all.css'%}">
+    <link rel="stylesheet" href="{% static 'plugins/magnific-popup/dist/magnific-popup.css'%}">
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="{% static 'plugins/slick-carousel/slick/slick.css'%}">
+    <link rel="stylesheet" href="{% static 'plugins/slick-carousel/slick/slick-theme.css'%}">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <!-- logofont-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Song+Myung&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+      
+      </head>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <header class="navigation">
+            <nav class="navbar navbar-expand-lg  py-4" id="navbar">
+                <div class="container">
+                  <a class="navbar-brand" href="{%url 'urlhome' %}">
+                      병의 : <span>보감</span>
+                  </a>
+              
+                  <div class="collapse navbar-collapse text-center" id="navbarsExample09">
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item active">
+                        <a class="nav-link" href="{%url 'urlhome' %}">Home <span class="sr-only">(current)</span></a>
+                      </li>
+                      <!-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{%url 'urlreviewcategory' %}" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">후기게시판</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                                <li><a class="dropdown-item" href="{%url 'urlreviewcategory' %}">후기 보러가기</a></li>
+                                <li><a class="dropdown-item" href="#">후기 작성하기</a></li>
+                            </ul>
+                      </li> -->
+                    <li class="nav-item"><a class="nav-link" href="{%url 'urlreviewcategory' %}">후기게시판</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{%url 'urlquestioncategory' %}">질문게시판</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{%url 'urlinfocategory' %}">정보게시판</a></li>
+                       <!-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">정보게시판</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown05">
+                                <li><a class="dropdown-item" href="">병원 정보</a></li>
+                                <li><a class="dropdown-item" href="">수술 정보</a></li>
+                                <li><a class="dropdown-item" href="">그 외</a></li>
+                            </ul> -->
+                    </ul>
+                {% if user.is_authenticated %}
+                    <form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
+                        <a href="{%url 'urlinbox' %}" class="btn btn-solid-border btn-round-full">쪽지함</a>
+                      </form>
+                    <form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
+                        <a href="{%url 'urllogout' %}" class="btn btn-solid-border btn-round-full">로그아웃</a>
+                      </form>
+                    <form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
+                        <a href="{%url 'urlmypage' %}" class="btn btn-solid-border btn-round-full">{{user.username}}님 안녕하세요?</a>
+                      </form>
+                    {% if directs_count %}
+                    <span>{{ directs_count }}</span>
+                    {% endif %}
+                    </a>
+                {% else %}
+                    <form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
+                      <a href="{%url 'urllogin' %}" class="btn btn-solid-border btn-round-full">로그인</a>
+                    </form>
+                      <form class="form-lg-inline my-2 my-md-0 ml-lg-4 text-center">
+                      <a href="{%url 'urlchoice' %}" class="btn btn-solid-border btn-round-full">회원가입</a>
+                    </form>
+                {% endif %}
+                  </div>
+                </div>
+            </nav>
+        </header>
+    </div>
+        {% block content %}
+
+        {% endblock %}
+
+<!-- footer Start -->
+<footer class="footer section">
+	<div class="container">
+		<div class="footer-btm pt-4">
+			<div class="row">
+				<div class="col-lg-4 col-md-12 col-sm-12">
+					<div class="copyright">
+						&copy; Copyright Reserved to <span class="text-color">멋쟁이사자처럼 In KGU</span> by <a href="" target="_blank">병의:보감</a>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</footer>
+   
+    </div>
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+    
+    <!-- Main jQuery -->
+    <script src="{% static 'plugins/jquery/jquery.js'%}"></script>
+    <script src="{% static 'js/contact.js'%}"></script>
+    <!-- Bootstrap 4.3.1 -->
+    <script src="{% static 'plugins/bootstrap/js/popper.js'%}"></script>
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.min.js'%}"></script>
+   <!--  Magnific Popup-->
+    <script src="{% static 'plugins/magnific-popup/dist/jquery.magnific-popup.min.js'%}"></script>
+    <!-- Slick Slider -->
+    <script src="{% static 'plugins/slick-carousel/slick/slick.min.js'%"></script>
+    <!-- Counterup -->
+ '   <script src="{% static 'plugins/counterup/jquery.waypoints.min.js'%}"></script>
+    <script src="{% static 'plugins/counterup/jquery.counterup.min.js'%}"></script>
+
+    <!-- Google Map -->
+    <script src="{% static 'plugins/google-map/map.js'%}"></script>
+    <script src="{% static 'js/script.js'%}"></script>
+
+  </body>
+  </html>

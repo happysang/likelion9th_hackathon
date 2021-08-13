@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>병의:보감</title>
+  <link rel="stylesheet" href="{%static 'loginstyle.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Serif+KR:wght@500;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="main.css"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+      h1,h2,p,span, a.button.button, input.btn.btn, input.form__input, button{ font-family: 'Gowun Dodum', sans-serif;}
+   </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="container a-container" id="a-container">
+          
+    {% if n_view_signupform %}
+            <form class="form" id="a-form" action="{%url 'urlsignup' 1%}" method="POST">
+            {% csrf_token %}
+            <input type="text" class="form__input" name="username" value="{{d_view_signupform.username.value|default_if_none:''}}" placeholder="아이디">
+            <input type="password" class="form__input" name="password1" value="{{d_view_signupform.password1.value|default_if_none:''}}" placeholder="비밀번호">
+            <input type="password" class="form__input" name="password2" value="{{d_view_signupform.password2.value|default_if_none:''}}" placeholder="비밀번호 확인">
+            <input type="email" class="form__input" name="email" value="{{d_view_signupform.email.value|default_if_none:''}}" placeholder="이메일">
+            <input type="text" class="form__input" name="name" value="{{d_view_signupform.name.value|default_if_none:''}}" placeholder="이름">   
+            <div>       
+            <button class="form__button button submit" style="cursor:pointer; background-color: #1a4380;">회원가입</button>
+            <button type="button" onclick="location.href='{%url 'urlhome'%}'" class="form__button button submit" style="background-color: #1a4380;">돌아가기</button>
+            </div>
+    {% else %}
+            <form class="form" id="a-form" action="{%url 'urlsignup' 2%}" enctype="multipart/form-data" method="POST" > 
+            {% csrf_token %}
+            <input type="text" class="form__input" name="username" value="{{d_view_signupform.username.value|default_if_none:''}}" placeholder="아이디">
+            <input type="password" class="form__input" name="password1" value="{{d_view_signupform.password1.value|default_if_none:''}}" placeholder="비밀번호">
+            <input type="password" class="form__input" name="password2" value="{{d_view_signupform.password2.value|default_if_none:''}}" placeholder="비밀번호 확인">
+            <input type="email" class="form__input" name="email" value="{{d_view_signupform.email.value|default_if_none:''}}" placeholder="이메일">
+            <input type="text" class="form__input" name="name" value="{{d_view_signupform.name.value|default_if_none:''}}" placeholder="이름">
+            <input type="text" class="form__input" name="h_name" value="{{d_view_signupform.h_name.value|default_if_none:''}}" placeholder="병원명">
+            <input type="file" class="form__input" name="cert" value="{{d_view_signupform.cert.value|default_if_none:''}}" placeholder="의사 인증 파일">            
+            <div>
+            <button class="form__button button submit" style="cursor:pointer; background-color: #1a4380;">회원가입</button>
+            <button type="button" onclick="location.href='{%url 'urlhome'%}'" class="form__button button submit" style="background-color: #1a4380;">돌아가기</button>
+            </div>
+    {% endif %}
+      </div>
+      <div class="switch" id="switch-cnt" style="background-color: #1a4380;">
+        <div class="switch__circle"></div>
+        <div class="switch__circle switch__circle--t"></div>
+        <div class="switch__container" id="switch-c1">
+          <h2 class="switch__title title" style="color: #fff;">회원가입</h2>
+          <p class="switch__description description">*비밀번호는 8자리 이상이어야 합니다.<br>
+          <br>
+          *의사회원 가입 시, 
+          <br>
+          별도의 의사면허 첨부 부탁드립니다.<br>
+          <br>
+          *의사회원 인증까지 평균 1~2일의 시간이 소요됩니다.</p>
+          <br>
+          
+          {%if messages%}
+          {%for m in messages%}
+              <h6 style="color: red;"><strong>{{m.message}}</strong></h6><br>
+          {%endfor%}
+          {%endif%}
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
+<!-- partial -->
+  <script  src="{%static 'loginscripts.js' %}"></script>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>병의:보감</title>
+  <link rel="stylesheet" href="{%static 'new_style.css'%}">
+  <style>
+	@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+	h1,h2,p,span, a.button.button, input.btn.btn{ font-family: 'Gowun Dodum', sans-serif;}
+  </style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+	<link rel="stylesheet" href="./stylesheets/screen.css">
+	<link rel="stylesheet" href="./stylesheets/fonts.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+</head>
+
+<body>	
+	<div class="container signup">
+		<form action="{%url 'urlreviewupdate' views_ereview.id%}" style="text-align: center;" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <h1>후기글 수정하기</h1>
+			<hr>
+			<label>
+				<h2>제목</h2>
+				<input type="text" class="long" name="utitle" value="{{views_ereview.title}}">
+			</label>
+
+            <label>
+				<h2>아이디</h2>
+				<input type="text" class="long" name="uuser_id" value="{{views_ereview.user_id}}" readonly="readonly">
+			</label>
+
+            <label>
+				<h2>병원명</h2>
+				<input type="text" class="long" name="uhname" value="{{views_ereview.hname}}" readonly="readonly">
+			</label>
+
+            <label>
+				<h2>의사명</h2>
+				<input type="text" class="long" name="udname" value="{{views_ereview.dname}}">
+			</label>
+
+            <label>
+				<h2>과</h2>
+				<input type="text" class="long" name="udept" value="{{views_ereview.dept}}" readonly>
+			</label>
+
+			<label>
+				<h2>후기내용</h2>
+                <textarea name="ubody" id="" cols="70" rows="40">{{views_ereview.body}}</textarea>
+			</label>
+
+            <label>
+				<h2>진료 증빙 자료</h2>
+                <br>
+				<input type="file" class="long" name="ccert">
+			</label>
+
+            <br>
+			<div style="display: none;">
+			</div>
+			<button class="button-submit">작성완료</button>
+			<button type="button" onclick="location.href='{%url 'urlreviewdetail' views_ereview.id%}'" class="button-submit">돌아가기</button>
+		
+		</form>
+	</div>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>

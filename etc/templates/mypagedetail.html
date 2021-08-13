@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>병의:보감</title>
+<link rel="stylesheet" href="{%static 'scrap_style.css'%}">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+  h1,h2,p,span, a.button.button, input.btn.btn, dt, dd{ font-family: 'Gowun Dodum', sans-serif;}
+</style>
+
+</head>
+<body>
+    <div class='detail-container'>
+        <h1>Personal information</h1>
+        <dl>
+        <dt>Id</dt>
+        <dd>{{user.username}}</dd>
+        <dt>Name</dt>
+        <dd>{{user.name}}</dd>
+        <dt>Email</dt>
+        <dd>{{user.email}}</dd>
+        </dl>
+        {%if user.ans_auth%}
+        <dt>User status</dt>
+        <dd>Doctor user</dd>
+        {%else%}
+        <dt>User status</dt>
+        <dd>General user</dd>
+        {%endif%}
+        <br><br>
+        <div style="text-align: center;">
+        <a href="{%url 'urlhome'%}" class="buttonhom" style=
+         "background-color:transparent;
+          border-radius:28px;
+          border:1px solid #4e6096;
+          display:inline-block;
+          cursor:pointer;
+          color:#ffffff;
+          font-family:Verdana;
+          font-size:17px;
+          padding:10px 30px;
+          text-decoration:none;
+          text-shadow:0px 1px 0px #283966;"> home</a>
+          
+          <a href="{%url 'urlmypage'%}" class="buttonhom" style=
+         "background-color:transparent;
+          border-radius:28px;
+          border:1px solid #4e6096;
+          display:inline-block;
+          cursor:pointer;
+          color:#ffffff;
+          font-family:Verdana;
+          font-size:17px;
+          padding:10px 30px;
+          text-decoration:none;
+          text-shadow:0px 1px 0px #283966;"> back</a>
+        </div>
+    </div>
+</body>
+</html>
